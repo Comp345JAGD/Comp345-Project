@@ -11,7 +11,7 @@
 int main()
 {
     // characterTestDriver();
-    // gameMapDriver();
+    gameMapDriver();
     // itemTestDriver();
     // diceTestDriver();
     return 0;
