@@ -14,11 +14,12 @@
  */
 
 #include "cell.h"
+#include "../SubjectObserver/subjectObserver.h"
 
 #ifndef GAMEMAP_H
 #define GAMEMAP_H
 
-class GameMap
+class GameMap : public Subject
 {
 private:
     IGridCell ***grid; // 2d array

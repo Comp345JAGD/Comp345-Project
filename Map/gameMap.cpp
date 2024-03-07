@@ -105,6 +105,8 @@ void GameMap::setCell(int row, int column, IGridCell *cell)
     delete grid[row][column]; // deallocate old memory
 
     grid[row][column] = cell;
+
+    notifyObservers(); // notify observers that map has changed
 }
 
 bool GameMap::validateGrid()

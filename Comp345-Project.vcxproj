@@ -130,6 +130,7 @@
     <ClCompile Include="map\cell.cpp" />
     <ClCompile Include="map\gameMap.cpp" />
     <ClCompile Include="map\gameMapDriver.cpp" />
+    <ClCompile Include="SubjectObserver\subjectObserver.cpp" />
     <ClCompile Include="testDriver.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +147,7 @@
     <ClInclude Include="map\cell.h" />
     <ClInclude Include="map\gameMap.h" />
     <ClInclude Include="map\gameMapDriver.h" />
+    <ClInclude Include="SubjectObserver\subjectObserver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

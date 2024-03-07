@@ -31,6 +31,10 @@ void gameMapDriver()
     //   gameMap.setCell(i, 2, new WallCell());
     // }
 
+    MapObserver mapObserver(&gameMap);
+
+    gameMap.registerObserver(&mapObserver);
+
     gameMap.setCell(2, 3, new WallCell());
     gameMap.setCell(3, 2, new WallCell());
 
@@ -43,17 +47,30 @@ void gameMapDriver()
         cout << "It is NOT possible to get from the start to the end" << endl;
     }
 
-    for (int i = 0; i < gameMap.getNumRows(); i++)
-    {
-        for (int j = 0; j < gameMap.getNumColumns(); j++)
-        {
-            IGridCell *cell = gameMap.getCell(i, j);
+    
+}
 
-            if (i == gameMap.getStartRow() && j == gameMap.getStartColumn())
+
+MapObserver::MapObserver(GameMap* gameMap)
+{
+    this->gameMap = gameMap;
+}
+
+
+void MapObserver::update() {
+    cout << "Map Changed:" << endl;
+
+    for (int i = 0; i < gameMap->getNumRows(); i++)
+    {
+        for (int j = 0; j < gameMap->getNumColumns(); j++)
+        {
+            IGridCell* cell = gameMap->getCell(i, j);
+
+            if (i == gameMap->getStartRow() && j == gameMap->getStartColumn())
             {
                 cout << "S";
             }
-            else if (i == gameMap.getEndRow() && j == gameMap.getEndColumn())
+            else if (i == gameMap->getEndRow() && j == gameMap->getEndColumn())
             {
                 cout << "E";
             }
@@ -71,4 +88,6 @@ void gameMapDriver()
 
         cout << endl;
     }
+
+    cout << endl;
 }

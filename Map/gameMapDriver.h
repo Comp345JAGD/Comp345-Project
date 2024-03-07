@@ -8,4 +8,15 @@ using namespace std;
 
 void gameMapDriver();
 
+class MapObserver : public Observer
+{
+private:
+	GameMap* gameMap;
+public:
+	MapObserver(
+		GameMap* gameMap
+	);
+	void update() override;
+};
+
 #endif // GAME_MAP_DRIVER_H
