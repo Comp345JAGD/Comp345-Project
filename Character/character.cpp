@@ -16,8 +16,10 @@ void Character::generateAbilityScore()
 
 void Character::assignAbilityScore(const std::vector<int> rolls)
 {
+    system("CLS");
     for (int i = 0; i < rolls.size(); i++)
     {
+        system("CLS");
         std::cout << "Roll number: " << i + 1 << " has value: " << rolls[i] << ". Which stat would you like to increase?\n";
 
         displayScores1();
@@ -79,8 +81,74 @@ void Character::assignAbilityScore(const std::vector<int> rolls)
             continue;
         }
     }
+    system("CLS");
     std::cout << "Here are your final stats:\n";
     displayScores2();
+}
+
+void Character::addStats(StatType type, int value)
+{
+    switch (type)
+    {
+    case lvl:
+        level += value;
+        std::cout << "Adding " << value << " levels to your character.\n";
+        notify(lvl, level);
+        break;
+    case str:
+        strength += value;
+        std::cout << "Adding " << value << " strength to your character.\n";
+        notify(str, strength);
+        break;
+    case dex:
+        dexterity += value;
+        std::cout << "Adding " << value << " dexterity to your character.\n";
+        notify(dex, dexterity);
+        break;
+    case consti:
+        constitution += value;
+        std::cout << "Adding " << value << " constitution to your character.\n";
+        notify(consti, constitution);
+        break;
+    case intel:
+        intelligence += value;
+        std::cout << "Adding " << value << " intelligence to your character.\n";
+        notify(intel, intelligence);
+        break;
+    case wis:
+        wisdom += value;
+        std::cout << "Adding " << value << " wisdom to your character.\n";
+        notify(wis, wisdom);
+        break;
+    case chrm:
+        charisma += value;
+        std::cout << "Adding " << value << " charisma to your character.\n";
+        notify(chrm, charisma);
+        break;
+    case hp:
+        hitPoints += value;
+        std::cout << "Adding " << value << " hit points to your character.\n";
+        notify(hp, hitPoints);
+        break;
+    case aClass:
+        armorClass += value;
+        std::cout << "Adding " << value << " armor class to your character.\n";
+        notify(aClass, armorClass);
+        break;
+    case aBonus:
+        attackBonus += value;
+        std::cout << "Adding " << value << " attack bonus to your character.\n";
+        notify(aBonus, attackBonus);
+        break;
+    case dBonus:
+        damageBonus += value;
+        std::cout << "Adding " << value << " damage bonus to your character.\n";
+        notify(dBonus, damageBonus);
+        break;
+    default:
+        std::cout << "default.\n";
+        break;
+    }
 }
 
 void Character::displayScores1() const
@@ -101,4 +169,12 @@ void Character::displayScores2() const
               << "Intelligence: " << intelligence << "\n"
               << "Wisdom: " << wisdom << "\n"
               << "Charisma: " << charisma << std::endl;
+}
+
+void Character::displayScores3() const
+{
+    std::cout << "Hit Points: " << hitPoints << "\n"
+              << "Armor Class: " << armorClass << "\n"
+              << "Attack Bonus: " << attackBonus << "\n"
+              << "Damage Bonus: " << damageBonus << std::endl;
 }

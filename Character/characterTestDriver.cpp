@@ -75,11 +75,20 @@ void characterTestDriver()
     {
         cout << "Good choice! Creating a fighter with the name " << inputName << ".\n";
         Fighter test1(inputName, inputLevel);
+        Player user(&test1);
+
+        std::cout << "Let's further test functionality of the our Observer Pattern implementation.\n";
+        std::cout << "Let's add two strength to the character we've created.\n";
+        test1.addStats(str, 2);
+        std::cout << "The output above is a result of the notify function notifying the observer we've attached to your "
+                  << "character.\nLet's try it again by adding 5 wisdom.\n";
+        test1.addStats(dex, 5);
         break;
     }
     case 4:
         cout << "Paladin has not been implemented yet, sorry!\n";
         break;
+
     case 5:
         cout << "Rogue has not been implemented yet, sorry!\n";
         break;

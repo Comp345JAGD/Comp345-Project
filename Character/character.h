@@ -3,9 +3,11 @@
 
 #include <string>
 #include <vector>
+#include <stdlib.h>
 #include "dice.h"
+#include "Subject.h"
 
-class Character
+class Character : public Subject
 {
 public:
     Character(const std::string &inputName, int inputLevel);
@@ -13,10 +15,12 @@ public:
     void assignAbilityScore(const std::vector<int> rolls);
     void displayScores1() const;
     void displayScores2() const;
+    void displayScores3() const;
     virtual void calculateHitPoints() = 0;
     virtual void calculateArmorClass() = 0;
     virtual void calculateAttackBonus() = 0;
     virtual void calculateDamageBonus() = 0;
+    void addStats(StatType type, int value);
 
 protected:
     int level;

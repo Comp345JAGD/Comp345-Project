@@ -24,6 +24,7 @@ Fighter::Fighter(const std::string &inputName, int inputLevel) : Character(input
         }
     }
 
+    system("CLS");
     groupedCalculate();
 }
 
@@ -50,27 +51,28 @@ void Fighter::calculateHitPoints()
     {
         hitPoints += dice.roll("1d6");
     }
-
-    std::cout << "Your hit point is: " << hitPoints << ".\n";
+    notify(hp, hitPoints);
 }
 
 void Fighter::calculateArmorClass()
 {
     armorClass = 10 + (dexterity - 10) / 2;
 
-    std::cout << "Your dexterity is is: " << dexterity << ".\n";
+    notify(aClass, armorClass);
 }
 
 void Fighter::calculateAttackBonus()
 {
     std::cout << "Attack bonus is unimplemented for now, set to default 1.\n";
     attackBonus = 1;
+    notify(aBonus, attackBonus);
 }
 
 void Fighter::calculateDamageBonus()
 {
     std::cout << "Damage bonus is unimplemented for now, set to default 1.\n";
     damageBonus = 1;
+    notify(dBonus, damageBonus);
 }
 
 void Fighter::groupedCalculate()
@@ -80,4 +82,7 @@ void Fighter::groupedCalculate()
     calculateArmorClass();
     calculateAttackBonus();
     calculateDamageBonus();
+
+    std::cout << "Here are your final class bonuses:\n";
+    displayScores3();
 }
