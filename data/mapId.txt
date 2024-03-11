@@ -1,0 +1,3 @@
+E,E,E,E
+W,W,E,E
+E,C(name;strength;...),E,E

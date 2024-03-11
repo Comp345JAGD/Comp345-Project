@@ -4,19 +4,19 @@
 #include <vector>
 using namespace std;
 
-class Observer
+class IObserver
 {
 public:
     virtual void update() = 0; // pure virtual function, no body, you cannot instantiate this class, it is like an interface now
 };
 
-class Subject
+class BSubject
 {
 private:
-    vector<Observer*> observers;
+    vector<IObserver*> observers;
 public:
-    void registerObserver(Observer* observer);
-    void unRegisterObserver(Observer* observer);
+    void registerObserver(IObserver* observer);
+    void unRegisterObserver(IObserver* observer);
     void notifyObservers();
 };
 

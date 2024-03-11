@@ -1,20 +1,20 @@
 #include "subjectObserver.h"
 
-void Subject::registerObserver(Observer* observer)
+void BSubject::registerObserver(IObserver* observer)
 {
 	observers.push_back(observer);
 }
 
-void Subject::unRegisterObserver(Observer* observer)
+void BSubject::unRegisterObserver(IObserver* observer)
 {
-	vector<Observer*>::iterator position = find(observers.begin(), observers.end(), observer);
+	vector<IObserver*>::iterator position = find(observers.begin(), observers.end(), observer);
 	if(position != observers.end()) // if it is equal to .end() it means the observer* was not found
 		observers.erase(position);
 }
 
-void Subject::notifyObservers()
+void BSubject::notifyObservers()
 {
-	for (Observer* observer : observers) {
+	for (IObserver* observer : observers) {
 		observer->update();
 	}
 }

@@ -19,7 +19,7 @@
 #ifndef GAMEMAP_H
 #define GAMEMAP_H
 
-class GameMap : public Subject
+class GameMap : public BSubject
 {
 private:
     IGridCell ***grid; // 2d array

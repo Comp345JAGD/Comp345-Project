@@ -4,11 +4,12 @@
 #include <iostream>
 #include "cell.h"
 #include "gameMap.h"
+
 using namespace std;
 
 void gameMapDriver();
 
-class MapObserver : public Observer
+class MapObserver : public IObserver
 {
 private:
 	GameMap* gameMap;

@@ -3,6 +3,10 @@
 #include "Item/itemTestDriver.h"
 #include "Dice/diceTestDriver.h"
 
+#include <sstream>
+#include <fstream>
+#include <iostream>
+
 // Main method to test functionality of every individual section (Character, Dice, Item, Map). Comment out individual drivers
 // to test separately. Please refer to each specific driver cpp file for commented guidance of its functionality.
 // TO COMPILE AND RUN, COPY PASTE THE FOLLOWING AND RUN THE ./a.exe:
@@ -11,8 +15,23 @@
 int main()
 {
     //characterTestDriver();
-    gameMapDriver();
+    //gameMapDriver();
     // itemTestDriver();
     // diceTestDriver();
+
+	// fetch map from file
+
+	/*
+	ifstream inputFile("./data/mapId.txt");
+
+	if (inputFile.good()) {
+		string line;
+		while (getline(inputFile, line)) {
+			cout << line << endl;
+		}
+
+	}
+	*/
+
     return 0;
 }
