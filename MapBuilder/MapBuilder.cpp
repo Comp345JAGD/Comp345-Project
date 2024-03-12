@@ -39,9 +39,9 @@ GameMap& EditorMapBuilder::build() {
 
 		ifstream inputFile("../data/" + mapId + ".txt");
 
-		if (inputFile.good()) {
+		if (!inputFile.fail()) {
 			string line;
-			while (getline(inputFile, line)) {
+			while (inputFile >> line) {
 				cout << line << endl;
 			}
 

@@ -21,17 +21,23 @@ int main()
 
 	// fetch map from file
 
-	/*
+	
 	ifstream inputFile("./data/mapId.txt");
 
-	if (inputFile.good()) {
+	cout << inputFile.fail() << endl;
+
+	//ifstream inputFile("../data/" + mapId + ".txt");
+
+	if (!inputFile.fail()) {
 		string line;
-		while (getline(inputFile, line)) {
+		while (inputFile >> line) {
 			cout << line << endl;
 		}
 
 	}
-	*/
+
+	inputFile.close();
+	
 
     return 0;
 }
