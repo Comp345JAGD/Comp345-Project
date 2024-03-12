@@ -29,5 +29,16 @@ class WallCell : public IGridCell
 public:
     bool isWalkable() override;
 };
+class StartCell : public IGridCell
+{
+public:
+    bool isWalkable() override;
+};
+
+class EndCell : public IGridCell
+{
+public:
+    bool isWalkable() override;
+};
 
 #endif

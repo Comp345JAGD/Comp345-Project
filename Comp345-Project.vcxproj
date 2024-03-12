@@ -131,6 +131,7 @@
     <ClCompile Include="item\Item.cpp" />
     <ClCompile Include="item\itemTestDriver.cpp" />
     <ClCompile Include="MapBuilder\MapBuilder.cpp" />
+    <ClCompile Include="Map\campaign.cpp" />
     <ClCompile Include="map\cell.cpp" />
     <ClCompile Include="map\gameMap.cpp" />
     <ClCompile Include="map\gameMapDriver.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="item\Item.h" />
     <ClInclude Include="item\itemTestDriver.h" />
     <ClInclude Include="MapBuilder\MapBuilder.h" />
+    <ClInclude Include="Map\campaign.h" />
     <ClInclude Include="map\cell.h" />
     <ClInclude Include="map\gameMap.h" />
     <ClInclude Include="map\gameMapDriver.h" />

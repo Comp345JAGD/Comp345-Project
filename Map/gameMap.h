@@ -50,6 +50,10 @@ public:
     int getStartColumn();
     int getEndRow();
     int getEndColumn();
+    void setStartRow(int row);
+    void setStartColumn(int column);
+    void setEndRow(int row);
+    void setEndColumn(int column);
 };
 
 #endif

@@ -2,7 +2,7 @@
 #include "Map/gameMapDriver.h"
 #include "Item/itemTestDriver.h"
 #include "Dice/diceTestDriver.h"
-
+#include "Map/campaign.h"
 #include <sstream>
 #include <fstream>
 #include <iostream>
@@ -21,7 +21,7 @@ int main()
 
 	// fetch map from file
 
-	
+	/*
 	ifstream inputFile("./data/mapId.txt");
 
 	cout << inputFile.fail() << endl;
@@ -37,7 +37,8 @@ int main()
 	}
 
 	inputFile.close();
-	
+	*/
 
+	loadCampaignInterface();
     return 0;
 }

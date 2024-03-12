@@ -108,7 +108,45 @@ void GameMap::setCell(int row, int column, IGridCell *cell)
 
     notifyObservers(); // notify observers that map has changed
 }
+void GameMap::setStartRow(int row)
+{
+    if (isOutOfBounds(row, startColumn))
+    {
+        throw std::invalid_argument("desired row is out of bounds.");
+    }
 
+    startRow = row;
+}
+
+void GameMap::setStartColumn(int column)
+{
+    if (isOutOfBounds(startRow, column))
+    {
+        throw std::invalid_argument("desired column is out of bounds.");
+    }
+
+    startColumn = column;
+}
+
+void GameMap::setEndRow(int row)
+{
+    if (isOutOfBounds(row, endColumn))
+    {
+        throw std::invalid_argument("desired row is out of bounds.");
+    }
+
+    endRow = row;
+}
+
+void GameMap::setEndColumn(int column)
+{
+    if (isOutOfBounds(endRow, column))
+    {
+        throw std::invalid_argument("desired column is out of bounds.");
+    }
+
+    endColumn = column;
+}
 bool GameMap::validateGrid()
 {
     bool **isVisited = new bool *[numRows];
