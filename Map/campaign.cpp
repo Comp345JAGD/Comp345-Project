@@ -90,7 +90,7 @@ void Campaign::writeMapDetails(std::fstream& file) const {
                     }
                 }
                 else {
-                    file << "X";
+                    file << "W";
                 }
             }
             file << std::endl;
@@ -227,7 +227,7 @@ void selectCampaign() {
             case 3:
             {
                 int targetMapIndex, swapTargetMapIndex;
-                cout << "Enter target index of Map 1 and Map 2:\n";
+                cout << "Enter target index of First Map and SecondMap you wish to swap:\n";
                 cin >> targetMapIndex >> swapTargetMapIndex;
 
                 campaign.moveMap(targetMapIndex, swapTargetMapIndex);
@@ -247,8 +247,8 @@ void selectCampaign() {
 
             case 5:
                 cout << "Files updated successfully: " << filePath << endl;
-                file.clear();
-                file.seekp(0);
+                file.close();
+                file.open(filePath, ios::out | ios::trunc);
                 campaign.writeMapDetails(file);
                 break;
 
