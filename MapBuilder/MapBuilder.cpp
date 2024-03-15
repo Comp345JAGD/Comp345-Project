@@ -39,7 +39,7 @@ GameMap* EditorMapBuilder::build() {
 
 		// fetch map from file
 
-		cout << mapAsString << endl;
+		//cout << mapAsString << endl;
 		string line = "";
 
 		stringstream lineStream(mapAsString);
@@ -52,8 +52,8 @@ GameMap* EditorMapBuilder::build() {
 			numRows++;
 		}
 
-		cout << numRows << endl;
-		cout << numColumns << endl;
+		//cout << numRows << endl;
+		//cout << numColumns << endl;
 
 
 		gameMap = new GameMap(

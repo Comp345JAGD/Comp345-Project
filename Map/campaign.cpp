@@ -165,7 +165,7 @@ void Campaign::readMapDetails(std::ifstream& inputFile) {
 
     ifstream inputFile(filePath);
 
-    cout << "----------" << inputFile.fail() << endl;
+    //cout << "----------" << inputFile.fail() << endl;
 
     string mapString = "";
 
@@ -310,6 +310,9 @@ void selectCampaign() {
                 campaign.writeMapDetails(file);
                 break;
 
+            case 6:
+                cout << "Thank you for your time!\n";
+                break;
             default:
                 cout << "Error! The input you have tried is invalid. Please try again.\n";
                 break;
@@ -357,6 +360,9 @@ void loadCampaignInterface() {
             break;
         case 2:
             createCampaign();
+            break;
+        case 3:
+            cout << "Thank you for your time!\n";
             break;
         default:
             cout << "Error! The input you have tried is invalid. Please try again.";
