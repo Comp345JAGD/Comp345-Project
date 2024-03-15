@@ -1,5 +1,6 @@
 #include "campaign.h"
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -11,7 +12,7 @@ int Campaign::getNumMaps() const {
     return maps.size();
 }
 
-void Campaign::addMap(const GameMap& map) {
+void Campaign::addMap(GameMap* map) {
     maps.push_back(map);
 }
 
@@ -27,7 +28,7 @@ void Campaign::removeMap(int index) {
     }
 }
 
-GameMap& Campaign::getMapAtIndex(int index) {
+GameMap* Campaign::getMapAtIndex(int index) {
     if (index >= 0 && index < maps.size()) {
         return maps[index];
     }
@@ -37,17 +38,51 @@ GameMap& Campaign::getMapAtIndex(int index) {
 }
 
 void Campaign::writeMapDetails(std::fstream& file) const {
+    cout << "Map Changed:" << endl;
+
+    GameMap* gameMap = maps[0];
+
+    for (int i = 0; i < gameMap->getNumRows(); i++)
+    {
+        for (int j = 0; j < gameMap->getNumColumns(); j++)
+        {
+            IGridCell* cell = gameMap->getCell(i, j);
+
+            if (i == gameMap->getStartRow() && j == gameMap->getStartColumn())
+            {
+                cout << "S";
+            }
+            else if (i == gameMap->getEndRow() && j == gameMap->getEndColumn())
+            {
+                cout << "E";
+            }
+            else if (cell->isWalkable())
+            {
+                cout << "O";
+            }
+            else
+            {
+                cout << "X";
+            }
+
+            // cout << cell->isWalkable();
+        }
+
+        cout << endl;
+    }
+
+    cout << endl;
     for (size_t i = 0; i < maps.size(); ++i) {
         file << "Map " << i + 1 << std::endl;
-        GameMap map = maps[i];
-        for (int row = 0; row < map.getNumRows(); ++row) {
-            for (int col = 0; col < map.getNumColumns(); ++col) {
-                IGridCell* cell = map.getCell(row, col);
+        GameMap* map = maps[i];
+        for (int row = 0; row < map->getNumRows(); ++row) {
+            for (int col = 0; col < map->getNumColumns(); ++col) {
+                IGridCell* cell = map->getCell(row, col);
                 if (cell->isWalkable()) {
-                    if (row == map.getStartRow() && col == map.getStartColumn()) {
+                    if (row == map->getStartRow() && col == map->getStartColumn()) {
                         file << "S";
                     }
-                    else if (row == map.getEndRow() && col == map.getEndColumn()) {
+                    else if (row == map->getEndRow() && col == map->getEndColumn()) {
                         file << "E";
                     }
                     else {
@@ -68,6 +103,7 @@ void Campaign::readMapDetails(std::ifstream& inputFile) {
     std::string line;
     int mapIndex = 0;
 
+    /*
     while (getline(inputFile, line)) {
         if (line.find("Map") != std::string::npos) {
             mapIndex++;
@@ -114,6 +150,7 @@ void Campaign::readMapDetails(std::ifstream& inputFile) {
             addMap(map);
         }
     }
+    */
 }
 
 void selectCampaign() {
@@ -150,7 +187,7 @@ void selectCampaign() {
                 int numRows, numColumns, startRow, startColumn, endRow, endColumn;
                 cout << "Enter specifics for map. Please input numRows, numColumns, startRow, startColumn, endRow, endColumn:\n";
                 cin >> numRows >> numColumns >> startRow >> startColumn >> endRow >> endColumn;
-                GameMap map(numRows, numColumns, startRow, startColumn, endRow, endColumn);
+                GameMap* map = new GameMap(numRows, numColumns, startRow, startColumn, endRow, endColumn);
                 campaign.addMap(map);
                 cout << "Map created!\n";
                 break;
@@ -166,7 +203,7 @@ void selectCampaign() {
                     cin >> targetMapIndex;
 
                     if (targetMapIndex >= 0 && targetMapIndex < campaign.getNumMaps()) {
-                        targetMap = campaign.getMapAtIndex(targetMapIndex);
+                        targetMap = *campaign.getMapAtIndex(targetMapIndex);
                         cout << "Enter the row, column, and walkable status (true/false) of the cell you wish to update: ";
                         cin >> targetRow >> targetCol >> isWalkable;
 
