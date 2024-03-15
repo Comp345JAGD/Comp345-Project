@@ -3,69 +3,119 @@
 #include <fstream>
 #include <iostream>
 
-MapBuilder& EditorMapBuilder::setMapId(string mapId) {
-	this->mapId = mapId;
-	return *this;
+MapBuilder* EditorMapBuilder::setMapAsString(string mapAsString) {
+	this->mapAsString = mapAsString;
+	return this;
 }
 
-MapBuilder& EditorMapBuilder::setRowsColumns(int rows, int columns) {
+MapBuilder* EditorMapBuilder::setRowsColumns(int rows, int columns) {
 	numRows = rows;
 	numColumns = columns;
-	return *this;
+	return this;
 }
 
-MapBuilder& EditorMapBuilder::setStartCell(int row, int column) {
+MapBuilder* EditorMapBuilder::setStartCell(int row, int column) {
 	startRow = row;
 	startColumn = column;
-	return *this;
+	return this;
 }
 
-MapBuilder& EditorMapBuilder::setEndCell(int row, int column) {
+MapBuilder* EditorMapBuilder::setEndCell(int row, int column) {
 	endRow = row;
 	endColumn = column;
-	return *this;
+	return this;
 }
 
-MapBuilder& EditorMapBuilder::setLevel(int level) {
+MapBuilder* EditorMapBuilder::setLevel(int level) {
 	this->level = level;
-	return *this;
+	return this;
 }
 
-GameMap& EditorMapBuilder::build() {
+GameMap* EditorMapBuilder::build() {
 
-	if (mapId != "") {
+	GameMap* gameMap;
+
+	if (mapAsString != "") {
 
 		// fetch map from file
 
-		ifstream inputFile("../data/" + mapId + ".txt");
+		cout << mapAsString << endl;
+		string line = "";
 
-		if (!inputFile.fail()) {
-			string line;
-			while (inputFile >> line) {
-				cout << line << endl;
-			}
+		stringstream lineStream(mapAsString);
 
+		int numRows = 0;
+		int numColumns = 0;
+
+		while (getline(lineStream, line, '$')) {
+			numColumns = line.length() / 2;
+			numRows++;
 		}
 
+		cout << numRows << endl;
+		cout << numColumns << endl;
 
+
+		gameMap = new GameMap(
+			numRows,
+			numColumns,
+			0,
+			0,
+			numRows - 1,
+			numColumns - 1
+		);
+
+
+
+		string lineX = "";
+
+		stringstream lineXStream(mapAsString);
+
+		int row = 0;
+		int column = 0;
+
+		while (getline(lineXStream, lineX, '$')) {
+			string cell = "";
+			stringstream cellStream(lineX);
+
+			column = 0;
+			while (getline(cellStream, cell, ',')) {
+				if (cell == "S") {
+					gameMap->setStartRow(row);
+					gameMap->setStartColumn(column);
+				}
+				else if ("E") {
+					gameMap->setEndRow(row);
+					gameMap->setEndColumn(column);
+
+				}
+				else if ("X") {
+					gameMap->setCell(row, column, new WallCell());
+				}
+				column++;
+			}
+			row++;
+		}
 		
+	}
+	else {
+		gameMap = new GameMap(
+			numRows,
+			numColumns,
+			startRow,
+			startColumn,
+			endRow,
+			endColumn);
 	}
 
 
-	return GameMap(
-		numRows,
-		numColumns,
-		startRow,
-		startColumn,
-		endRow,
-		endColumn
-	);
+	return gameMap;
 
 }
 
-GameMap& LevelMapBuilder::build() {
+GameMap* LevelMapBuilder::build() {
 
-	GameMap& gameMap = EditorMapBuilder::build();
+	GameMap* gameMap = EditorMapBuilder::build();
 
 	// apply level
 

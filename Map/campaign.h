@@ -25,6 +25,7 @@ public:
 };
 
 void selectCampaign();
+void makeMapFromString(std::string& mapString, Campaign* campain);
 void createCampaign();
 void loadCampaignInterface();
 #endif 

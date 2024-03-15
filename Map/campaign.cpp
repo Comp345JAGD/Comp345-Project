@@ -1,6 +1,8 @@
 #include "campaign.h"
 #include <string>
 #include <iostream>
+#include <sstream>
+#include "../MapBuilder/MapBuilder.h"
 
 using namespace std;
 
@@ -73,7 +75,7 @@ void Campaign::writeMapDetails(std::fstream& file) const {
 
     cout << endl;
     for (size_t i = 0; i < maps.size(); ++i) {
-        file << "Map " << i + 1 << std::endl;
+        file << "Map" << i + 1 << std::endl;
         GameMap* map = maps[i];
         for (int row = 0; row < map->getNumRows(); ++row) {
             for (int col = 0; col < map->getNumColumns(); ++col) {
@@ -92,6 +94,8 @@ void Campaign::writeMapDetails(std::fstream& file) const {
                 else {
                     file << "X";
                 }
+
+                file << ",";
             }
             file << std::endl;
         }
@@ -153,6 +157,59 @@ void Campaign::readMapDetails(std::ifstream& inputFile) {
     */
 }
 
+ Campaign* loadCampain(string filePath, string campaignName){
+
+     Campaign* campain = new Campaign(campaignName);
+
+    // fetch map from file
+
+    ifstream inputFile(filePath);
+
+    cout << "----------" << inputFile.fail() << endl;
+
+    string mapString = "";
+
+
+    if (!inputFile.fail()) {
+        string line;
+        while (inputFile >> line) {
+            //cout << line << endl;
+            if (line.substr(0, 3) == "Map") {
+                if (mapString != "") {
+
+                    makeMapFromString(mapString, campain);
+                }
+            }
+            else {
+                mapString += line + "$";
+            }
+        }
+
+        if (mapString != "") {
+
+            makeMapFromString(mapString, campain);
+        }
+
+    }
+
+    inputFile.close();
+
+    return campain;
+
+
+}
+
+ void makeMapFromString(std::string& mapString, Campaign* campain)
+ {
+     MapBuilder* builder = new EditorMapBuilder();
+     GameMap* gameMap = builder->setMapAsString(mapString)
+         ->build();
+
+     campain->addMap(gameMap);
+
+     mapString = "";
+ }
+
 void selectCampaign() {
     string campaignName;
     string filePath;
@@ -160,10 +217,11 @@ void selectCampaign() {
 
     cout << "Input campaign name.\n";
     cin >> campaignName;
-    Campaign campaign(campaignName);
 
     cout << "Input file path.\n";
     cin >> filePath;
+
+    Campaign campaign = *loadCampain(filePath, campaignName);
 
     fstream file(filePath, ios::in | ios::out);
 
