@@ -1,0 +1,12 @@
+Map1
+O,O,O,O,O,
+O,S,O,O,O,
+O,O,O,O,O,
+O,O,O,E,O,
+O,O,O,O,O,
+
+Map2
+S,O,O,
+O,W,O,
+O,O,E,
+

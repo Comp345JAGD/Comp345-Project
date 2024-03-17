@@ -42,38 +42,6 @@ GameMap* Campaign::getMapAtIndex(int index) {
 void Campaign::writeMapDetails(std::fstream& file) const {
     cout << "Map Changed:" << endl;
 
-    GameMap* gameMap = maps[0];
-
-    for (int i = 0; i < gameMap->getNumRows(); i++)
-    {
-        for (int j = 0; j < gameMap->getNumColumns(); j++)
-        {
-            IGridCell* cell = gameMap->getCell(i, j);
-
-            if (i == gameMap->getStartRow() && j == gameMap->getStartColumn())
-            {
-                cout << "S";
-            }
-            else if (i == gameMap->getEndRow() && j == gameMap->getEndColumn())
-            {
-                cout << "E";
-            }
-            else if (cell->isWalkable())
-            {
-                cout << "O";
-            }
-            else
-            {
-                cout << "X";
-            }
-
-            // cout << cell->isWalkable();
-        }
-
-        cout << endl;
-    }
-
-    cout << endl;
     for (size_t i = 0; i < maps.size(); ++i) {
         file << "Map" << i + 1 << std::endl;
         GameMap* map = maps[i];

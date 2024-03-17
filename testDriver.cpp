@@ -38,7 +38,8 @@ int main()
 
 	inputFile.close();
 	*/
-
-	loadCampaignInterface();
+   characterTestDriver();
+   gameMapDriver();
+   loadCampaignInterface();
     return 0;
 }
