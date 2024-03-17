@@ -89,7 +89,7 @@ GameMap* EditorMapBuilder::build() {
 					gameMap->setEndColumn(column);
 
 				}
-				else if ("X") {
+				else if ("W") {
 					gameMap->setCell(row, column, new WallCell());
 				}
 				column++;
