@@ -9,6 +9,9 @@
  * No external library is used.
  */
 
+#include <string>
+using namespace std;
+
 #ifndef CELL_H
 #define CELL_H
 
@@ -19,6 +22,7 @@ class IGridCell
 public:
     virtual bool isWalkable() = 0; // pure vitual function, no body, you cannot instantiate this class, it is like an interface now
     virtual void playTurn(GameMap* map) = 0;
+    virtual string getGridRepresentation() = 0;
 };
 
 class EmptyCell : public IGridCell
@@ -26,6 +30,7 @@ class EmptyCell : public IGridCell
 public:
     bool isWalkable() override;
     void playTurn(GameMap* map) override;
+    string getGridRepresentation() override;
 };
 
 class WallCell : public IGridCell
@@ -33,6 +38,7 @@ class WallCell : public IGridCell
 public:
     bool isWalkable() override;
     void playTurn(GameMap* map) override;
+    string getGridRepresentation() override;
 };
 
 #endif

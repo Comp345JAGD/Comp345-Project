@@ -240,16 +240,10 @@ void GameMap::printMap() {
             {
                 cout << "E";
             }
-            else if (cell->isWalkable())
-            {
-                cout << "O";
-            }
             else
             {
-                cout << "W";
+                cout << cell->getGridRepresentation();
             }
-
-            // cout << cell->isWalkable();
         }
 
         cout << endl;
