@@ -1,5 +1,5 @@
 #include "../Map/gameMap.h"
-#include "../SubjectObserver/subjectObserver.h"
+#include "../Map/gameMapDriver.h"
 
 #ifndef GAMELOOP_H
 #define GAMELOOP_H
@@ -14,5 +14,7 @@ public:
 	void setGameMap(GameMap* currentMap);
 	void play();
 };
+
+void gameLoopDriver();
 
 #endif

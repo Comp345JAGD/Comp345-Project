@@ -1,6 +1,7 @@
-#include "cell.h"
 #include "gameMap.h"
 #include <stdexcept>
+#include <iostream>
+using namespace std;
 
 // private
 bool GameMap::dfsCanGetMapEnd(int row, int column, bool **isVisited)
@@ -212,7 +213,7 @@ int GameMap::getEndColumn()
     return endColumn;
 }
 
-void GameMap::playTurn() {
+void GameMap::playTurnCycle() {
     for (int i = 0; i < numRows; i++)
     {
         for (int j = 0; j < numColumns; j++)
@@ -220,4 +221,40 @@ void GameMap::playTurn() {
             grid[i][j]->playTurn(this);
         }
     }
+}
+
+
+void GameMap::printMap() {
+    
+    for (int i = 0; i < this->getNumRows(); i++)
+    {
+        for (int j = 0; j < this->getNumColumns(); j++)
+        {
+            IGridCell* cell = this->getCell(i, j);
+
+            if (i == this->getStartRow() && j == this->getStartColumn())
+            {
+                cout << "S";
+            }
+            else if (i == this->getEndRow() && j == this->getEndColumn())
+            {
+                cout << "E";
+            }
+            else if (cell->isWalkable())
+            {
+                cout << "O";
+            }
+            else
+            {
+                cout << "W";
+            }
+
+            // cout << cell->isWalkable();
+        }
+
+        cout << endl;
+    }
+
+    cout << endl;
+
 }

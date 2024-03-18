@@ -54,7 +54,8 @@ public:
     void setStartColumn(int column);
     void setEndRow(int row);
     void setEndColumn(int column);
-    void playTurn();
+    void playTurnCycle();
+    void printMap();
 };
 
 #endif

@@ -60,34 +60,5 @@ MapObserver::MapObserver(GameMap* gameMap)
 void MapObserver::update() {
     cout << "Map Changed:" << endl;
 
-    for (int i = 0; i < gameMap->getNumRows(); i++)
-    {
-        for (int j = 0; j < gameMap->getNumColumns(); j++)
-        {
-            IGridCell* cell = gameMap->getCell(i, j);
-
-            if (i == gameMap->getStartRow() && j == gameMap->getStartColumn())
-            {
-                cout << "S";
-            }
-            else if (i == gameMap->getEndRow() && j == gameMap->getEndColumn())
-            {
-                cout << "E";
-            }
-            else if (cell->isWalkable())
-            {
-                cout << "O";
-            }
-            else
-            {
-                cout << "X";
-            }
-
-            // cout << cell->isWalkable();
-        }
-
-        cout << endl;
-    }
-
-    cout << endl;
+    gameMap->printMap();
 }

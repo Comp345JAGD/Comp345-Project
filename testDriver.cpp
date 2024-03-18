@@ -6,6 +6,7 @@
 #include <sstream>
 #include <fstream>
 #include <iostream>
+#include "GameController/GameLoop.h"
 
 // Main method to test functionality of every individual section (Character, Dice, Item, Map). Comment out individual drivers
 // to test separately. Please refer to each specific driver cpp file for commented guidance of its functionality.
@@ -14,32 +15,16 @@
 
 int main()
 {
-	//characterTestDriver();
-	//gameMapDriver();
 	// itemTestDriver();
 	// diceTestDriver();
 
-	// fetch map from file
 
-	/*
-	ifstream inputFile("./data/mapId.txt");
 
-	cout << inputFile.fail() << endl;
-
-	//ifstream inputFile("../data/" + mapId + ".txt");
-
-	if (!inputFile.fail()) {
-		string line;
-		while (inputFile >> line) {
-			cout << line << endl;
-		}
-
-	}
-
-	inputFile.close();
-	*/
 	//characterTestDriver();
-	gameMapDriver();
+	//gameMapDriver();
 	//loadCampaignInterface();
+
+	gameLoopDriver();
+	
     return 0;
 }
