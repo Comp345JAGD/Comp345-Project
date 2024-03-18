@@ -5,17 +5,17 @@ bool EmptyCell::isWalkable()
     return true;
 }
 
+void EmptyCell::playTurn(GameMap* map)
+{
+    // nothing
+}
+
 bool WallCell::isWalkable()
 {
     return false;
 }
 
-bool StartCell::isWalkable()
+void WallCell::playTurn(GameMap* map)
 {
-    return true;
-}
-
-bool EndCell::isWalkable()
-{
-    return true;
+    // nothing
 }

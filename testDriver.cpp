@@ -14,10 +14,10 @@
 
 int main()
 {
-    //characterTestDriver();
-    //gameMapDriver();
-    // itemTestDriver();
-    // diceTestDriver();
+	//characterTestDriver();
+	//gameMapDriver();
+	// itemTestDriver();
+	// diceTestDriver();
 
 	// fetch map from file
 
@@ -38,8 +38,8 @@ int main()
 
 	inputFile.close();
 	*/
-   characterTestDriver();
-   gameMapDriver();
-   loadCampaignInterface();
+	//characterTestDriver();
+	gameMapDriver();
+	//loadCampaignInterface();
     return 0;
 }

@@ -211,3 +211,13 @@ int GameMap::getEndColumn()
 {
     return endColumn;
 }
+
+void GameMap::playTurn() {
+    for (int i = 0; i < numRows; i++)
+    {
+        for (int j = 0; j < numColumns; j++)
+        {
+            grid[i][j]->playTurn(this);
+        }
+    }
+}

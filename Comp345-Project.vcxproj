@@ -128,6 +128,7 @@
     <ClCompile Include="Character\Subject.cpp" />
     <ClCompile Include="dice\dice2.cpp" />
     <ClCompile Include="dice\diceTestDriver.cpp" />
+    <ClCompile Include="GameController\GameLoop.cpp" />
     <ClCompile Include="item\Item.cpp" />
     <ClCompile Include="item\itemTestDriver.cpp" />
     <ClCompile Include="MapBuilder\MapBuilder.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="character\Subject.h" />
     <ClInclude Include="dice\dice2.h" />
     <ClInclude Include="dice\diceTestDriver.h" />
+    <ClInclude Include="GameController\GameLoop.h" />
     <ClInclude Include="item\Item.h" />
     <ClInclude Include="item\itemTestDriver.h" />
     <ClInclude Include="MapBuilder\MapBuilder.h" />
