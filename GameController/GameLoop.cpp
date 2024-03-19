@@ -13,8 +13,15 @@ void GameLoop::setGameMap(GameMap* currentMap) {
 void GameLoop::play() {
 
 	int turnCycleNum = 1;
+
+    currentMap->printMap();
 	
 	while (true) {
+
+        system("pause");
+        cout << endl;
+
+        system("CLS");
 
 		currentMap->playTurnCycle();
 
@@ -27,10 +34,6 @@ void GameLoop::play() {
 			break;
 		}
 
-        system("pause");
-        cout << endl;
-
-
 		turnCycleNum++;
 	}
 }
@@ -39,18 +42,22 @@ void gameLoopDriver() {
     int numRows = 4;
     int numColumns = 4;
 
-    GameMap gameMap(
+    GameMap* gameMap = new GameMap(
         numRows,
         numColumns,
-        1,
-        1,
+        0,
+        0,
         numRows - 1,
         numColumns - 1.);
 
-    for (int i = 0; i < gameMap.getNumRows() - 1; i++) {
-        gameMap.setCell(i, 2, new WallCell());
+    for (int i = 1; i < gameMap->getNumRows(); i++) {
+        gameMap->setCell(i, 2, new WallCell());
     }
 
-    GameLoop gameLoop(&gameMap);
+    //gameMap->setCell(2, 1, new WallCell());
+
+    gameMap->setCell(1, 1, new MoverCell());
+
+    GameLoop gameLoop(gameMap);
     gameLoop.play();
 }
