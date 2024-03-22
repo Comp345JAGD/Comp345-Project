@@ -38,6 +38,10 @@ public:
     int getIntelligence();
     int getWisdom();
     int getCharisma();
+    Dice getDice()
+    {
+        return dice;
+    }
     virtual int getGearStength() = 0;
     virtual int getGearDexterity() = 0;
     virtual int getGearConstitution() = 0;
