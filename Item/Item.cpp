@@ -141,9 +141,9 @@ int CharacterEquipment::calculateTotalBonus(EnhancementType type) const
     return bonusesByType.at(type);
 }
 
-void CharacterEquipment::displayTotalBonuses() const
+void CharacterEquipment::displayTotalGearBonuses() const
 {
-    std::cout << "Total Bonuses by Type:" << std::endl;
+    std::cout << "Total Bonuses by Type:" << endl<< "1. Strength\n2. Dexterity\n3. Constitution\n4. Intelligence\n5. Wisdom\n6. Charisma\n7. ArmorClass\n8. AttackBonus\n9. DamageBonus" <<endl;
     for (const auto &entry : bonusesByType)
     {
         std::cout << "Type: " << static_cast<int>(entry.first) << ", Total Bonus: " << entry.second << std::endl;
@@ -156,4 +156,27 @@ CharacterEquipment::~CharacterEquipment()
     {
         delete item;
     }
+}
+
+int CharacterEquipment::getTotalStength() {
+    return strength+bonusesByType[EnhancementType::Strength];
+}
+
+int CharacterEquipment::getTotalDexterity() {
+    return dexterity + bonusesByType[EnhancementType::Dexterity];
+}
+
+int CharacterEquipment::getTotalConstitution() {
+    return constitution + bonusesByType[EnhancementType::Constitution];
+}
+
+int CharacterEquipment::getTotalIntelligence() {
+    return intelligence + bonusesByType[EnhancementType::Intelligence];
+}
+
+int CharacterEquipment::getTotalWisdom() {
+    return wisdom + bonusesByType[EnhancementType::Wisdom];
+}
+int CharacterEquipment::getTotalCharisma() {
+    return charisma + bonusesByType[EnhancementType::Charisma];
 }

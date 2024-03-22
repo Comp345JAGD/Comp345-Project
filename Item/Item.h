@@ -6,7 +6,7 @@
 #include <string>
 #include <algorithm>
 #include <map>
-
+#include "../Character/character.h"
 using namespace std;
 
 // Items and their Attributes
@@ -144,7 +144,7 @@ private:
 
 public:
     Weapon(string itemName, EnhancementType enhancementType, int enhancementBonus)
-        : Item(itemName, enhancementType, enhancementBonus)) {}
+        : Item(itemName, enhancementType, enhancementBonus) {}
 
     ItemType getItemType() const override
     {
@@ -168,26 +168,30 @@ public:
     ~ItemContainer();
 };
 
-class CharacterEquipment
+class CharacterEquipment: public Character
 {
 private:
-    std::vector<Item *> equipmentSlots;
-    std::map<EnhancementType, int> bonusesByType;
+    vector<Item *> equipmentSlots;
+    map<EnhancementType, int> bonusesByType;
 
     bool isSlotEmpty(ItemType slot) const;
 
 public:
+
     CharacterEquipment();
-
     void equip(Item *item);
-
     void unequip(ItemType itemType);
-
     void displayWornItems() const;
-
     int calculateTotalBonus(EnhancementType type) const;
+    void displayTotalGearBonuses() const;
+    int getTotalStength();
+    int getTotalDexterity();
+    int getTotalConstitution();
+    int getTotalIntelligence();
+    int getTotalWisdom();
+    int getTotalCharisma();
 
-    void displayTotalBonuses() const;
+
 
     ~CharacterEquipment();
 };
