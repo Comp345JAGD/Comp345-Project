@@ -42,12 +42,12 @@ public:
     {
         return dice;
     }
-    virtual int getGearStength() = 0;
-    virtual int getGearDexterity() = 0;
-    virtual int getGearConstitution() = 0;
-    virtual int getGearIntelligence() = 0;
-    virtual int getGearWisdom() = 0;
-    virtual int getGearCharisma() = 0;
+    virtual int getGearStength();
+    virtual int getGearDexterity();
+    virtual int getGearConstitution();
+    virtual int getGearIntelligence();
+    virtual int getGearWisdom();
+    virtual int getGearCharisma();
 
 protected:
     int level;

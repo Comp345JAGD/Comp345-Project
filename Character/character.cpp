@@ -259,4 +259,5 @@ void Character::groupedCalculate()
     calculateArmorClass();
     calculateAttackBonus();
     calculateDamageBonus();
+    currentHp = hitPoints;
 }
