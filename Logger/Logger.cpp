@@ -54,4 +54,5 @@ void log(const std::string &message, int type){
     std::ofstream gameLog;
     gameLog.open("GameLog.txt", std::ios_base::app);
     gameLog << message << std::endl;
+    gameLog.close();
 }
