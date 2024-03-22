@@ -180,7 +180,7 @@ void Character::displayScores3() const
     std::cout << "Hit Points: " << hitPoints << "\n"
               << "Armor Class: " << armorClass << "\n"
               << "Attack Bonus: " << attackBonus << "\n"
-              << "Damage Bonus: " << damageBonus << std::endl;
+              << "Damage Bonus: " << damageBonus << "\n\n";
 }
 
 void Character::setStrength(int value)

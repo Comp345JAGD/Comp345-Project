@@ -9,13 +9,13 @@
 class CharacterBuilder
 {
 public:
-    Character *getCharacter() { return produced_character; }
+    Fighter *getCharacter() { return produced_character; }
     void createFighter() { produced_character = new Fighter(); }
     void randomizeStats();
     virtual void build() = 0;
 
 protected:
-    Character *produced_character;
+    Fighter *produced_character;
     std::array<int, 6> randomizedStats;
     Dice dice;
 };
@@ -45,7 +45,7 @@ public:
     {
         produced_characterBuilder = cb;
     }
-    Character *getCharacter()
+    Fighter *getCharacter()
     {
         return produced_characterBuilder->getCharacter();
     }

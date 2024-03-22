@@ -109,11 +109,13 @@ int main()
         CharacterBuilder *nimbleChar = new nimbleCharacterBuilder;
         dm.setCharacterBuilder(nimbleChar);
         dm.constructCharacter();
-        Character *test1 = dm.getCharacter();
+        Fighter *test1 = dm.getCharacter();
 
         std::cout << "Here are the stat allocations based on your build:\n";
 
         test1->displayScores1();
+        test1->addFighterBonus();
+        test1->groupedCalculate();
 
         delete nimbleChar;
         delete test1;
@@ -125,10 +127,13 @@ int main()
         CharacterBuilder *bullyChar = new bullyCharacterBuilder;
         dm.setCharacterBuilder(bullyChar);
         dm.constructCharacter();
-        Character *test1 = dm.getCharacter();
-        test1->displayScores1();
+        Fighter *test1 = dm.getCharacter();
 
         std::cout << "Here are the stat allocations based on your build:\n";
+
+        test1->displayScores1();
+        test1->addFighterBonus();
+        test1->groupedCalculate();
 
         delete bullyChar;
         delete test1;
@@ -140,10 +145,13 @@ int main()
         CharacterBuilder *tankChar = new tankCharacterBuilder;
         dm.setCharacterBuilder(tankChar);
         dm.constructCharacter();
-        Character *test1 = dm.getCharacter();
-        test1->displayScores1();
+        Fighter *test1 = dm.getCharacter();
 
-        std::cout << "Here are the stat allocations based on your build:\n";
+        std::cout << "\nHere are the stat allocations based on your build:\n";
+
+        test1->displayScores1();
+        test1->addFighterBonus();
+        test1->groupedCalculate();
 
         delete tankChar;
         delete test1;
