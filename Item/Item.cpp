@@ -31,7 +31,7 @@ void ItemContainer::addItem(ItemType itemType, string itemName, EnhancementType 
         break;
 
     case ItemType::Weapon:
-        newItem = new Weapon(itemName, enhancementType, enhancementBonus, handsRequired);
+        newItem = new Weapon(itemName, enhancementType, enhancementBonus);
         break;
 
     default:

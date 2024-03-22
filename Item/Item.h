@@ -143,18 +143,14 @@ private:
     int HandsRequired;
 
 public:
-    Weapon(string itemName, EnhancementType enhancementType, int enhancementBonus, int handsRequired)
-        : Item(itemName, enhancementType, enhancementBonus), HandsRequired(handsRequired) {}
+    Weapon(string itemName, EnhancementType enhancementType, int enhancementBonus)
+        : Item(itemName, enhancementType, enhancementBonus)) {}
 
     ItemType getItemType() const override
     {
         return ItemType::Weapon;
     }
 
-    int getHandsRequired() const
-    {
-        return HandsRequired;
-    }
 };
 
 class ItemContainer
