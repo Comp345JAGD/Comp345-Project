@@ -7,6 +7,7 @@ class Fighter : public Character
 {
 
 public:
+    Fighter();
     Fighter(const std::string &inputName, int inputLevel);
     void addFighterBonus();
     void calculateHitPoints() override;
@@ -14,6 +15,9 @@ public:
     void calculateAttackBonus() override;
     void calculateDamageBonus() override;
     void groupedCalculate();
+
+protected:
+    int atkPerRound = 1 + (level / 5);
 };
 
 #endif // FIGHTER_H

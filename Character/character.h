@@ -10,6 +10,7 @@
 class Character : public Subject
 {
 public:
+    Character();
     Character(const std::string &inputName, int inputLevel);
     void generateAbilityScore();
     void assignAbilityScore(const std::vector<int> rolls);
@@ -21,6 +22,13 @@ public:
     virtual void calculateAttackBonus() = 0;
     virtual void calculateDamageBonus() = 0;
     void addStats(StatType type, int value);
+    void setStrength(int value);
+    void setDexterity(int value);
+    void setConstitution(int value);
+    void setIntelligence(int value);
+    void setWisdom(int value);
+    void setCharisma(int value);
+    void setLevel(int value);
 
 protected:
     int level;

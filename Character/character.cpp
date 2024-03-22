@@ -1,5 +1,9 @@
 #include "character.h"
 
+Character::Character()
+{
+}
+
 Character::Character(const std::string &inputName, int inputLevel) : name(inputName), level(inputLevel), strength(8), dexterity(8), constitution(8), intelligence(8), wisdom(8), charisma(8)
 {
     generateAbilityScore();
@@ -177,4 +181,39 @@ void Character::displayScores3() const
               << "Armor Class: " << armorClass << "\n"
               << "Attack Bonus: " << attackBonus << "\n"
               << "Damage Bonus: " << damageBonus << std::endl;
+}
+
+void Character::setStrength(int value)
+{
+    strength = value;
+}
+
+void Character::setDexterity(int value)
+{
+    dexterity = value;
+}
+
+void Character::setConstitution(int value)
+{
+    constitution = value;
+}
+
+void Character::setCharisma(int value)
+{
+    charisma = value;
+}
+
+void Character::setWisdom(int value)
+{
+    wisdom = value;
+}
+
+void Character::setIntelligence(int value)
+{
+    intelligence = value;
+}
+
+void Character::setLevel(int value)
+{
+    level = value;
 }

@@ -1,5 +1,9 @@
 #include "fighter.h"
 
+Fighter::Fighter() : Character()
+{
+}
+
 Fighter::Fighter(const std::string &inputName, int inputLevel) : Character(inputName, inputLevel)
 {
     bool validity3 = false;
@@ -63,14 +67,12 @@ void Fighter::calculateArmorClass()
 
 void Fighter::calculateAttackBonus()
 {
-    std::cout << "Attack bonus is unimplemented for now, set to default 1.\n";
     attackBonus = 1;
     notify(aBonus, attackBonus);
 }
 
 void Fighter::calculateDamageBonus()
 {
-    std::cout << "Damage bonus is unimplemented for now, set to default 1.\n";
     damageBonus = 1;
     notify(dBonus, damageBonus);
 }
@@ -83,6 +85,6 @@ void Fighter::groupedCalculate()
     calculateAttackBonus();
     calculateDamageBonus();
 
-    std::cout << "Here are your final class bonuses:\n";
+    std::cout << "Here are your class bonuses:\n";
     displayScores3();
 }
