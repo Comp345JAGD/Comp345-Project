@@ -11,6 +11,14 @@ public:
     virtual void execute(Character *character, GameMap *map) = 0;
 };
 
+
+class friendlyStrategy : public CharacterStrategy
+{
+    void execute (Character *c, GameMap *m){
+        //finding player coords
+    }
+};
+
 class HumanPlayerStrategy : public CharacterStrategy
 {
     void execute(Character *character, GameMap *map)
