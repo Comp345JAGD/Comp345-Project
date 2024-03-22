@@ -30,7 +30,6 @@ private:
     int endRow;
     int endColumn;
     bool dfsCanGetMapEnd(int row, int column, bool **isVisited);
-    bool isOutOfBounds(int row, int column);
     int bfsMinStepsToTarget(int subjectRow, int subjectColumn, int targetRow, int targetColumn, int originalRow, int originalColumn);
 
 public:
@@ -59,6 +58,7 @@ public:
     void printMap();
     bool moveOneCellTowardsTarget(int subjectRow, int subjectColumn, int targetRow, int targetColumn);
     bool moveCell(int subjectRow, int subjectColumn, int targetRow, int targetColumn);
+    bool isOutOfBounds(int row, int column);
 };
 
 #endif
