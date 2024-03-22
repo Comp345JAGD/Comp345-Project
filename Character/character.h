@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <stdlib.h>
+#include <limits>
 #include "dice.h"
 #include "Subject.h"
 #include "../Map/cell.h"
@@ -48,12 +49,16 @@ public:
     virtual int getGearIntelligence();
     virtual int getGearWisdom();
     virtual int getGearCharisma();
+    virtual bool isWalkable() override;
+    virtual void playTurn(GameMap *map) override;
+    virtual string getGridRepresentation() override;
+    virtual void setPosition(int row, int column) override;
 
 protected:
     int level;
     int strength, dexterity, constitution, intelligence, wisdom, charisma;
     int hitPoints, armorClass, attackBonus, damageBonus;
-    int currentHp;
+    int currentHp, attackRate;
     Dice dice;
     std::string name;
 };

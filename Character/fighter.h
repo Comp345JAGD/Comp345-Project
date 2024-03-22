@@ -15,9 +15,6 @@ public:
     void calculateAttackBonus() override;
     void calculateDamageBonus() override;
     void groupedCalculate() override;
-
-protected:
-    int atkPerRound = 1 + (level / 5);
 };
 
 #endif // FIGHTER_H
