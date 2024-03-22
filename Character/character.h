@@ -17,10 +17,11 @@ public:
     void displayScores1() const;
     void displayScores2() const;
     void displayScores3() const;
-    virtual void calculateHitPoints() = 0;
-    virtual void calculateArmorClass() = 0;
-    virtual void calculateAttackBonus() = 0;
-    virtual void calculateDamageBonus() = 0;
+    virtual void calculateHitPoints();
+    virtual void calculateArmorClass();
+    virtual void calculateAttackBonus();
+    virtual void calculateDamageBonus();
+    virtual void groupedCalculate();
     void addStats(StatType type, int value);
     void setStrength(int value);
     void setDexterity(int value);
@@ -29,6 +30,18 @@ public:
     void setWisdom(int value);
     void setCharisma(int value);
     void setLevel(int value);
+    int getStrength();
+    int getDexterity();
+    int getConstitution();
+    int getIntelligence();
+    int getWisdom();
+    int getCharisma();
+    virtual int getGearStength() = 0;
+    virtual int getGearDexterity() = 0;
+    virtual int getGearConstitution() = 0;
+    virtual int getGearIntelligence() = 0;
+    virtual int getGearWisdom() = 0;
+    virtual int getGearCharisma() = 0;
 
 protected:
     int level;

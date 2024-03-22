@@ -14,7 +14,7 @@ public:
     void calculateArmorClass() override;
     void calculateAttackBonus() override;
     void calculateDamageBonus() override;
-    void groupedCalculate();
+    void groupedCalculate() override;
 
 protected:
     int atkPerRound = 1 + (level / 5);

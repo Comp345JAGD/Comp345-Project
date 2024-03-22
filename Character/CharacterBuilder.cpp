@@ -114,7 +114,6 @@ void DungeonMaster::constructCharacter()
 //         std::cout << "Here are the stat allocations based on your build:\n";
 
 //         test1->displayScores1();
-//         test1->addFighterBonus();
 //         test1->groupedCalculate();
 
 //         delete nimbleChar;
@@ -132,7 +131,6 @@ void DungeonMaster::constructCharacter()
 //         std::cout << "Here are the stat allocations based on your build:\n";
 
 //         test1->displayScores1();
-//         test1->addFighterBonus();
 //         test1->groupedCalculate();
 
 //         delete bullyChar;
@@ -150,7 +148,6 @@ void DungeonMaster::constructCharacter()
 //         std::cout << "\nHere are the stat allocations based on your build:\n";
 
 //         test1->displayScores1();
-//         test1->addFighterBonus();
 //         test1->groupedCalculate();
 
 //         delete tankChar;

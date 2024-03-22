@@ -138,7 +138,6 @@ void characterTestDriver()
         std::cout << "Here are the stat allocations based on your build:\n";
 
         test1->displayScores1();
-        test1->addFighterBonus();
         test1->groupedCalculate();
 
         delete nimbleChar;
@@ -156,7 +155,6 @@ void characterTestDriver()
         std::cout << "Here are the stat allocations based on your build:\n";
 
         test1->displayScores1();
-        test1->addFighterBonus();
         test1->groupedCalculate();
 
         delete bullyChar;
@@ -174,7 +172,6 @@ void characterTestDriver()
         std::cout << "\nHere are the stat allocations based on your build:\n";
 
         test1->displayScores1();
-        test1->addFighterBonus();
         test1->groupedCalculate();
 
         delete tankChar;

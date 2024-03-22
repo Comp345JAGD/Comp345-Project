@@ -217,3 +217,41 @@ void Character::setLevel(int value)
 {
     level = value;
 }
+
+int Character::getStrength()
+{
+    return strength;
+}
+
+int Character::getDexterity()
+{
+    return dexterity;
+}
+
+int Character::getConstitution()
+{
+    return constitution;
+}
+
+int Character::getIntelligence()
+{
+    return intelligence;
+}
+
+int Character::getWisdom()
+{
+    return wisdom;
+}
+
+int Character::getCharisma()
+{
+    return charisma;
+}
+
+void Character::groupedCalculate()
+{
+    calculateHitPoints();
+    calculateArmorClass();
+    calculateAttackBonus();
+    calculateDamageBonus();
+}
