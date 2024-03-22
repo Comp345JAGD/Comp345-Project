@@ -1,6 +1,6 @@
 #include "character.h"
 
-Character::Character() : strength(0), dexterity(0), constitution(0), intelligence(0), wisdom(0), charisma(0)
+Character::Character() : level(1), strength(0), dexterity(0), constitution(0), intelligence(0), wisdom(0), charisma(0)
 {
 }
 
@@ -253,6 +253,40 @@ int Character::getCharisma()
     return charisma;
 }
 
+void Character::calculateHitPoints()
+{
+    hitPoints = 10 + (constitution - 10) / 2;
+    if (level > 1)
+    {
+        std::cout << "We will now roll a d10 to calculate your hit point based on your level.\n";
+    }
+
+    for (int i = 1; i < level; i++)
+    {
+        hitPoints += dice.roll("1d6");
+    }
+    notify(hp, hitPoints);
+}
+
+void Character::calculateArmorClass()
+{
+    armorClass = 10 + (dexterity - 10) / 2;
+
+    notify(aClass, armorClass);
+}
+
+void Character::calculateAttackBonus()
+{
+    attackBonus = 1;
+    notify(aBonus, attackBonus);
+}
+
+void Character::calculateDamageBonus()
+{
+    damageBonus = 1;
+    notify(dBonus, damageBonus);
+}
+
 void Character::groupedCalculate()
 {
     calculateHitPoints();
@@ -260,4 +294,60 @@ void Character::groupedCalculate()
     calculateAttackBonus();
     calculateDamageBonus();
     currentHp = hitPoints;
+    attackRate = 1 + (level / 5);
+}
+
+// Map movement functions
+
+bool Character::isWalkable()
+{
+    return false;
+}
+
+string Character::getGridRepresentation()
+{
+    return "C";
+}
+
+void Character::setPosition(int row, int column)
+{
+    this->row = row;
+    this->column = column;
+}
+
+void EmptyCell::playTurn(GameMap *map)
+{
+    // Output the current map
+
+    int decision;
+    bool validity = false;
+
+    std::cout << "Please choose an action:\n";
+    std::cout << "1. Move\n2. Attack\n 3. Free Action";
+
+    while (!validity)
+    {
+        std::cout << "1. Move\n2. Attack\n 3. Free Action";
+
+        if (std::cin >> decision)
+        {
+            if (decision >= 1 && decision <= 3)
+                validity = true;
+            else
+                std::cout << "Invalid integer, please enter a number between 1 and 3.\n";
+        }
+        else
+        {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input, please enter a number between 1 and 3.\n";
+        }
+    }
+
+    switch (decision)
+    {
+    case 1:
+    {
+        }
+    }
 }
