@@ -80,10 +80,7 @@ void Fighter::calculateDamageBonus()
 void Fighter::groupedCalculate()
 {
     addFighterBonus();
-    calculateHitPoints();
-    calculateArmorClass();
-    calculateAttackBonus();
-    calculateDamageBonus();
+    Character::groupedCalculate();
 
     std::cout << "Here are your class bonuses:\n";
     displayScores3();

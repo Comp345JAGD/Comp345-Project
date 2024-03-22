@@ -6,12 +6,14 @@
 #include <stdlib.h>
 #include "dice.h"
 #include "Subject.h"
+#include "../Map/cell.h"
 
-class Character : public Subject
+class Character : public Subject, public IGridCell
 {
 public:
     Character();
     Character(const std::string &inputName, int inputLevel);
+    Character(int npcCode, int level);
     void generateAbilityScore();
     void assignAbilityScore(const std::vector<int> rolls);
     void displayScores1() const;
@@ -47,6 +49,7 @@ protected:
     int level;
     int strength, dexterity, constitution, intelligence, wisdom, charisma;
     int hitPoints, armorClass, attackBonus, damageBonus;
+    int currentHp;
     Dice dice;
     std::string name;
 };

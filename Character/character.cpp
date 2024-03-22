@@ -9,6 +9,11 @@ Character::Character(const std::string &inputName, int inputLevel) : name(inputN
     generateAbilityScore();
 }
 
+Character::Character(int npcCode, int level) : level(level), strength(8), dexterity(8), constitution(8), intelligence(8), wisdom(8), charisma(8)
+{
+    groupedCalculate();
+}
+
 void Character::generateAbilityScore()
 {
     std::vector<int> rolls;
