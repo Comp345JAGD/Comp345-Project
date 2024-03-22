@@ -20,11 +20,11 @@ int main()
 
 
 
-	//characterTestDriver();
+	characterTestDriver();
 	//gameMapDriver();
 	//loadCampaignInterface();
 
-	gameLoopDriver();
+	//gameLoopDriver();
 	
     return 0;
 }

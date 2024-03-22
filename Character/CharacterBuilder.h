@@ -5,17 +5,25 @@
 #include <array>
 #include <algorithm>
 #include "dice.h"
+#include "Logger.h"
+#include "logSubject.h"
 
 class CharacterBuilder
 {
 public:
     Fighter *getCharacter() { return produced_character; }
-    void createFighter() { produced_character = new Fighter(); }
+    void createFighter() { produced_character = new Fighter();
+        Character *tempCharPointer = static_cast<Character*>(produced_character);
+        Logger *charLogPointer = new Logger(tempCharPointer);
+        Logger *diceLogPointer = new Logger(&(produced_character->getDice()));
+     } 
     void randomizeStats();
     virtual void build() = 0;
 
 protected:
     Fighter *produced_character;
+    Logger *charLogPointer;
+    Logger *diceLogPointer;
     std::array<int, 6> randomizedStats;
 };
 
