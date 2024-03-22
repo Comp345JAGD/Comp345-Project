@@ -15,11 +15,12 @@
 
 #include "cell.h"
 #include "../SubjectObserver/subjectObserver.h"
+#include "logSubject.h"
 
 #ifndef GAMEMAP_H
 #define GAMEMAP_H
 
-class GameMap : public BSubject
+class GameMap : public BSubject, public logSubject
 {
 private:
     IGridCell ***grid; // 2d array
@@ -30,7 +31,6 @@ private:
     int endRow;
     int endColumn;
     bool dfsCanGetMapEnd(int row, int column, bool **isVisited);
-    bool isOutOfBounds(int row, int column);
     int bfsMinStepsToTarget(int subjectRow, int subjectColumn, int targetRow, int targetColumn, int originalRow, int originalColumn);
 
 public:
@@ -59,6 +59,7 @@ public:
     void printMap();
     bool moveOneCellTowardsTarget(int subjectRow, int subjectColumn, int targetRow, int targetColumn);
     bool moveCell(int subjectRow, int subjectColumn, int targetRow, int targetColumn);
+    bool isOutOfBounds(int row, int column);
 };
 
 #endif

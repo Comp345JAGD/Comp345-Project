@@ -3,8 +3,9 @@
 
 #include <string>
 #include <iostream>
+#include "logSubject.h"
 
-class Dice
+class Dice : public logSubject
 {
 public:
     Dice();

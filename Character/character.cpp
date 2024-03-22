@@ -320,15 +320,9 @@ string Character::getGridRepresentation()
     return "C";
 }
 
-void Character::setPosition(int row, int column)
+void Character::playTurn(GameMap *m)
 {
-    this->row = row;
-    this->column = column;
-}
-
-void Character::playTurn(GameMap *map)
-{
-    // Output the current map
+    //m->moveOneCellTowardsTarget();
 }
 
 int Character::getTotalStength() {

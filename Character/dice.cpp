@@ -1,6 +1,7 @@
 #include "dice.h"
 #include <cstdlib>
 #include <ctime>
+#include <string>
 
 Dice::Dice()
 {
@@ -52,6 +53,8 @@ int Dice::roll2(const std::string &notation)
         {
             int thisRoll = 0;
             thisRoll = rand() % y + 1;
+            std::string rollMsg = "The " + notation + " Rolled: " + std::to_string(thisRoll) +"on the #" + std::to_string(i+1) + " roll.\n";
+            this->logNotify(rollMsg);
             sum += thisRoll;
         }
 
