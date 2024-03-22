@@ -17,7 +17,6 @@ public:
 protected:
     Fighter *produced_character;
     std::array<int, 6> randomizedStats;
-    Dice dice;
 };
 
 class nimbleCharacterBuilder : public CharacterBuilder
