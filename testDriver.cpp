@@ -15,7 +15,7 @@
 
 int main()
 {
-	// itemTestDriver();
+	 itemTestDriver();
 	// diceTestDriver();
 
 
@@ -24,7 +24,7 @@ int main()
 	//gameMapDriver();
 	//loadCampaignInterface();
 
-	gameLoopDriver();
+	//gameLoopDriver();
 	
     return 0;
 }

@@ -253,6 +253,17 @@ int Character::getCharisma()
     return charisma;
 }
 
+int Character::getArmorClass() {
+    return armorClass;
+}
+
+int Character::getAttackBonus() {
+    return attackBonus;
+}
+
+int Character::getDamageBonus() {
+    return damageBonus;
+}
 void Character::calculateHitPoints()
 {
     hitPoints = 10 + (constitution - 10) / 2;
@@ -318,4 +329,38 @@ void Character::setPosition(int row, int column)
 void Character::playTurn(GameMap *map)
 {
     // Output the current map
+}
+
+int Character::getTotalStength() {
+    return getStrength();
+}
+int Character::getTotalDexterity() {
+   return getDexterity();
+}
+int Character::getTotalConstitution() {
+   return getConstitution();
+}
+int Character::getTotalIntelligence() {
+   return  getIntelligence();
+}
+int Character::getTotalWisdom() {
+  return  getWisdom();
+}
+int Character::getTotalCharisma() {
+  return  getCharisma();
+}
+
+int Character::getTotalArmorClass() {
+    return getArmorClass();
+}
+
+int Character::getTotalAttackBonus() {
+    return getAttackBonus();
+}
+
+int Character::getTotalDamageBonus() {
+    return getDamageBonus();
+}
+int Character::getHitPoints() {
+    return hitPoints;
 }

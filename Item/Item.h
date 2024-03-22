@@ -139,9 +139,6 @@ public:
 
 class Weapon : public Item
 {
-private:
-    int HandsRequired;
-
 public:
     Weapon(string itemName, EnhancementType enhancementType, int enhancementBonus)
         : Item(itemName, enhancementType, enhancementBonus) {}
@@ -159,7 +156,7 @@ private:
     vector<Item *> items;
 
 public:
-    void addItem(ItemType itemType, string itemName, EnhancementType enhancementType, int enhancementBonus, int handsRequired);
+    void addItem(ItemType itemType, string itemName, EnhancementType enhancementType, int enhancementBonus);
 
     void dropItem(Item *item);
 
@@ -168,17 +165,18 @@ public:
     ~ItemContainer();
 };
 
-class CharacterEquipment: public Character
+class CharacterEquipment :public Character
 {
 private:
+    Character character;
     vector<Item *> equipmentSlots;
     map<EnhancementType, int> bonusesByType;
 
     bool isSlotEmpty(ItemType slot) const;
 
 public:
-
     CharacterEquipment();
+    CharacterEquipment(Character character);
     void equip(Item *item);
     void unequip(ItemType itemType);
     void displayWornItems() const;
@@ -190,10 +188,15 @@ public:
     int getTotalIntelligence();
     int getTotalWisdom();
     int getTotalCharisma();
-
-
+    int getTotalArmorClass();
+    int getTotalAttackBonus();
+    int getTotalDamageBonus();
+    void displayScores2();
+    void displayScores3();
 
     ~CharacterEquipment();
 };
+
+
 
 #endif // ITEM_H

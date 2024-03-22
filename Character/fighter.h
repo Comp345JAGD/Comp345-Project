@@ -15,6 +15,7 @@ public:
     void calculateAttackBonus() override;
     void calculateDamageBonus() override;
     void groupedCalculate() override;
+
 };
 
 #endif // FIGHTER_H
