@@ -7,9 +7,10 @@
 #include <limits>
 #include "dice.h"
 #include "Subject.h"
+#include "logSubject.h"
 #include "../Map/cell.h"
 
-class Character : public Subject, public IGridCell
+class Character : public Subject, public IGridCell, public logSubject
 {
 public:
     Character();

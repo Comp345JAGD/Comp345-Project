@@ -55,19 +55,3 @@ void log(const std::string &message, int type){
     gameLog.open("GameLog.txt", std::ios_base::app);
     gameLog << message << std::endl;
 }
-
-void logAttack(){
-
-}
-
-void logMovement(){
-
-}
-
-void logDiceRoll(){
-
-}
-
-void logGamePhase(){
-    
-}

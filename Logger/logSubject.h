@@ -11,7 +11,7 @@ class logSubject
     virtual ~logSubject() = default;
     virtual void logAttach(logObserver *o, int type); //type to determine what is being attached 1 - player| 2 - dice| 3 - GameLog| 4 - GameMap
     virtual void logDetach(logObserver *o);
-    virtual void logNotify(const std::string &message, int type);
+    virtual void logNotify(const std::string &message);
     virtual void startLogging();
     virtual void endLogging();
 

@@ -6,7 +6,7 @@ class logObserver
 {
     public:
     virtual ~logObserver(){};
-    virtual void log(const std::string &message, int type);
+    virtual void log(const std::string &message);
 };
 
 

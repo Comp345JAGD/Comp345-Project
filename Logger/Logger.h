@@ -20,11 +20,7 @@ class Logger : public logObserver {
     Logger(GameMap *m);
     Logger(Dice *d);
     ~Logger();
-    void log(const std::string &message, int type);
-    void logAttack(const std::string &message);
-    void logMovement(const std::string &message);
-    void logGamePhase(const std::string &message);
-    void logDiceRoll(const std::string &message);
+    void log(const std::string &message);
     int getObjectType();
 
 

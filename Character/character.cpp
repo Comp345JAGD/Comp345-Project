@@ -309,7 +309,7 @@ string Character::getGridRepresentation()
     return "C";
 }
 
-void Character::playTurn(GameMap *map)
+void Character::playTurn(GameMap *m)
 {
-    // Output the current map
+    //m->moveOneCellTowardsTarget();
 }

@@ -15,7 +15,76 @@ public:
 class friendlyStrategy : public CharacterStrategy
 {
     void execute (Character *c, GameMap *m){
-        //finding player coords
+        int numRows = m->getNumRows();
+        int numCols = m->getNumColumns();
+        int playerRow = -1;
+        int playerCol = -1;
+        for (int i = 0; i < numCols; i++)
+        {
+            for (int j = 0; j < numRows; j++)
+            {
+                if (dynamic_cast<Character*>(m->getCell(j,i))!=nullptr){
+                    playerRow = j;
+                    playerCol = i;
+                    break;
+                }
+                
+            }
+            if(playerRow >= 0){
+                break;
+            }
+        }
+        if(playerRow < 0){
+            return; //No player on map?
+        }
+        else{
+            m->moveOneCellTowardsTarget(c->getRow(), c->getColumn(), playerRow, playerCol);
+        }
+
+    }
+};
+
+class agressorStrategy : public CharacterStrategy
+{
+    void execute (Character *c, GameMap *m){
+        int numRows = m->getNumRows();
+        int numCols = m->getNumColumns();
+        int myRow = c->getRow();
+        int myCol = c->getColumn();
+        int playerRow = -1;
+        int playerCol = -1;
+        for (int i = 0; i < numCols; i++)
+        {
+            for (int j = 0; j < numRows; j++)
+            {
+                if (dynamic_cast<Character*>(m->getCell(j,i))!=nullptr){
+                    playerRow = j;
+                    playerCol = i;
+                    break;
+                }
+                
+            }
+            if(playerRow >= 0){
+                break;
+            }
+        }
+
+        
+
+        if(playerRow < 0){
+            return; //No player on map?
+        }
+        else if((playerRow + 1 == myRow && playerCol + 1 == myCol)||(playerRow + 1 == myRow && playerCol == myCol)||(playerRow + 1 == myRow && playerCol - 1 == myCol)||
+        (playerRow == myRow && playerCol + 1 == myCol)||(playerRow == myRow && playerCol == myCol)||(playerRow == myRow && playerCol - 1 == myCol)||
+        (playerRow - 1 == myRow && playerCol + 1 == myCol)||(playerRow - 1 == myRow && playerCol == myCol)||(playerRow - 1 == myRow && playerCol - 1 == myCol)){
+                //attack logic
+                string attackMessage = "A monster attacked the player!\n";
+                c->logNotify(attackMessage);
+        }
+        else{
+            m->moveOneCellTowardsTarget(c->getRow(), c->getColumn(), playerRow, playerCol);
+        }
+
     }
 };
 
@@ -25,6 +94,8 @@ class HumanPlayerStrategy : public CharacterStrategy
     {
         int decision;
         bool validity = false;
+
+        character->logNotify("Player turn starting...");
 
         std::cout << "Please choose an action:\n";
         std::cout << "1. Move\n2. Attack\n 3. Free Action";
@@ -98,6 +169,7 @@ class HumanPlayerStrategy : public CharacterStrategy
             std::cout << "It has no effects, but looked great.\n\n";
         }
         }
+            character->logNotify("Player turn ending...\n");
     }
 };
 

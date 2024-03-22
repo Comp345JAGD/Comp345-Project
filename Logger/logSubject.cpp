@@ -18,11 +18,11 @@ void logSubject::logDetach(logObserver *o){
     }
 }
 
-void logSubject::logNotify(const std::string &message, int type){
+void logSubject::logNotify(const std::string &message){
 
     std::vector<logObserver *>::iterator itr = logObservers->begin();
     for(; itr != logObservers->end(); itr++){
-        (*itr)->log(message, type);
+        (*itr)->log(message);
     }
 }
 
