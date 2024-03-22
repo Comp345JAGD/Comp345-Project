@@ -315,7 +315,7 @@ void Character::setPosition(int row, int column)
     this->column = column;
 }
 
-void EmptyCell::playTurn(GameMap *map)
+void Character::playTurn(GameMap *map)
 {
     // Output the current map
 
@@ -348,6 +348,6 @@ void EmptyCell::playTurn(GameMap *map)
     {
     case 1:
     {
-        }
+    }
     }
 }

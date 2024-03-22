@@ -216,9 +216,10 @@ int GameMap::getEndColumn()
     return endColumn;
 }
 
-void GameMap::playTurnCycle() {
+void GameMap::playTurnCycle()
+{
     // doesnt like modifying the map while in a loop.
-    vector<IGridCell*> cells;
+    vector<IGridCell *> cells;
 
     for (int i = 0; i < numRows; i++)
     {
@@ -230,20 +231,20 @@ void GameMap::playTurnCycle() {
         }
     }
 
-    for (IGridCell* cell : cells) {
+    for (IGridCell *cell : cells)
+    {
         cell->playTurn(this);
     }
-
 }
 
+void GameMap::printMap()
+{
 
-void GameMap::printMap() {
-    
     for (int i = 0; i < this->getNumRows(); i++)
     {
         for (int j = 0; j < this->getNumColumns(); j++)
         {
-            IGridCell* cell = this->getCell(i, j);
+            IGridCell *cell = this->getCell(i, j);
 
             if (i == this->getStartRow() && j == this->getStartColumn())
             {
@@ -263,17 +264,16 @@ void GameMap::printMap() {
     }
 
     cout << endl;
-
 }
 
-bool GameMap::moveOneCellTowardsTarget(int subjectRow, int subjectColumn, int targetRow, int targetColumn) {
+bool GameMap::moveOneCellTowardsTarget(int subjectRow, int subjectColumn, int targetRow, int targetColumn)
+{
     if (isOutOfBounds(subjectRow, subjectColumn) || isOutOfBounds(targetRow, targetColumn))
     {
         throw std::invalid_argument("desired cell is out of bounds.");
     }
 
     bool wasMoved = false;
-
 
     // up
     int upSteps = bfsMinStepsToTarget(subjectRow - 1, subjectColumn, targetRow, targetColumn, subjectRow, subjectColumn);
@@ -284,37 +284,36 @@ bool GameMap::moveOneCellTowardsTarget(int subjectRow, int subjectColumn, int ta
     // right
     int rightSteps = bfsMinStepsToTarget(subjectRow, subjectColumn + 1, targetRow, targetColumn, subjectRow, subjectColumn);
 
+    int minSteps = min({upSteps, downSteps, leftSteps, rightSteps});
 
-    int minSteps = min({ upSteps, downSteps, leftSteps, rightSteps });
+    if (minSteps != numeric_limits<int>::max())
+    {
 
-    if (minSteps != numeric_limits<int>::max()) {
-
-
-
-        if (minSteps == upSteps) {
+        if (minSteps == upSteps)
+        {
             wasMoved = moveCell(subjectRow, subjectColumn, subjectRow - 1, subjectColumn);
         }
-        else if (minSteps == downSteps) {
+        else if (minSteps == downSteps)
+        {
             wasMoved = moveCell(subjectRow, subjectColumn, subjectRow + 1, subjectColumn);
         }
-        else if (minSteps == leftSteps) {
+        else if (minSteps == leftSteps)
+        {
             wasMoved = moveCell(subjectRow, subjectColumn, subjectRow, subjectColumn - 1);
         }
-        else if (minSteps == rightSteps) {
+        else if (minSteps == rightSteps)
+        {
             wasMoved = moveCell(subjectRow, subjectColumn, subjectRow, subjectColumn + 1);
         }
-
     }
-    
 
     return wasMoved;
-
-
 }
 
-bool GameMap::moveCell(int subjectRow, int subjectColumn, int targetRow, int targetColumn) {
+bool GameMap::moveCell(int subjectRow, int subjectColumn, int targetRow, int targetColumn)
+{
 
-    if (isOutOfBounds(subjectRow, subjectColumn) || isOutOfBounds(targetRow, targetColumn))
+    if (isOutOfBounds(subjectRow, subjectColumn) || isOutOfBounds(targetRow, targetColumn) || !grid[targetRow][targetColumn]->isWalkable())
     {
         return false;
     }
@@ -324,22 +323,19 @@ bool GameMap::moveCell(int subjectRow, int subjectColumn, int targetRow, int tar
         return false;
     }
 
-    //delete grid[targetRow, targetColumn];
-
+    // delete grid[targetRow, targetColumn];
 
     grid[targetRow][targetColumn] = grid[subjectRow][subjectColumn];
 
     grid[subjectRow][subjectColumn] = new EmptyCell;
 
     return true;
-
 }
 
+int GameMap::bfsMinStepsToTarget(int subjectRow, int subjectColumn, int targetRow, int targetColumn, int originalRow, int originalColumn)
+{
 
-int GameMap::bfsMinStepsToTarget(int subjectRow, int subjectColumn, int targetRow, int targetColumn, int originalRow, int originalColumn) {
-
-    if (isOutOfBounds(subjectRow, subjectColumn) || isOutOfBounds(targetRow, targetColumn) 
-        || !grid[subjectRow][subjectColumn]->isWalkable() || !grid[targetRow][targetColumn]->isWalkable())
+    if (isOutOfBounds(subjectRow, subjectColumn) || isOutOfBounds(targetRow, targetColumn) || !grid[subjectRow][subjectColumn]->isWalkable() || !grid[targetRow][targetColumn]->isWalkable())
     {
         return numeric_limits<int>::max();
     }
@@ -349,8 +345,7 @@ int GameMap::bfsMinStepsToTarget(int subjectRow, int subjectColumn, int targetRo
         throw std::invalid_argument("original cell is out of bounds.");
     }
 
-
-    bool** isVisited = new bool* [numRows];
+    bool **isVisited = new bool *[numRows];
 
     for (int i = 0; i < numRows; i++)
     {
@@ -361,7 +356,7 @@ int GameMap::bfsMinStepsToTarget(int subjectRow, int subjectColumn, int targetRo
         }
     }
 
-    int** distanceToSubject = new int* [numRows];
+    int **distanceToSubject = new int *[numRows];
 
     for (int i = 0; i < numRows; i++)
     {
@@ -372,9 +367,6 @@ int GameMap::bfsMinStepsToTarget(int subjectRow, int subjectColumn, int targetRo
         }
     }
 
-    
-
-    
     queue<int> rowQueue;
     queue<int> columnQueue;
 
@@ -385,23 +377,23 @@ int GameMap::bfsMinStepsToTarget(int subjectRow, int subjectColumn, int targetRo
     columnQueue.push(subjectColumn);
 
     // up, down, left, right
-    int rowDirections[] = { -1, 1, 0, 0};
+    int rowDirections[] = {-1, 1, 0, 0};
     int columnDirections[] = {0, 0, -1, 1};
 
-    while (!rowQueue.empty()) { // or !columnQueue.empty() since they push and pop at the same time
+    while (!rowQueue.empty())
+    { // or !columnQueue.empty() since they push and pop at the same time
         int row = rowQueue.front();
         int column = columnQueue.front();
         rowQueue.pop();
         columnQueue.pop();
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++)
+        {
             int nextRow = row + rowDirections[i];
             int nextColumn = column + columnDirections[i];
-            if (!isOutOfBounds(nextRow, nextColumn) 
-                && !isVisited[nextRow][nextColumn]
-                && grid[nextRow][nextColumn]->isWalkable()
-                || (nextRow == originalColumn && nextColumn == originalColumn) // if the subject is not walkable, we want to allow walking at its place
-                ) {
+            if (!isOutOfBounds(nextRow, nextColumn) && !isVisited[nextRow][nextColumn] && grid[nextRow][nextColumn]->isWalkable() || (nextRow == originalColumn && nextColumn == originalColumn) // if the subject is not walkable, we want to allow walking at its place
+            )
+            {
 
                 distanceToSubject[nextRow][nextColumn] = distanceToSubject[row][column] + 1;
                 isVisited[nextRow][nextColumn] = true;
@@ -410,14 +402,9 @@ int GameMap::bfsMinStepsToTarget(int subjectRow, int subjectColumn, int targetRo
                 columnQueue.push(nextColumn);
             }
         }
-        
-        
     }
 
-
-
     int steps = distanceToSubject[targetRow][targetColumn];
-
 
     // deallocate isVisited
     for (int i = 0; i < numRows; i++)
@@ -434,4 +421,3 @@ int GameMap::bfsMinStepsToTarget(int subjectRow, int subjectColumn, int targetRo
 
     return steps;
 }
-
