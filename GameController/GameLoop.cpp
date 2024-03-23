@@ -63,7 +63,10 @@ void gameLoopDriver() {
 
     //gameMap->setCell(2, 1, new WallCell());
 
-    gameMap->setCell(1, 1, new MoverCell());
+    gameMap->setCell(1, 1, new Character(1, new HumanPlayerStrategy()));
+    gameMap->setCell(2, 3, new Character(1, new FriendlyStrategy()));
+
+    //gameMap->setCell(1, 1, new MoverCell());
 
     GameLoop gameLoop(gameMap);
 

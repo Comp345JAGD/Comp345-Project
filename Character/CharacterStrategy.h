@@ -13,16 +13,19 @@ public:
 
 class FriendlyStrategy : public CharacterStrategy
 {
-    void execute(Character *c, GameMap *m) override;
+public:
+    void execute(Character* character, GameMap* map) override;
 };
 
 class AggressorStrategy : public CharacterStrategy
 {
+public:
     void execute(Character *c, GameMap *m) override;
 };
 
 class HumanPlayerStrategy : public CharacterStrategy
 {
+public:
     void execute(Character *character, GameMap *map) override;
 };
 

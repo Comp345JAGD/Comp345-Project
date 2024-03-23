@@ -120,6 +120,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="character\character.cpp" />
+    <ClCompile Include="Character\CharacterBuilder.cpp" />
+    <ClCompile Include="Character\CharacterStrategy.cpp" />
     <ClCompile Include="character\characterTestDriver.cpp" />
     <ClCompile Include="character\dice.cpp" />
     <ClCompile Include="character\fighter.cpp" />
@@ -141,6 +143,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="character\character.h" />
+    <ClInclude Include="Character\CharacterBuilder.h" />
+    <ClInclude Include="Character\CharacterStrategy.h" />
     <ClInclude Include="character\characterTestDriver.h" />
     <ClInclude Include="character\dice.h" />
     <ClInclude Include="character\fighter.h" />
