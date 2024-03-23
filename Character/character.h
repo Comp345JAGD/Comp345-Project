@@ -7,7 +7,7 @@
 #include <limits>
 #include "dice.h"
 #include "Subject.h"
-#include "logSubject.h"
+#include "../Logger/logSubject.h"
 #include "../Map/cell.h"
 
 class Character : public Subject, public IGridCell //, public logSubject
@@ -15,7 +15,7 @@ class Character : public Subject, public IGridCell //, public logSubject
 public:
     Character();
     Character(const std::string &inputName, int inputLevel);
-    Character(int npcCode, int level);
+    Character(int level);
     void generateAbilityScore();
     void assignAbilityScore(const std::vector<int> rolls);
     void displayScores1() const;
