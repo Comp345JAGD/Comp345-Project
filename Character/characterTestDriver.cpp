@@ -13,8 +13,8 @@ void characterTestDriver()
 
     // while (!validity)
     // {
-    //     cout << "1. Alchemist 2. Cleric 3. Fighter\n"
-    //          << "4. Paladin, 5. Rogue, 6. Wizard\n";
+    //     cout << "1. Scientist 2. Doctor 3. Fighter\n"
+    //          << "4. Paladin, 5. Rogue, 6. Archer\n";
 
     //     if (std::cin >> decision)
     //     {
@@ -66,10 +66,10 @@ void characterTestDriver()
     // switch (decision)
     // {
     // case 1:
-    //     cout << "Alchemist has no been implemented yet, sorry!\n";
+    //     cout << "Scientist has no been implemented yet, sorry!\n";
     //     break;
     // case 2:
-    //     cout << "Cleric has not been implemented yet, sorry!\n";
+    //     cout << "Doctor has not been implemented yet, sorry!\n";
     //     break;
     // case 3:
     // {
@@ -93,7 +93,7 @@ void characterTestDriver()
     //     cout << "Rogue has not been implemented yet, sorry!\n";
     //     break;
     // case 6:
-    //     cout << "Wizard has not been implemented yet, sorry!\n";
+    //     cout << "Archer has not been implemented yet, sorry!\n";
     //     break;
     // }
 
