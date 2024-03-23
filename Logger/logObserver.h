@@ -1,3 +1,5 @@
+/*
+
 #ifndef LOGOBSERVER_H
 #define LOGOBSERVER_H
 #include <string>
@@ -12,3 +14,5 @@ class logObserver
 
 
 #endif
+
+*/

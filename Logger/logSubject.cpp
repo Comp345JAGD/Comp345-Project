@@ -1,3 +1,5 @@
+/*
+
 #include "logSubject.h"
 
 
@@ -32,3 +34,5 @@ void startLogging(){
 
 void endLogging(){
 }
+
+*/

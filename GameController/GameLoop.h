@@ -1,12 +1,12 @@
 #include "../Map/gameMap.h"
 #include "../Map/gameMapDriver.h"
-#include "logSubject.h"
-#include "Logger.h"
+//#include "logSubject.h"
+//#include "Logger.h"
 
 #ifndef GAMELOOP_H
 #define GAMELOOP_H
 
-class GameLoop : public logSubject
+class GameLoop : //public logSubject
 {
 private:
 	GameMap* currentMap;

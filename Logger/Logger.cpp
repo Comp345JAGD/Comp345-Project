@@ -1,3 +1,5 @@
+/*
+
 #include "Logger.h"
 
 Logger::Logger(){
@@ -56,3 +58,4 @@ void log(const std::string &message, int type){
     gameLog << message << std::endl;
     gameLog.close();
 }
+*/

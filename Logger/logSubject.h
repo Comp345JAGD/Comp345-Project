@@ -1,3 +1,5 @@
+/*
+
 #ifndef LOGSUBJECT_H
 #define LOGSUBJECT_H
 
@@ -21,3 +23,5 @@ class logSubject
 };
 
 #endif
+
+*/

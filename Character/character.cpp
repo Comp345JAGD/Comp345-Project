@@ -313,3 +313,5 @@ void Character::playTurn(GameMap *m)
 {
     //m->moveOneCellTowardsTarget();
 }
+
+

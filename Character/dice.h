@@ -3,9 +3,9 @@
 
 #include <string>
 #include <iostream>
-#include "logSubject.h"
+//#include "../Logger/logSubject.h"
 
-class Dice : public logSubject
+class Dice : //public logSubject
 {
 public:
     Dice();

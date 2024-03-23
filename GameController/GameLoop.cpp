@@ -19,7 +19,7 @@ void GameLoop::play() {
 	while (true) {
         
         string currentTurn = "The current turn number is : " + std::to_string(turnCycleNum) + ".\n";
-        this->logNotify(currentTurn);
+        //this->logNotify(currentTurn);
         
         system("pause");
         cout << endl;
@@ -36,7 +36,7 @@ void GameLoop::play() {
 		if (turnCycleNum == 10) {
 			break;
 		}
-        this->logNotify(endPhase);
+        //this->logNotify(endPhase);
 		turnCycleNum++;
 	}
 }
@@ -53,21 +53,23 @@ void gameLoopDriver() {
         numRows - 1,
         numColumns - 1.);
 
-    Logger gameMapLogger(gameMap);
-    gameMap->logNotify("Loading Map...\n");
-    
+    //Logger gameMapLogger(gameMap);
+    //gameMap->logNotify("Loading Map...\n");
+
     for (int i = 1; i < gameMap->getNumRows(); i++) {
         gameMap->setCell(i, 2, new WallCell());
     }
-    gameMap->logNotify("Map Loaded\n");
+   // gameMap->logNotify("Map Loaded\n");
+
     //gameMap->setCell(2, 1, new WallCell());
 
     gameMap->setCell(1, 1, new MoverCell());
 
     GameLoop gameLoop(gameMap);
 
-    Logger gameLoopLog(&gameLoop);
+    /*Logger gameLoopLog(&gameLoop);
     string gameStarting = "Game Starting...\n";
-    gameLoop.logNotify(gameStarting);
+    gameLoop.logNotify(gameStarting);*/
+    
     gameLoop.play();
 }

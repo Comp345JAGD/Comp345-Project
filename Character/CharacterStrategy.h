@@ -12,6 +12,7 @@ public:
 };
 
 
+
 class friendlyStrategy : public CharacterStrategy
 {
     void execute (Character *c, GameMap *m){
@@ -23,9 +24,10 @@ class friendlyStrategy : public CharacterStrategy
         {
             for (int j = 0; j < numRows; j++)
             {
-                if (dynamic_cast<Character*>(m->getCell(j,i))!=nullptr){
+                if (dynamic_cast<Character*>(m->getCell(j,i))!=nullptr){ //need a function to check if a character at a cell is a player or NPC
                     playerRow = j;
                     playerCol = i;
+                    
                     break;
                 }
                 
@@ -79,7 +81,7 @@ class agressorStrategy : public CharacterStrategy
         (playerRow - 1 == myRow && playerCol + 1 == myCol)||(playerRow - 1 == myRow && playerCol == myCol)||(playerRow - 1 == myRow && playerCol - 1 == myCol)){
                 //attack logic
                 string attackMessage = "A monster attacked the player!\n";
-                c->logNotify(attackMessage);
+                //c->logNotify(attackMessage);
         }
         else{
             m->moveOneCellTowardsTarget(c->getRow(), c->getColumn(), playerRow, playerCol);
@@ -95,7 +97,7 @@ class HumanPlayerStrategy : public CharacterStrategy
         int decision;
         bool validity = false;
 
-        character->logNotify("Player turn starting...");
+        //character->logNotify("Player turn starting...");
 
         std::cout << "Please choose an action:\n";
         std::cout << "1. Move\n2. Attack\n 3. Free Action";
@@ -169,7 +171,7 @@ class HumanPlayerStrategy : public CharacterStrategy
             std::cout << "It has no effects, but looked great.\n\n";
         }
         }
-            character->logNotify("Player turn ending...\n");
+            //character->logNotify("Player turn ending...\n");
     }
 };
 
