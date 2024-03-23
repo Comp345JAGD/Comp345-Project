@@ -15,16 +15,16 @@
 
 int main()
 {
-	 itemTestDriver();
+	//itemTestDriver();
 	// diceTestDriver();
 
 
 
-	characterTestDriver();
+	//characterTestDriver();
 	//gameMapDriver();
 	//loadCampaignInterface();
 
-	//gameLoopDriver();
+	gameLoopDriver();
 	
     return 0;
 }

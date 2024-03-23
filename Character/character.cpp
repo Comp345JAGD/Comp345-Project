@@ -1,4 +1,5 @@
 #include "character.h"
+#include "CharacterStrategy.h"
 
 Character::Character() : level(1), strength(0), dexterity(0), constitution(0), intelligence(0), wisdom(0), charisma(0)
 {

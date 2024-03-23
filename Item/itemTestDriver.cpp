@@ -2,7 +2,7 @@
 #include "../Character/character.h"
 void itemTestDriver()
 {
-	Character character(1, 1);
+	Character character(1, new HumanPlayerStrategy());
 	// Example usage
 	CharacterEquipment characterEquipment(character);
 	// Assume you have created instances of Helmet, Armor, Ring, etc.

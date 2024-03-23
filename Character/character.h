@@ -7,9 +7,11 @@
 #include <limits>
 #include "dice.h"
 #include "Subject.h"
-#include "../Logger/logSubject.h"
-#include "CharacterStrategy.h"
+//#include "../Logger/logSubject.h"
+//#include "CharacterStrategy.h"
 #include "../Map/cell.h"
+
+class CharacterStrategy;
 
 class Character : public Subject, public IGridCell //, public logSubject
 {
@@ -62,7 +64,7 @@ public:
     virtual bool isWalkable() override;
     virtual void playTurn(GameMap *map) override;
     virtual string getGridRepresentation() override;
-    virtual void setPosition(int row, int column) override;
+    //virtual void setPosition(int row, int column) override;
     int attack();
     int attacked(int damage);
 

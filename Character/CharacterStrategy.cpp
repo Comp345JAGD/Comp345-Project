@@ -87,11 +87,10 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
         // character->logNotify("Player turn starting...");
 
         std::cout << "Please choose an action:\n";
-        std::cout << "1. Move\n2. Attack\n 3. Free Action";
 
         while (!validity)
         {
-            std::cout << "1. Move\n2. Attack\n 3. Free Action";
+            std::cout << "1. Move\n2. Attack\n3. Free Action" << endl;
 
             if (std::cin >> decision)
             {
@@ -204,11 +203,11 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
 
                 while (!validity2)
                 {
-                    std::cout << "1 2 3\n4 X 5\n6 7 8\n\n";
+                    std::cout << "1 2 3\n4 C 5\n6 7 8\n\n";
 
                     if (std::cin >> decision2)
                     {
-                        if (decision2 >= 1 && decision <= 8)
+                        if (decision2 >= 1 && decision2 <= 8)
                             validity2 = true;
                         else
                             std::cout << "Invalid integer, please enter a number between 1 and 8.\n";
@@ -291,6 +290,7 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
                     else
                     {
                         std::cout << "Selected target is not a enemy, please try again.\n";
+                        validity2 = false;
                     }
                 }
             }

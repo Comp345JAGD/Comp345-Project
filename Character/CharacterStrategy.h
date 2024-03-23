@@ -1,8 +1,8 @@
-#ifndef CHARACTERSTRATEGY_H
-#define CHARACTERSTRATEGY_H
-
 #include "character.h"
 #include "../Map/GameMap.h"
+
+#ifndef CHARACTERSTRATEGY_H
+#define CHARACTERSTRATEGY_H
 
 class CharacterStrategy
 {

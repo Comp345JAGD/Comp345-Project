@@ -24,7 +24,6 @@ void GameLoop::play() {
         system("pause");
         cout << endl;
 
-        system("CLS");
 
 		currentMap->playTurnCycle();
 
@@ -32,6 +31,7 @@ void GameLoop::play() {
 
         currentMap->printMap();
 
+        system("CLS");
 
 		if (turnCycleNum == 10) {
 			break;

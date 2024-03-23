@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <map>
 #include "../Character/character.h"
+#include "../Character/CharacterStrategy.h"
 using namespace std;
 
 // Items and their Attributes
