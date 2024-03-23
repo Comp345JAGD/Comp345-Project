@@ -10,7 +10,7 @@
 #include "logSubject.h"
 #include "../Map/cell.h"
 
-class Character : public Subject, public IGridCell, public logSubject
+class Character : public Subject, public IGridCell //, public logSubject
 {
 public:
     Character();
@@ -54,13 +54,14 @@ public:
     virtual int getTotalIntelligence();
     virtual int getTotalWisdom();
     virtual int getTotalCharisma();
-    virtual  int getTotalArmorClass();
+    virtual int getTotalArmorClass();
     virtual int getTotalAttackBonus();
     virtual int getTotalDamageBonus();
     virtual bool isWalkable() override;
     virtual void playTurn(GameMap *map) override;
     virtual string getGridRepresentation() override;
     virtual void setPosition(int row, int column) override;
+    int attack();
 
 protected:
     int level;

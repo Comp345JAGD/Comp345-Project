@@ -5,7 +5,7 @@ void CharacterBuilder::randomizeStats()
 {
     std::cout << "We will now roll for your starting ability scores.\n";
     std::string characterCreation = "Creating a character:\n";
-    charLogPointer->log(characterCreation, 1);
+    // charLogPointer->log(characterCreation, 1);
     for (int i = 0; i < randomizedStats.size(); i++)
     {
         std::array<int, 4> rolls;
@@ -24,8 +24,8 @@ void CharacterBuilder::randomizeStats()
     for (int k = 0; k < randomizedStats.size(); k++)
     {
         std::cout << "Num at " << k << ": " << randomizedStats[k] << "\n";
-        characterCreation = "The stat roll for the " + std::to_string(k+1) + " stat is: " + std::to_string(randomizedStats[k]) + ".\n";
-        charLogPointer->log(characterCreation, 1);
+        characterCreation = "The stat roll for the " + std::to_string(k + 1) + " stat is: " + std::to_string(randomizedStats[k]) + ".\n";
+        // charLogPointer->log(characterCreation, 1);
     }
 }
 
