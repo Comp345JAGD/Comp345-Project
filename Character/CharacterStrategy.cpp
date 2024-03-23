@@ -2,19 +2,20 @@
 
 void FriendlyStrategy::execute(Character *character, GameMap *map)
 {
+    if(character->getCurrentHealth() == character->getHitPoints())
     {
         int numRows = map->getNumRows();
         int numCols = map->getNumColumns();
         int playerRow = -1;
         int playerCol = -1;
-        for (int i = 0; i < numCols; i++)
+        for (int i = 0; i < numRows; i++)
         {
-            for (int j = 0; j < numRows; j++)
+            for (int j = 0; j < numCols; j++)
             {
-                if (dynamic_cast<Character *>(map->getCell(j, i)) != nullptr)
+                if (dynamic_cast<Character *>(map->getCell(i, j)) != nullptr)
                 { // need a function to check if a character at a cell is a player or NPC
-                    playerRow = j;
-                    playerCol = i;
+                    playerRow = i;
+                    playerCol = j;
 
                     break;
                 }
@@ -30,8 +31,14 @@ void FriendlyStrategy::execute(Character *character, GameMap *map)
         }
         else
         {
+
             map->moveOneCellTowardsTarget(character->getRow(), character->getColumn(), playerRow, playerCol);
         }
+    }
+    else {
+        AggressorStrategy* strat = new AggressorStrategy();
+        strat->execute(character, map);
+
     }
 }
 
@@ -43,14 +50,15 @@ void AggressorStrategy::execute(Character *character, GameMap *map)
     int myCol = character->getColumn();
     int playerRow = -1;
     int playerCol = -1;
-    for (int i = 0; i < numCols; i++)
+    for (int i = 0; i < numRows; i++)
     {
-        for (int j = 0; j < numRows; j++)
+        for (int j = 0; j < numCols; j++)
         {
-            if (dynamic_cast<Character *>(map->getCell(j, i)) != nullptr)
-            {
-                playerRow = j;
-                playerCol = i;
+            if (dynamic_cast<Character*>(map->getCell(i, j)) != nullptr)
+            { // need a function to check if a character at a cell is a player or NPC
+                playerRow = i;
+                playerCol = j;
+
                 break;
             }
         }
@@ -59,7 +67,6 @@ void AggressorStrategy::execute(Character *character, GameMap *map)
             break;
         }
     }
-
     if (playerRow < 0)
     {
         return; // No player on map?
@@ -69,7 +76,11 @@ void AggressorStrategy::execute(Character *character, GameMap *map)
              (playerRow - 1 == myRow && playerCol + 1 == myCol) || (playerRow - 1 == myRow && playerCol == myCol) || (playerRow - 1 == myRow && playerCol - 1 == myCol))
     {
         // attack logic
-        string attackMessage = "A monster attacked the player!\n";
+
+        int damage = character->attack();
+        int damageTaken = dynamic_cast<Character*>(map->getCell(playerRow, playerCol))->attacked(damage);
+        std::cout << "Monster dealt " << damageTaken << " damage to the player.\n";
+
         // c->logNotify(attackMessage);
     }
     else
@@ -138,56 +149,61 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
 
                 switch (decision2)
                 {
-                case 1:
-                {
-                    targetRow = character->getRow() - 1;
-                    targetColumn = character->getColumn() - 1;
-                    break;
+                    case 1:
+                    {
+                        targetRow = character->getRow() - 1;
+                        targetColumn = character->getColumn() - 1;
+                        break;
+                    }
+                    case 2:
+                    {
+                        targetRow = character->getRow() - 1;
+                        targetColumn = character->getColumn();
+                        break;
+                    }
+                    case 3:
+                    {
+                        targetRow = character->getRow() - 1;
+                        targetColumn = character->getColumn() + 1;
+                        break;
+                    }
+                    case 4:
+                    {
+                        targetRow = character->getRow();
+                        targetColumn = character->getColumn() - 1;
+                        break;
+                    }
+                    case 5:
+                    {
+                        targetRow = character->getRow();
+                        targetColumn = character->getColumn() + 1;
+                        break;
+                    }
+                    case 6:
+                    {
+                        targetRow = character->getRow() + 1;
+                        targetColumn = character->getColumn() - 1;
+                        break;
+                    }
+                    case 7:
+                    {
+                        targetRow = character->getRow() + 1;
+                        targetColumn = character->getColumn();
+                        break;
+                    }
+                    case 8:
+                    {
+                        targetRow = character->getRow() + 1;
+                        targetColumn = character->getColumn() + 1;
+                        break;
+                    }
                 }
-                case 2:
-                {
-                    targetRow = character->getRow() - 1;
-                    targetColumn = character->getColumn();
-                    break;
-                }
-                case 3:
-                {
-                    targetRow = character->getRow() - 1;
-                    targetColumn = character->getColumn() + 1;
-                    break;
-                }
-                case 4:
-                {
-                    targetRow = character->getRow();
-                    targetColumn = character->getColumn() - 1;
-                    break;
-                }
-                case 5:
-                {
-                    targetRow = character->getRow();
-                    targetColumn = character->getColumn() + 1;
-                    break;
-                }
-                case 6:
-                {
-                    targetRow = character->getRow() + 1;
-                    targetColumn = character->getColumn() - 1;
-                    break;
-                }
-                case 7:
-                {
-                    targetRow = character->getRow() + 1;
-                    targetColumn = character->getColumn();
-                    break;
-                }
-                case 8:
-                {
-                    targetRow = character->getRow() + 1;
-                    targetColumn = character->getColumn() + 1;
-                    break;
-                }
+
+                if (!map->moveCell(character->getRow(), character->getColumn(), targetRow, targetColumn)) {
+                    cout << "You can't move there YO!" << endl;
                 }
             }
+            break;
         }
         case 2:
         {
@@ -284,7 +300,7 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
                     {
                         int damage = character->attack();
                         int damageTaken = targetChar->attacked(damage);
-                        std::cout << "Dealt " << damageTaken << " damage to the target.\n";
+                        std::cout << "Player dealt " << damageTaken << " damage to the target.\n";
                         outerValidity = true;
                     }
                     else
@@ -294,11 +310,13 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
                     }
                 }
             }
+            break;
         }
         case 3:
         {
             std::cout << "You perform a passionate wardance!\n";
             std::cout << "It has no effects, but looked great.\n\n";
+            break;
         }
         }
         // character->logNotify("Player turn ending...\n");

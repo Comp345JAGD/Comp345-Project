@@ -29,9 +29,11 @@ void GameLoop::play() {
 
         cout << "Turn Cycle: " << turnCycleNum << endl << endl;
 
+        //system("CLS");
+
         currentMap->printMap();
 
-        system("CLS");
+        
 
 		if (turnCycleNum == 10) {
 			break;
@@ -64,7 +66,7 @@ void gameLoopDriver() {
     //gameMap->setCell(2, 1, new WallCell());
 
     gameMap->setCell(1, 1, new Character(1, new HumanPlayerStrategy()));
-    gameMap->setCell(2, 3, new Character(1, new FriendlyStrategy()));
+    gameMap->setCell(1, 3, new Character(1, new FriendlyStrategy()));
 
     //gameMap->setCell(1, 1, new MoverCell());
 

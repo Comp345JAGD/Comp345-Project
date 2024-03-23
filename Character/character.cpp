@@ -317,7 +317,7 @@ void Character::groupedCalculate()
 
 bool Character::isWalkable()
 {
-    return false;
+    return true;
 }
 
 string Character::getGridRepresentation()
@@ -382,7 +382,7 @@ int Character::getCurrentHealth()
 int Character::attack()
 {
     int dmg = 0;
-    dmg = dice.roll2("1d12") + attackBonus + damageBonus;
+    dmg = dice.roll2("1d12") + attackBonus + damageBonus + 1;
     return dmg;
 }
 

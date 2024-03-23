@@ -11,7 +11,7 @@
 //#include "CharacterStrategy.h"
 #include "../Map/cell.h"
 
-class CharacterStrategy;
+class CharacterStrategy; // https://stackoverflow.com/a/15782499
 
 class Character : public Subject, public IGridCell //, public logSubject
 {

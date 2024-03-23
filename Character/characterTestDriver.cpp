@@ -124,7 +124,7 @@ void characterTestDriver()
             std::cout << "Invalid input, please enter a number between 1 and 3.\n";
         }
     }
-/*
+
     switch (decision)
     {
     case 1:
@@ -178,5 +178,5 @@ void characterTestDriver()
         delete test1;
         break;
     }
-    }*/
+    }
 }
