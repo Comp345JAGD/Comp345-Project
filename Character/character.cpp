@@ -372,9 +372,22 @@ int Character::getHitPoints()
     return hitPoints;
 }
 
+int Character::getCurrentHealth()
+{
+    return currentHp;
+}
+
 int Character::attack()
 {
     int dmg = 0;
-    dmg = dice.roll2("1d20") + attackBonus + damageBonus;
+    dmg = dice.roll2("1d12") + attackBonus + damageBonus;
     return dmg;
+}
+
+int Character::attacked(int damage)
+{
+    int damageTaken = damage - armorClass;
+    currentHp = currentHp - damageTaken;
+
+    return damageTaken;
 }

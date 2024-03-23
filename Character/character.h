@@ -44,6 +44,7 @@ public:
     int getAttackBonus();
     int getDamageBonus();
     int getHitPoints();
+    int getCurrentHealth();
     Dice getDice()
     {
         return dice;
@@ -62,6 +63,7 @@ public:
     virtual string getGridRepresentation() override;
     virtual void setPosition(int row, int column) override;
     int attack();
+    int attacked(int damage);
 
 protected:
     int level;

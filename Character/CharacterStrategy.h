@@ -190,164 +190,63 @@ class HumanPlayerStrategy : public CharacterStrategy
                 {
                     targetRow = character->getRow() - 1;
                     targetColumn = character->getColumn() - 1;
-                    bool isOutOfBounds = map->isOutOfBounds(targetRow, targetColumn);
-                    if (!isOutOfBounds) // if out of bound, select new target
-                    {
-                        std::cout << "Selected target is out of bounds, please try again.";
-                        break;
-                    }
-                    Character *targetChar = dynamic_cast<Character *>(map->getCell(targetRow, targetColumn));
-                    if (targetChar != nullptr) //  if correct, find if the cell is a character cell
-                    {
-                    }
-
-                    // if correct, attack character
-                    int damage = character->attack();
-                    // character being attacked will have his currenct health reduced
-                    // attackedCharacter.currentHealth = currentHealth - (damage - attackedCharacter.ArmorClass) <-something like this
-                    std::cout << "Dealt " << damage << " damage to the target.\n";
-                    break;
                 }
                 case 2:
                 {
                     targetRow = character->getRow() - 1;
                     targetColumn = character->getColumn();
-                    bool isOutOfBounds = map->isOutOfBounds(targetRow, targetColumn);
-                    if (!isOutOfBounds) // if out of bound, select new target
-                    {
-                        std::cout << "Selected target is out of bounds, please try again.";
-                        break;
-                    }
-                    // if (map->getCell(targetRow, targetColumn).getGridRepresentation.equals("C"))
-                    //  if correct, find if the cell is a character cell
-
-                    // if correct, attack character
-                    int damage = character->attack();
-                    // character being attacked will have his currenct health reduced
-                    // attackedCharacter.currentHealth = currentHealth - (damage - attackedCharacter.ArmorClass) <-something like this
-                    std::cout << "Dealt " << damage << " damage to the target.\n";
-                    break;
                 }
                 case 3:
                 {
                     targetRow = character->getRow() - 1;
                     targetColumn = character->getColumn() + 1;
-                    bool isOutOfBounds = map->isOutOfBounds(targetRow, targetColumn);
-                    if (!isOutOfBounds) // if out of bound, select new target
-                    {
-                        std::cout << "Selected target is out of bounds, please try again.";
-                        break;
-                    }
-                    // if (map->getCell(targetRow, targetColumn).getGridRepresentation.equals("C"))
-                    //  if correct, find if the cell is a character cell
-
-                    // if correct, attack character
-                    int damage = character->attack();
-                    // character being attacked will have his currenct health reduced
-                    // attackedCharacter.currentHealth = currentHealth - (damage - attackedCharacter.ArmorClass) <-something like this
-                    std::cout << "Dealt " << damage << " damage to the target.\n";
-                    break;
                 }
                 case 4:
                 {
                     targetRow = character->getRow();
                     targetColumn = character->getColumn() - 1;
-                    bool isOutOfBounds = map->isOutOfBounds(targetRow, targetColumn);
-                    if (!isOutOfBounds) // if out of bound, select new target
-                    {
-                        std::cout << "Selected target is out of bounds, please try again.";
-                        break;
-                    }
-                    // if (map->getCell(targetRow, targetColumn).getGridRepresentation.equals("C"))
-                    //  if correct, find if the cell is a character cell
-
-                    // if correct, attack character
-                    int damage = character->attack();
-                    // character being attacked will have his currenct health reduced
-                    // attackedCharacter.currentHealth = currentHealth - (damage - attackedCharacter.ArmorClass) <-something like this
-                    std::cout << "Dealt " << damage << " damage to the target.\n";
-                    break;
                 }
                 case 5:
                 {
                     targetRow = character->getRow();
                     targetColumn = character->getColumn() + 1;
-                    bool isOutOfBounds = map->isOutOfBounds(targetRow, targetColumn);
-                    if (!isOutOfBounds) // if out of bound, select new target
-                    {
-                        std::cout << "Selected target is out of bounds, please try again.";
-                        break;
-                    }
-                    // if (map->getCell(targetRow, targetColumn).getGridRepresentation.equals("C"))
-                    //  if correct, find if the cell is a character cell
-
-                    // if correct, attack character
-                    int damage = character->attack();
-                    // character being attacked will have his currenct health reduced
-                    // attackedCharacter.currentHealth = currentHealth - (damage - attackedCharacter.ArmorClass) <-something like this
-                    std::cout << "Dealt " << damage << " damage to the target.\n";
-                    break;
                 }
                 case 6:
                 {
                     targetRow = character->getRow() + 1;
                     targetColumn = character->getColumn() - 1;
-                    bool isOutOfBounds = map->isOutOfBounds(targetRow, targetColumn);
-                    if (!isOutOfBounds) // if out of bound, select new target
-                    {
-                        std::cout << "Selected target is out of bounds, please try again.";
-                        break;
-                    }
-                    // if (map->getCell(targetRow, targetColumn).getGridRepresentation.equals("C"))
-                    //  if correct, find if the cell is a character cell
-
-                    // if correct, attack character
-                    int damage = character->attack();
-                    // character being attacked will have his currenct health reduced
-                    // attackedCharacter.currentHealth = currentHealth - (damage - attackedCharacter.ArmorClass) <-something like this
-                    std::cout << "Dealt " << damage << " damage to the target.\n";
-                    break;
                 }
                 case 7:
                 {
                     targetRow = character->getRow() + 1;
                     targetColumn = character->getColumn();
-                    bool isOutOfBounds = map->isOutOfBounds(targetRow, targetColumn);
-                    if (!isOutOfBounds) // if out of bound, select new target
-                    {
-                        std::cout << "Selected target is out of bounds, please try again.";
-                        break;
-                    }
-                    // if (map->getCell(targetRow, targetColumn).getGridRepresentation.equals("C"))
-                    //  if correct, find if the cell is a character cell
-
-                    // if correct, attack character
-                    int damage = character->attack();
-                    // character being attacked will have his currenct health reduced
-                    // attackedCharacter.currentHealth = currentHealth - (damage - attackedCharacter.ArmorClass) <-something like this
-                    std::cout << "Dealt " << damage << " damage to the target.\n";
-                    break;
                 }
                 case 8:
                 {
                     targetRow = character->getRow() + 1;
                     targetColumn = character->getColumn() + 1;
-                    bool isOutOfBounds = map->isOutOfBounds(targetRow, targetColumn);
-                    if (!isOutOfBounds) // if out of bound, select new target
-                    {
-                        std::cout << "Selected target is out of bounds, please try again.";
-                        break;
-                    }
-                    // if (map->getCell(targetRow, targetColumn).getGridRepresentation.equals("C"))
-                    //  if correct, find if the cell is a character cell
-
-                    // if correct, attack character
-                    int damage = character->attack();
-                    // character being attacked will have his currenct health reduced
-                    // attackedCharacter.currentHealth = currentHealth - (damage - attackedCharacter.ArmorClass) <-something like this
-                    std::cout << "Dealt " << damage << " damage to the target.\n";
-                    break;
                 }
+                }
+
+                bool isOutOfBounds = map->isOutOfBounds(targetRow, targetColumn);
+                if (isOutOfBounds) // if out of bound, select new target
+                {
+                    std::cout << "Selected target is out of bounds, please try again.\n";
+                }
+                else
+                {
+                    Character *targetChar = dynamic_cast<Character *>(map->getCell(targetRow, targetColumn));
+                    if (targetChar != nullptr) //  if correct, find if the cell is a character cell
+                    {
+                        int damage = character->attack();
+                        int damageTaken = targetChar->attacked(damage);
+                        std::cout << "Dealt " << damageTaken << " damage to the target.\n";
+                        outerValidity = true;
+                    }
+                    else
+                    {
+                        std::cout << "Selected target is not a enemy, please try again.\n";
+                    }
                 }
             }
         }
