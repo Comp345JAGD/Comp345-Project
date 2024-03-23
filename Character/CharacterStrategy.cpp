@@ -143,6 +143,49 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
                 {
                     targetRow = character->getRow() - 1;
                     targetColumn = character->getColumn() - 1;
+                    break;
+                }
+                case 2:
+                {
+                    targetRow = character->getRow() - 1;
+                    targetColumn = character->getColumn();
+                    break;
+                }
+                case 3:
+                {
+                    targetRow = character->getRow() - 1;
+                    targetColumn = character->getColumn() + 1;
+                    break;
+                }
+                case 4:
+                {
+                    targetRow = character->getRow();
+                    targetColumn = character->getColumn() - 1;
+                    break;
+                }
+                case 5:
+                {
+                    targetRow = character->getRow();
+                    targetColumn = character->getColumn() + 1;
+                    break;
+                }
+                case 6:
+                {
+                    targetRow = character->getRow() + 1;
+                    targetColumn = character->getColumn() - 1;
+                    break;
+                }
+                case 7:
+                {
+                    targetRow = character->getRow() + 1;
+                    targetColumn = character->getColumn();
+                    break;
+                }
+                case 8:
+                {
+                    targetRow = character->getRow() + 1;
+                    targetColumn = character->getColumn() + 1;
+                    break;
                 }
                 }
             }
@@ -184,41 +227,49 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
                 {
                     targetRow = character->getRow() - 1;
                     targetColumn = character->getColumn() - 1;
+                    break;
                 }
                 case 2:
                 {
                     targetRow = character->getRow() - 1;
                     targetColumn = character->getColumn();
+                    break;
                 }
                 case 3:
                 {
                     targetRow = character->getRow() - 1;
                     targetColumn = character->getColumn() + 1;
+                    break;
                 }
                 case 4:
                 {
                     targetRow = character->getRow();
                     targetColumn = character->getColumn() - 1;
+                    break;
                 }
                 case 5:
                 {
                     targetRow = character->getRow();
                     targetColumn = character->getColumn() + 1;
+                    break;
                 }
                 case 6:
                 {
                     targetRow = character->getRow() + 1;
                     targetColumn = character->getColumn() - 1;
+                    break;
                 }
                 case 7:
                 {
                     targetRow = character->getRow() + 1;
                     targetColumn = character->getColumn();
+                    break;
                 }
                 case 8:
                 {
                     targetRow = character->getRow() + 1;
                     targetColumn = character->getColumn() + 1;
+                    break;
                 }
                 }
 
