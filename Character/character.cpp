@@ -9,7 +9,8 @@ Character::Character(const std::string &inputName, int inputLevel) : name(inputN
     generateAbilityScore();
 }
 
-Character::Character(int level) : level(level), strength(8), dexterity(8), constitution(8), intelligence(8), wisdom(8), charisma(8)
+Character::Character(int level, CharacterStrategy *charStrat) : level(level), strength(8), dexterity(8), constitution(8), intelligence(8), wisdom(8), charisma(8), cs(charStrat)
+
 {
     groupedCalculate();
 }
@@ -325,7 +326,7 @@ string Character::getGridRepresentation()
 
 void Character::playTurn(GameMap *m)
 {
-    // m->moveOneCellTowardsTarget();
+    cs->execute(this, m);
 }
 
 int Character::getTotalStength()

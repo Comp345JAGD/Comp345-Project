@@ -8,6 +8,7 @@
 #include "dice.h"
 #include "Subject.h"
 #include "../Logger/logSubject.h"
+#include "CharacterStrategy.h"
 #include "../Map/cell.h"
 
 class Character : public Subject, public IGridCell //, public logSubject
@@ -15,7 +16,7 @@ class Character : public Subject, public IGridCell //, public logSubject
 public:
     Character();
     Character(const std::string &inputName, int inputLevel);
-    Character(int level);
+    Character(int level, CharacterStrategy *charStrat);
     void generateAbilityScore();
     void assignAbilityScore(const std::vector<int> rolls);
     void displayScores1() const;
@@ -71,6 +72,7 @@ protected:
     int hitPoints, armorClass, attackBonus, damageBonus;
     int currentHp, attackRate;
     Dice dice;
+    CharacterStrategy *cs;
     std::string name;
 };
 

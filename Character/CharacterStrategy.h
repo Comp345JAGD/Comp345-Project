@@ -130,6 +130,7 @@ class HumanPlayerStrategy : public CharacterStrategy
         {
             bool validity2 = false;
             int decision2;
+            int targetRow, targetColumn;
 
             std::cout << "Select a surrounding cell you wish to move to. Your character is represented by 'C'.\n";
 
@@ -150,6 +151,15 @@ class HumanPlayerStrategy : public CharacterStrategy
                     std::cin.clear();
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                     std::cout << "Invalid input, please enter a number between 1 and 8.\n";
+                }
+
+                switch (decision2)
+                {
+                case 1:
+                {
+                    targetRow = character->getRow() - 1;
+                    targetColumn = character->getColumn() - 1;
+                }
                 }
             }
         }
