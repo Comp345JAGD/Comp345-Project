@@ -15,7 +15,7 @@
 
 int main()
 {
-	// itemTestDriver();
+	 itemTestDriver();
 	// diceTestDriver();
 
 

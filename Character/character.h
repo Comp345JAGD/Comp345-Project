@@ -40,16 +40,23 @@ public:
     int getIntelligence();
     int getWisdom();
     int getCharisma();
+    int getArmorClass();
+    int getAttackBonus();
+    int getDamageBonus();
+    int getHitPoints();
     Dice getDice()
     {
         return dice;
     }
-    virtual int getGearStength();
-    virtual int getGearDexterity();
-    virtual int getGearConstitution();
-    virtual int getGearIntelligence();
-    virtual int getGearWisdom();
-    virtual int getGearCharisma();
+    virtual int getTotalStength();
+    virtual int getTotalDexterity();
+    virtual int getTotalConstitution();
+    virtual int getTotalIntelligence();
+    virtual int getTotalWisdom();
+    virtual int getTotalCharisma();
+    virtual  int getTotalArmorClass();
+    virtual int getTotalAttackBonus();
+    virtual int getTotalDamageBonus();
     virtual bool isWalkable() override;
     virtual void playTurn(GameMap *map) override;
     virtual string getGridRepresentation() override;

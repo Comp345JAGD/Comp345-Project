@@ -1,6 +1,6 @@
 #include "Item.h"
 
-void ItemContainer::addItem(ItemType itemType, string itemName, EnhancementType enhancementType, int enhancementBonus, int handsRequired)
+void ItemContainer::addItem(ItemType itemType, string itemName, EnhancementType enhancementType, int enhancementBonus)
 {
     Item *newItem = nullptr;
 
@@ -74,14 +74,20 @@ bool CharacterEquipment::isSlotEmpty(ItemType slot) const
     return equipmentSlots[static_cast<size_t>(slot)] == nullptr;
 }
 
-CharacterEquipment::CharacterEquipment()
+CharacterEquipment::CharacterEquipment() : character("John Doe", 1)
 {
     for (int i = 0; i < static_cast<int>(ItemType::Weapon) + 1; ++i)
     {
         equipmentSlots.push_back(nullptr);
     }
 }
-
+CharacterEquipment::CharacterEquipment(Character player) : character(player)
+{
+    for (int i = 0; i < static_cast<int>(ItemType::Weapon) + 1; ++i)
+    {
+        equipmentSlots.push_back(nullptr);
+    }
+}
 void CharacterEquipment::equip(Item *item)
 {
     ItemType itemType = item->getItemType();
@@ -143,7 +149,7 @@ int CharacterEquipment::calculateTotalBonus(EnhancementType type) const
 
 void CharacterEquipment::displayTotalGearBonuses() const
 {
-    std::cout << "Total Bonuses by Type:" << endl<< "1. Strength\n2. Dexterity\n3. Constitution\n4. Intelligence\n5. Wisdom\n6. Charisma\n7. ArmorClass\n8. AttackBonus\n9. DamageBonus" <<endl;
+    std::cout << "Total Bonuses by Type:" << endl<< "0. Strength\n1. Dexterity\n2. Constitution\n3. Intelligence\n4. Wisdom\n5. Charisma\n6. ArmorClass\n7. AttackBonus\n8. DamageBonus" <<endl;
     for (const auto &entry : bonusesByType)
     {
         std::cout << "Type: " << static_cast<int>(entry.first) << ", Total Bonus: " << entry.second << std::endl;
@@ -159,24 +165,48 @@ CharacterEquipment::~CharacterEquipment()
 }
 
 int CharacterEquipment::getTotalStength() {
-    return strength+bonusesByType[EnhancementType::Strength];
+    return character.getStrength() + bonusesByType[EnhancementType::Strength];
 }
 
 int CharacterEquipment::getTotalDexterity() {
-    return dexterity + bonusesByType[EnhancementType::Dexterity];
+    return  character.getDexterity() + bonusesByType[EnhancementType::Dexterity];
 }
 
 int CharacterEquipment::getTotalConstitution() {
-    return constitution + bonusesByType[EnhancementType::Constitution];
+    return character.getConstitution() + bonusesByType[EnhancementType::Constitution];
 }
 
 int CharacterEquipment::getTotalIntelligence() {
-    return intelligence + bonusesByType[EnhancementType::Intelligence];
+    return  character.getIntelligence() + bonusesByType[EnhancementType::Intelligence];
 }
 
 int CharacterEquipment::getTotalWisdom() {
-    return wisdom + bonusesByType[EnhancementType::Wisdom];
+    return  character.getWisdom() + bonusesByType[EnhancementType::Wisdom];
 }
 int CharacterEquipment::getTotalCharisma() {
-    return charisma + bonusesByType[EnhancementType::Charisma];
+    return  character.getCharisma() + bonusesByType[EnhancementType::Charisma];
+}
+int CharacterEquipment::getTotalArmorClass() {
+    return  character.getArmorClass() + bonusesByType[EnhancementType::ArmorClass];
+}
+int CharacterEquipment::getTotalAttackBonus() {
+    return  character.getAttackBonus() + bonusesByType[EnhancementType::AttackBonus];
+}
+int CharacterEquipment::getTotalDamageBonus() {
+    return  character.getDamageBonus() + bonusesByType[EnhancementType::DamageBonus];
+}
+void CharacterEquipment::displayScores2() {
+    cout << "Strength: " <<getTotalStength() << "\n"
+        << "Dexterity: " <<  getTotalDexterity() << "\n"
+        << "Constitution: " <<  getTotalConstitution() << "\n"
+        << "Intelligence: " <<  getTotalIntelligence() << "\n"
+        << "Wisdom: " <<  getTotalWisdom() << "\n"
+        << "Charisma: " <<  getTotalWisdom() << std::endl;
+}
+void CharacterEquipment::displayScores3()
+{
+    std::cout << "Hit Points: " << character.getHitPoints() << "\n"
+        << "Armor Class: " << getTotalArmorClass() << "\n"
+        << "Attack Bonus: " << getTotalAttackBonus() << "\n"
+        << "Damage Bonus: " << getTotalDamageBonus() << "\n\n";
 }

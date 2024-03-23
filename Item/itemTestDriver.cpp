@@ -1,10 +1,10 @@
 #include "itemTestDriver.h"
-
+#include "../Character/character.h"
 void itemTestDriver()
 {
+	Character character(1, 1);
 	// Example usage
-	CharacterEquipment characterEquipment;
-
+	CharacterEquipment characterEquipment(character);
 	// Assume you have created instances of Helmet, Armor, Ring, etc.
 
 	// Equip items
@@ -22,5 +22,7 @@ void itemTestDriver()
 	characterEquipment.unequip((ItemType::Ring));
 	// Display updated worn items
 	characterEquipment.displayWornItems();
-	characterEquipment.displayTotalBonuses();
+	characterEquipment.displayTotalGearBonuses();
+	characterEquipment.displayScores2();
+	characterEquipment.displayScores3();
 }
