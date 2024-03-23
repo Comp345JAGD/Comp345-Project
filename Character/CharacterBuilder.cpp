@@ -11,7 +11,7 @@ void CharacterBuilder::randomizeStats()
         std::array<int, 4> rolls;
         for (int j = 0; j < 4; j++)
         {
-            rolls[j] = produced_character->getDice().roll2("1d6");
+            rolls[j] = dice.roll2("1d6");
         }
         std::sort(rolls.begin(), rolls.end(), std::greater<int>());
         randomizedStats[i] = rolls[0] + rolls[1] + rolls[2]; // Sum of the top 3 rolls

@@ -196,9 +196,10 @@ class HumanPlayerStrategy : public CharacterStrategy
                         std::cout << "Selected target is out of bounds, please try again.";
                         break;
                     }
-                    if (dynamic_cast<Character *>(map->getCell(targetRow, targetColumn)) != nullptr) //  if correct, find if the cell is a character cell
+                    Character *targetChar = dynamic_cast<Character *>(map->getCell(targetRow, targetColumn));
+                    if (targetChar != nullptr) //  if correct, find if the cell is a character cell
                     {
-                                        }
+                    }
 
                     // if correct, attack character
                     int damage = character->attack();
