@@ -128,6 +128,30 @@ class HumanPlayerStrategy : public CharacterStrategy
         {
         case 1:
         {
+            bool validity2 = false;
+            int decision2;
+
+            std::cout << "Select a surrounding cell you wish to move to. Your character is represented by 'C'.\n";
+
+            while (!validity2)
+            {
+
+                std::cout << "1 2 3\n4 X 5\n6 7 8\n\n";
+
+                if (std::cin >> decision2)
+                {
+                    if (decision2 >= 1 && decision <= 8)
+                        validity2 = true;
+                    else
+                        std::cout << "Invalid integer, please enter a number between 1 and 8.\n";
+                }
+                else
+                {
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    std::cout << "Invalid input, please enter a number between 1 and 8.\n";
+                }
+            }
         }
         case 2:
         {
@@ -139,7 +163,7 @@ class HumanPlayerStrategy : public CharacterStrategy
             while (!outerValidity)
             {
 
-                std::cout << "Select a surround cell you wish to attack. Your character is represented by the 'C'.\n";
+                std::cout << "Select a surrounding cell you wish to attack. Your character is represented by the 'C'.\n";
 
                 while (!validity2)
                 {
@@ -172,11 +196,12 @@ class HumanPlayerStrategy : public CharacterStrategy
                         std::cout << "Selected target is out of bounds, please try again.";
                         break;
                     }
-                    if (map->getCell(targetRow, targetColumn).)
-                        //  if correct, find if the cell is a character cell
+                    if (dynamic_cast<Character *>(map->getCell(targetRow, targetColumn)) != nullptr) //  if correct, find if the cell is a character cell
+                    {
+                                        }
 
-                        // if correct, attack character
-                        int damage = character->attack();
+                    // if correct, attack character
+                    int damage = character->attack();
                     // character being attacked will have his currenct health reduced
                     // attackedCharacter.currentHealth = currentHealth - (damage - attackedCharacter.ArmorClass) <-something like this
                     std::cout << "Dealt " << damage << " damage to the target.\n";
