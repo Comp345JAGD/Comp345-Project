@@ -317,7 +317,7 @@ void Character::groupedCalculate()
 
 bool Character::isWalkable()
 {
-    return true;
+    return false;
 }
 
 string Character::getGridRepresentation()

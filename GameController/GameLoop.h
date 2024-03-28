@@ -12,11 +12,14 @@ class GameLoop // : public logSubject
 {
 private:
 	GameMap* currentMap;
+	Character* humanCharacter;
+	bool isGameOver(bool& didPlayerWin);
 
 public:
-	GameLoop(GameMap* currentMap);
+	GameLoop(GameMap* currentMap, Character* humanCharacter);
 	void setGameMap(GameMap* currentMap);
-	void play();
+	void setHumanCharacter(Character* humanCharacter);
+	bool play();
 };
 
 void gameLoopDriver();

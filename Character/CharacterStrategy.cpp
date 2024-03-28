@@ -199,6 +199,7 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
                     }
                 }
 
+
                 if (!map->moveCell(character->getRow(), character->getColumn(), targetRow, targetColumn)) {
                     cout << "You can't move there YO!" << endl;
                 }

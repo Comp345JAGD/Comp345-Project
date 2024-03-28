@@ -5,6 +5,7 @@
 #include <map>
 #include <vector>
 #include <fstream>
+#include "../GameController/GameLoop.h"
 #ifndef CAMPAIGN_H
 #define CAMPAIGN_H
 class Campaign

@@ -197,8 +197,8 @@ void selectCampaign() {
         int mapDecision = 0;
         while (mapDecision != 6) {
             cout << "==================================\n";
-            cout << "Welcome to Map select! Respond with the following integer for desired:\n";
-            cout << "1. Create Map\n2. Edit Map\n3. Move Map\n4. Remove Map\n5. Save Map (Any unsaved data will be lost!)\n6. Exit\n";
+            cout << "You have selected a campain! Respond with the following integer for desired:\n";
+            cout << "0. Play the Campain 1. Create Map\n2. Edit Map\n3. Move Map\n4. Remove Map\n5. Save Map (Any unsaved data will be lost!)\n6. Exit\n";
             cout << "==================================\n";
 
             cin >> mapDecision;
@@ -208,6 +208,25 @@ void selectCampaign() {
             }
 
             switch (mapDecision) {
+            case 0:
+            {
+                Character* humanCharacter = new Character(1, new HumanPlayerStrategy());
+
+                for (int i = 0; i < campaign.getNumMaps(); i++)
+                {
+
+
+                    GameLoop gameLoop(campaign.getMapAtIndex(i), humanCharacter);
+
+                    bool didPlayerWin = gameLoop.play();
+
+                    // congrates you won do you want to continue??? unless end
+                    // fail go back to main menu
+
+                }
+               
+                break;
+            }
             case 1:
             {
                 int numRows, numColumns, startRow, startColumn, endRow, endColumn;

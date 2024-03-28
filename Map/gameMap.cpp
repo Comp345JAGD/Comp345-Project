@@ -335,7 +335,7 @@ bool GameMap::moveCell(int subjectRow, int subjectColumn, int targetRow, int tar
 int GameMap::bfsMinStepsToTarget(int subjectRow, int subjectColumn, int targetRow, int targetColumn, int originalRow, int originalColumn)
 {
 
-    if (isOutOfBounds(subjectRow, subjectColumn) || isOutOfBounds(targetRow, targetColumn) || !grid[subjectRow][subjectColumn]->isWalkable() || !grid[targetRow][targetColumn]->isWalkable())
+    if (isOutOfBounds(subjectRow, subjectColumn) || isOutOfBounds(targetRow, targetColumn) || !grid[subjectRow][subjectColumn]->isWalkable())
     {
         return numeric_limits<int>::max();
     }
@@ -391,7 +391,11 @@ int GameMap::bfsMinStepsToTarget(int subjectRow, int subjectColumn, int targetRo
         {
             int nextRow = row + rowDirections[i];
             int nextColumn = column + columnDirections[i];
-            if (!isOutOfBounds(nextRow, nextColumn) && !isVisited[nextRow][nextColumn] && grid[nextRow][nextColumn]->isWalkable() || (nextRow == originalColumn && nextColumn == originalColumn) // if the subject is not walkable, we want to allow walking at its place
+            if (
+                !isOutOfBounds(nextRow, nextColumn) 
+                && !isVisited[nextRow][nextColumn] 
+                && grid[nextRow][nextColumn]->isWalkable() 
+                || (nextRow == targetRow && nextColumn == targetColumn) // fixing cant get to target if not walkable (but character is not walkable)
             )
             {
 
@@ -401,7 +405,11 @@ int GameMap::bfsMinStepsToTarget(int subjectRow, int subjectColumn, int targetRo
                 rowQueue.push(nextRow);
                 columnQueue.push(nextColumn);
             }
+
+            
+
         }
+        
     }
 
     int steps = distanceToSubject[targetRow][targetColumn];
