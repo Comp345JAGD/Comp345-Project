@@ -133,7 +133,7 @@ void characterTestDriver()
         CharacterBuilder *nimbleChar = new nimbleCharacterBuilder;
         dm.setCharacterBuilder(nimbleChar);
         dm.constructCharacter();
-        Fighter *test1 = dm.getCharacter();
+        Character *test1 = dm.getCharacter();
 
         std::cout << "Here are the stat allocations based on your build:\n";
 
@@ -150,7 +150,7 @@ void characterTestDriver()
         CharacterBuilder *bullyChar = new bullyCharacterBuilder;
         dm.setCharacterBuilder(bullyChar);
         dm.constructCharacter();
-        Fighter *test1 = dm.getCharacter();
+        Character *test1 = dm.getCharacter();
 
         std::cout << "Here are the stat allocations based on your build:\n";
 
@@ -167,7 +167,7 @@ void characterTestDriver()
         CharacterBuilder *tankChar = new tankCharacterBuilder;
         dm.setCharacterBuilder(tankChar);
         dm.constructCharacter();
-        Fighter *test1 = dm.getCharacter();
+        Character *test1 = dm.getCharacter();
 
         std::cout << "\nHere are the stat allocations based on your build:\n";
 

@@ -11,10 +11,10 @@
 class CharacterBuilder
 {
 public:
-    Fighter *getCharacter() { return produced_character; }
+    Character *getCharacter() { return produced_character; }
     void createFighter()
     {
-        produced_character = new Fighter();
+        produced_character = new Character();
         /*Character *tempCharPointer = static_cast<Character*>(produced_character);
         Logger *charLogPointer = new Logger(tempCharPointer);
         Logger *diceLogPointer = new Logger(&(produced_character->getDice()));*/
@@ -24,7 +24,7 @@ public:
 
 protected:
     Dice dice;
-    Fighter *produced_character;
+    Character *produced_character;
     // Logger *charLogPointer;
     // Logger *diceLogPointer;
     std::array<int, 6> randomizedStats;
@@ -55,7 +55,7 @@ public:
     {
         produced_characterBuilder = cb;
     }
-    Fighter *getCharacter()
+    Character *getCharacter()
     {
         return produced_characterBuilder->getCharacter();
     }
