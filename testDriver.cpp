@@ -22,9 +22,9 @@ int main()
 
 	//characterTestDriver();
 	//gameMapDriver();
-	//loadCampaignInterface();
+	loadCampaignInterface();
 
-	gameLoopDriver();
+	//gameLoopDriver();
 	
     return 0;
 }

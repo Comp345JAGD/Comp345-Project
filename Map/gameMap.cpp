@@ -329,6 +329,8 @@ bool GameMap::moveCell(int subjectRow, int subjectColumn, int targetRow, int tar
 
     grid[subjectRow][subjectColumn] = new EmptyCell;
 
+    grid[targetRow][targetColumn]->setPosition(targetRow, targetColumn);
+
     return true;
 }
 

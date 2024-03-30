@@ -198,11 +198,11 @@ void selectCampaign() {
         while (mapDecision != 6) {
             cout << "==================================\n";
             cout << "You have selected a campain! Respond with the following integer for desired:\n";
-            cout << "0. Play the Campain 1. Create Map\n2. Edit Map\n3. Move Map\n4. Remove Map\n5. Save Map (Any unsaved data will be lost!)\n6. Exit\n";
+            cout << "0. Play the Campain\n1. Create Map\n2. Edit Map\n3. Move Map\n4. Remove Map\n5. Save Map (Any unsaved data will be lost!)\n6. Exit\n";
             cout << "==================================\n";
 
             cin >> mapDecision;
-            while (mapDecision < 1 || mapDecision >= 7) {
+            while (mapDecision < 0 || mapDecision >= 7) {
                 cout << "Error! The input you have tried is invalid. Please try again.\n";
                 cin >> mapDecision;
             }
@@ -221,6 +221,32 @@ void selectCampaign() {
                     bool didPlayerWin = gameLoop.play();
 
                     // congrates you won do you want to continue??? unless end
+
+                    if (i == campaign.getNumMaps() - 1) {
+                        cout << "*** Congradulations, you finished the campaign! ***" << endl;
+                        system("pause");
+                        break;
+
+                    }
+                    
+                    if (didPlayerWin) {
+                        cout << "*** Congradulations, you reached the end of the map! ***" << endl;
+                        cout << "Press any key to continue to the next map. Press 'q' to quit." << endl;
+                        string inputStr;
+                        cin >> inputStr;
+
+                        if (inputStr == "q") {
+                            break;
+                        } 
+                        else {
+                            continue;
+                        }
+                    }
+                    else {
+                        cout << "*** GAME OVER ***" << endl;
+                        break;
+                    }
+
                     // fail go back to main menu
 
                 }

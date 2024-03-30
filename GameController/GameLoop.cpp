@@ -6,6 +6,8 @@ using namespace std;
 GameLoop::GameLoop(GameMap* currentMap, Character* humanCharacter) {
 	this->currentMap = currentMap;
     this->humanCharacter = humanCharacter;
+
+    this->currentMap->setCell(currentMap->getStartRow(), currentMap->getStartColumn(), humanCharacter);
 }
 
 void GameLoop::setHumanCharacter(Character* humanCharacter) {
