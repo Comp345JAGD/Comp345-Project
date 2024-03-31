@@ -4,6 +4,9 @@
 #include <algorithm>
 #include <limits>
 #include <queue>
+#include "../Character/character.h"
+#include "../Character/CharacterStrategy.h"
+
 using namespace std;
 
 // private
@@ -237,33 +240,185 @@ void GameMap::playTurnCycle()
     }
 }
 
+void GameMap::printInfoBar() {
+
+    vector<Character*> characters;
+
+    for (int i = 0; i < numRows; i++)
+    {
+        for (int j = 0; j < numColumns; j++)
+        {
+            Character* character = dynamic_cast<Character*>(grid[i][j]);
+            if (character != nullptr) {
+                characters.push_back(character);
+
+            }
+        }
+    }
+
+    
+     // 8 rows
+
+    for (int i = 0; i < 8; i++)
+    {
+
+        for (int j = 0; j < characters.size(); j++)
+        {
+            if (j == 0) {
+
+                if (i == 0 || i == 7) {
+                    std::cout << "+";
+                }
+                else {
+                    std::cout << "|";
+                }
+
+            }
+
+            if (i == 0 || i == 7) {
+                std::cout << "---------------------------+";
+            }
+            else if (i == 1 || i == 6) {
+                std::cout << "                           |";
+            }
+            else { // i == 2, 3, 4, 5
+
+                vector<string>* art = dynamic_cast<Character*>(characters.at(j))->getGridRepresentation();
+
+                std::cout << "  " << art->at(i - 2) << "   ";
+
+                string info = "";
+
+                if (i == 2) {
+                    if (dynamic_cast<HumanPlayerStrategy*>(characters.at(j)->getStrategy()) != nullptr) {
+                        info = "Human Player";
+                    }
+                    else if (dynamic_cast<FriendlyStrategy*>(characters.at(j)->getStrategy()) != nullptr) {
+                        info = "Friendly";
+                    }
+                    else if (dynamic_cast<AggressorStrategy*>(characters.at(j)->getStrategy()) != nullptr) {
+                        info = "Aggressor";
+                    }
+                    else {
+                        info = "???";
+                    }
+
+                }
+                else if (i == 4) {
+                    info = "HP: " + std::to_string(characters.at(j)->getCurrentHealth()) + "/" + std::to_string(characters.at(j)->getHitPoints());
+                }
+                else if (i == 5) {
+                    info = "Level: " + std::to_string(characters.at(j)->getLevel());
+
+                }
+
+                string padding = "";
+
+                int numPadding = 14 - info.length();
+
+                numPadding = numPadding >= 0 ? numPadding : 0;
+
+                for (int i = 0; i < numPadding; i++)
+                {
+                    padding += " ";
+                }
+
+                std::cout << info << padding << "|";
+
+            }
+
+        }
+        std::cout << endl;
+
+    }
+
+    std::cout << endl;
+
+    
+
+
+}
+
 void GameMap::printMap()
 {
 
+    vector<string> startCellArt = {
+        R"( /-SS-\ )",
+        " |    | ",
+        " |   +| ",
+        " |    | "
+    };
+
+    vector<string>* startCellArtPtr = &startCellArt;
+
+    vector<string> endCellArt = {
+        R"( /-EE-\ )",
+        " |    | ",
+        " |   +| ",
+        " |    | "
+    };
+
+    vector<string>* endCellArtPtr = &endCellArt;
+
+    vector<string> startOccupiedCellArt = {
+      R"( /-SS-\ )",
+        " |(oo)| ",
+        " |-||-| ",
+      R"( | /\ | )"
+    };
+
+    vector<string>* startOccupiedCellArtPtr = &startOccupiedCellArt;
+
+    vector<string> endOccupiedCellArt = {
+      R"( /-EE-\ )",
+        " |(oo)| ",
+        " |-||-| ",
+      R"( | /\ | )"
+    };
+
+    vector<string>* endOccupiedCellArtPtr = &endOccupiedCellArt;
+
     for (int i = 0; i < this->getNumRows(); i++)
     {
-        for (int j = 0; j < this->getNumColumns(); j++)
-        {
-            IGridCell *cell = this->getCell(i, j);
+        // 4 rows per cell
 
-            if (i == this->getStartRow() && j == this->getStartColumn())
+        for (int k = 0; k < 4; k++)
+        {
+
+            for (int j = 0; j < this->getNumColumns(); j++)
             {
-                cout << "S";
+
+                vector<string>* art;
+
+                IGridCell* cell = this->getCell(i, j);
+
+                bool isCellCharacter = dynamic_cast<Character*>(cell) != nullptr;
+
+                if (i == this->getStartRow() && j == this->getStartColumn())
+                {
+                    art = isCellCharacter? startOccupiedCellArtPtr : startCellArtPtr;
+                }
+                else if (i == this->getEndRow() && j == this->getEndColumn())
+                {
+                    art = isCellCharacter? endOccupiedCellArtPtr : endCellArtPtr;
+                }
+                else
+                {
+                    art = cell->getGridRepresentation();
+                }
+
+                std::cout << art->at(k) << " ";
+
             }
-            else if (i == this->getEndRow() && j == this->getEndColumn())
-            {
-                cout << "E";
-            }
-            else
-            {
-                cout << cell->getGridRepresentation();
-            }
+            std::cout << endl;
+
         }
 
-        cout << endl;
+        std::cout << endl;
+
     }
 
-    cout << endl;
+    std::cout << endl;
 }
 
 bool GameMap::moveOneCellTowardsTarget(int subjectRow, int subjectColumn, int targetRow, int targetColumn)
@@ -394,9 +549,12 @@ int GameMap::bfsMinStepsToTarget(int subjectRow, int subjectColumn, int targetRo
             int nextRow = row + rowDirections[i];
             int nextColumn = column + columnDirections[i];
             if (
-                !isOutOfBounds(nextRow, nextColumn) 
-                && !isVisited[nextRow][nextColumn] 
-                && grid[nextRow][nextColumn]->isWalkable() 
+                (
+                    !isOutOfBounds(nextRow, nextColumn)
+                    && !isVisited[nextRow][nextColumn]
+                    && grid[nextRow][nextColumn]->isWalkable()
+                )
+                //|| (nextRow == originalRow && nextColumn == originalColumn)
                 || (nextRow == targetRow && nextColumn == targetColumn) // fixing cant get to target if not walkable (but character is not walkable)
             )
             {

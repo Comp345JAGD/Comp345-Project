@@ -20,33 +20,31 @@ void GameLoop::setGameMap(GameMap* currentMap) {
 
 bool GameLoop::play() {
 	int turnCycleNum = 1;
-    string endPhase = "Entering end phase...\n";
-    currentMap->printMap();
 	
 	while (true) {
         
-        string currentTurn = "The current turn number is : " + std::to_string(turnCycleNum) + ".\n";
-        //this->logNotify(currentTurn);
+        cout << "Turn Cycle: " << turnCycleNum << endl << endl;
+
+        currentMap->printInfoBar();
+        currentMap->printMap();
         
         system("pause");
         cout << endl;
 
-
 		currentMap->playTurnCycle();
-
-        cout << "Turn Cycle: " << turnCycleNum << endl << endl;
-
-        //system("CLS");
-
-        currentMap->printMap();
 
         bool didPlayerWin = false;
 
 		if (isGameOver(didPlayerWin)) {
             return didPlayerWin;
 		}
-        //this->logNotify(endPhase);
 		turnCycleNum++;
+
+
+        cout << endl << "TURN CYCLE END" << endl;
+        system("pause");
+        system("CLS");
+
 	}
 }
 
@@ -90,7 +88,7 @@ void gameLoopDriver() {
 
     Character* humanCharacter = new Character(1, new HumanPlayerStrategy());
 
-    gameMap->setCell(1, 1, humanCharacter);
+    //gameMap->setCell(1, 1, humanCharacter);
     gameMap->setCell(1, 3, new Character(1, new FriendlyStrategy()));
 
     //gameMap->setCell(1, 1, new MoverCell());

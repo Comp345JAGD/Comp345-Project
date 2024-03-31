@@ -60,6 +60,7 @@ public:
     bool moveOneCellTowardsTarget(int subjectRow, int subjectColumn, int targetRow, int targetColumn);
     bool moveCell(int subjectRow, int subjectColumn, int targetRow, int targetColumn);
     bool isOutOfBounds(int row, int column);
+    void printInfoBar();
 };
 
 #endif

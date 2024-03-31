@@ -2,6 +2,8 @@
 
 void FriendlyStrategy::execute(Character *character, GameMap *map)
 {
+    bool didMove = false;
+
     if(character->getCurrentHealth() == character->getHitPoints())
     {
         int numRows = map->getNumRows();
@@ -12,8 +14,10 @@ void FriendlyStrategy::execute(Character *character, GameMap *map)
         {
             for (int j = 0; j < numCols; j++)
             {
-                if (dynamic_cast<Character *>(map->getCell(i, j)) != nullptr)
+                Character* character = dynamic_cast<Character*>(map->getCell(i, j));
+                if (character != nullptr && dynamic_cast<HumanPlayerStrategy*>(character->getStrategy()) != nullptr)
                 { // need a function to check if a character at a cell is a player or NPC
+
                     playerRow = i;
                     playerCol = j;
 
@@ -32,14 +36,22 @@ void FriendlyStrategy::execute(Character *character, GameMap *map)
         else
         {
 
-            map->moveOneCellTowardsTarget(character->getRow(), character->getColumn(), playerRow, playerCol);
+            didMove = map->moveOneCellTowardsTarget(character->getRow(), character->getColumn(), playerRow, playerCol);
         }
+
+        // clear HERE, and wait for user input in map
+        system("CLS");
+        map->printInfoBar();
+        map->printMap();
+        std::cout << "MONSTER TURN\n\n" << (didMove ? "Monster moved!" : "Monster was not able to move!") << endl << endl;
     }
     else {
         AggressorStrategy* strat = new AggressorStrategy();
         strat->execute(character, map);
 
     }
+
+    
 }
 
 void AggressorStrategy::execute(Character *character, GameMap *map)
@@ -54,7 +66,8 @@ void AggressorStrategy::execute(Character *character, GameMap *map)
     {
         for (int j = 0; j < numCols; j++)
         {
-            if (dynamic_cast<Character*>(map->getCell(i, j)) != nullptr)
+            Character* character = dynamic_cast<Character*>(map->getCell(i, j));
+            if (character != nullptr && dynamic_cast<HumanPlayerStrategy*>(character->getStrategy()) != nullptr)
             { // need a function to check if a character at a cell is a player or NPC
                 playerRow = i;
                 playerCol = j;
@@ -71,33 +84,57 @@ void AggressorStrategy::execute(Character *character, GameMap *map)
     {
         return; // No player on map?
     }
-    else if ((playerRow + 1 == myRow && playerCol + 1 == myCol) || (playerRow + 1 == myRow && playerCol == myCol) || (playerRow + 1 == myRow && playerCol - 1 == myCol) ||
-             (playerRow == myRow && playerCol + 1 == myCol) || (playerRow == myRow && playerCol == myCol) || (playerRow == myRow && playerCol - 1 == myCol) ||
-             (playerRow - 1 == myRow && playerCol + 1 == myCol) || (playerRow - 1 == myRow && playerCol == myCol) || (playerRow - 1 == myRow && playerCol - 1 == myCol))
+    
+
+    // attack logic
+
+    int rowDirections[] = { -1, 1, 0, 0 };
+    int columnDirections[] = { 0, 0, -1, 1 };
+
+    bool didAttack = false;
+
+    string info = "";
+
+    for (int i = 0; i < 4; i++)
     {
-        // attack logic
+        int nextRow = myRow + rowDirections[i];
+        int nextColumn = myCol + columnDirections[i];
 
-        int damage = character->attack();
-        int damageTaken = dynamic_cast<Character*>(map->getCell(playerRow, playerCol))->attacked(damage);
-        std::cout << "Monster dealt " << damageTaken << " damage to the player.\n";
+        if (nextRow == playerRow && nextColumn == playerCol) {
+            int damage = character->attack();
+            int damageTaken = dynamic_cast<Character*>(map->getCell(playerRow, playerCol))->attacked(damage);
+            info = "Monster dealt " + std::to_string(damageTaken) + " damage to the player!\n\n";
 
-        // c->logNotify(attackMessage);
+            didAttack = true;
+
+            break;
+        }
     }
-    else
+
+
+    if(!didAttack)
     {
+        info = "Monster moved!";
         map->moveOneCellTowardsTarget(character->getRow(), character->getColumn(), playerRow, playerCol);
     }
+
+    system("CLS");
+    map->printInfoBar();
+    map->printMap();
+    std::cout << "MONSTER TURN\n\n" << info << endl << endl;
 }
 
 void HumanPlayerStrategy::execute(Character *character, GameMap *map)
 {
+
+    string info = "";
     {
         int decision;
         bool validity = false;
 
         // character->logNotify("Player turn starting...");
 
-        std::cout << "Please choose an action:\n";
+        std::cout << "YOUR TURN\n\nPlease choose an action:\n";
 
         while (!validity)
         {
@@ -201,7 +238,10 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
 
 
                 if (!map->moveCell(character->getRow(), character->getColumn(), targetRow, targetColumn)) {
-                    cout << "You can't move there YO!" << endl;
+                    info = "You can't move there YO!";
+                }
+                else {
+                    info = "You moved!";
                 }
             }
             break;
@@ -301,7 +341,7 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
                     {
                         int damage = character->attack();
                         int damageTaken = targetChar->attacked(damage);
-                        std::cout << "Player dealt " << damageTaken << " damage to the target.\n";
+                        info = "Player dealt "  + std::to_string(damageTaken) + " damage to the target.\n";
                         outerValidity = true;
                     }
                     else
@@ -315,11 +355,15 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
         }
         case 3:
         {
-            std::cout << "You perform a passionate wardance!\n";
-            std::cout << "It has no effects, but looked great.\n\n";
+            info = "You perform a passionate pose!\nIt has no effects, but looked great.";
             break;
         }
         }
         // character->logNotify("Player turn ending...\n");
     }
+
+    system("CLS");
+    map->printInfoBar();
+    map->printMap();
+    std::cout << info << endl << endl;
 }

@@ -37,6 +37,7 @@ public:
     void setWisdom(int value);
     void setCharisma(int value);
     void setLevel(int value);
+    int getLevel();
     int getStrength();
     int getDexterity();
     int getConstitution();
@@ -61,9 +62,10 @@ public:
     virtual int getTotalArmorClass();
     virtual int getTotalAttackBonus();
     virtual int getTotalDamageBonus();
+    virtual CharacterStrategy* getStrategy();
     virtual bool isWalkable() override;
     virtual void playTurn(GameMap *map) override;
-    virtual string getGridRepresentation() override;
+    virtual vector<string>* getGridRepresentation() override;
     //virtual void setPosition(int row, int column) override;
     int attack();
     int attacked(int damage);

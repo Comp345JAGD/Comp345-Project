@@ -225,6 +225,11 @@ void Character::setLevel(int value)
     level = value;
 }
 
+int Character::getLevel()
+{
+    return level;
+}
+
 int Character::getStrength()
 {
     return strength;
@@ -320,14 +325,40 @@ bool Character::isWalkable()
     return false;
 }
 
-string Character::getGridRepresentation()
+vector<string>* Character::getGridRepresentation()
 {
-    return "C";
+
+    vector<string>* art;
+
+    if (dynamic_cast<HumanPlayerStrategy*>(cs) != nullptr) {
+        art = new vector<string>(
+            {
+                "  (oo) ^",
+                "(-)||__|",
+              R"(   /\  |)",
+                "  ()()  "
+            }
+        );
+    }
+    else {
+        art = new vector<string>(
+            {
+                "   }{  |",
+                "__{><}_+",
+                "   []  |",
+              R"(  /  \  )"
+            }
+        );
+    }
+
+    
+    return art;
 }
 
 void Character::playTurn(GameMap *m)
 {
     cs->execute(this, m);
+    system("pause");
 }
 
 int Character::getTotalStength()
@@ -392,4 +423,9 @@ int Character::attacked(int damage)
     currentHp = currentHp - damageTaken;
 
     return damageTaken;
+}
+
+CharacterStrategy* Character::getStrategy()
+{
+    return cs;
 }

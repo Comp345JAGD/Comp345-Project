@@ -10,6 +10,8 @@
  */
 
 #include <string>
+#include <iostream> 
+#include <vector> 
 using namespace std;
 
 #ifndef CELL_H
@@ -26,7 +28,8 @@ protected:
 public:
     virtual bool isWalkable() = 0; // pure vitual function, no body, you cannot instantiate this class, it is like an interface now
     virtual void playTurn(GameMap *map) = 0;
-    virtual string getGridRepresentation() = 0;
+    // 8x4
+    virtual vector<string>* getGridRepresentation() = 0;
     virtual void setPosition(int row, int column)
     {
         this->row = row;
@@ -48,7 +51,7 @@ class EmptyCell : public IGridCell
 public:
     bool isWalkable() override;
     void playTurn(GameMap *map) override;
-    string getGridRepresentation() override;
+    vector<string>* getGridRepresentation() override;
     void setPosition(int row, int column) override;
 };
 
@@ -57,7 +60,7 @@ class WallCell : public IGridCell
 public:
     bool isWalkable() override;
     void playTurn(GameMap *map) override;
-    string getGridRepresentation() override;
+    vector<string>* getGridRepresentation() override;
     void setPosition(int row, int column) override;
 };
 
@@ -66,7 +69,7 @@ class MoverCell : public IGridCell
 public:
     bool isWalkable() override;
     void playTurn(GameMap *map) override;
-    string getGridRepresentation() override;
+    vector<string>* getGridRepresentation() override;
     void setPosition(int row, int column) override;
 };
 

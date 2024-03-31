@@ -1,4 +1,4 @@
-#include "cell.h"
+﻿#include "cell.h"
 #include "gameMap.h"
 
 bool EmptyCell::isWalkable()
@@ -6,9 +6,19 @@ bool EmptyCell::isWalkable()
     return true;
 }
 
-string EmptyCell::getGridRepresentation()
+// 8x4
+
+vector<string>* EmptyCell::getGridRepresentation()
 {
-    return "O";
+    vector<string>* art = new vector<string>(
+        { 
+            "        ", 
+            "        ", 
+            "        ",
+            "        "
+        }
+    );
+    return art;
 }
 
 void EmptyCell::playTurn(GameMap* map)
@@ -27,9 +37,17 @@ bool WallCell::isWalkable()
     return false;
 }
 
-string WallCell::getGridRepresentation()
+vector<string>* WallCell::getGridRepresentation()
 {
-    return "W";
+    vector<string>* art = new vector<string>(
+        {
+            "########",
+            "########",
+            "########",
+            "########"
+        }
+    );
+    return art;
 }
 
 void WallCell::playTurn(GameMap* map)
@@ -49,9 +67,17 @@ bool MoverCell::isWalkable()
     return false;
 }
 
-string MoverCell::getGridRepresentation()
+vector<string>* MoverCell::getGridRepresentation()
 {
-    return "M";
+    vector<string>* art = new vector<string>(
+        {
+            "mm mm mm",
+            "mm mm mm",
+            "mm mm mm",
+            "mm mm mm"
+        }
+    );
+    return art;
 }
 
 void MoverCell::playTurn(GameMap* map)
