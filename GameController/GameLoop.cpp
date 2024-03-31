@@ -99,5 +99,7 @@ void gameLoopDriver() {
     string gameStarting = "Game Starting...\n";
     gameLoop.logNotify(gameStarting);*/
     
-    gameLoop.play();
+    bool didWin = gameLoop.play();
+
+    cout << "GAME OVER!!!\n\n" << didWin ? "You win!" : "You loose!";
 }

@@ -420,6 +420,7 @@ int Character::attack()
 int Character::attacked(int damage)
 {
     int damageTaken = damage - armorClass;
+    damageTaken = damageTaken > 0 ? damageTaken : 1;
     currentHp = currentHp - damageTaken;
 
     return damageTaken;

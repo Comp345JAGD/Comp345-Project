@@ -2,6 +2,21 @@
 
 void FriendlyStrategy::execute(Character *character, GameMap *map)
 {
+
+    string info = "";
+    
+    if (character->getCurrentHealth() <= 0) {
+        map->setCell(character->getRow(), character->getColumn(), new EmptyCell()); // change to chest later
+        info += "Monster ELIMINATED!";
+
+        system("CLS");
+        map->printInfoBar();
+        map->printMap();
+        std::cout << info << endl << endl;
+
+        return;
+    }
+
     bool didMove = false;
 
     if(character->getCurrentHealth() == character->getHitPoints())
@@ -56,6 +71,21 @@ void FriendlyStrategy::execute(Character *character, GameMap *map)
 
 void AggressorStrategy::execute(Character *character, GameMap *map)
 {
+
+    string info = "";
+
+    if (character->getCurrentHealth() <= 0) {
+        map->setCell(character->getRow(), character->getColumn(), new EmptyCell()); // change to chest later
+        info += "Monster ELIMINATED!";
+
+        system("CLS");
+        map->printInfoBar();
+        map->printMap();
+        std::cout << info << endl << endl;
+
+        return;
+    }
+
     int numRows = map->getNumRows();
     int numCols = map->getNumColumns();
     int myRow = character->getRow();
@@ -339,10 +369,12 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
                     Character *targetChar = dynamic_cast<Character *>(map->getCell(targetRow, targetColumn));
                     if (targetChar != nullptr) //  if correct, find if the cell is a character cell
                     {
-                        int damage = character->attack();
+                        int damage = character->attack() + 100;
                         int damageTaken = targetChar->attacked(damage);
                         info = "Player dealt "  + std::to_string(damageTaken) + " damage to the target.\n";
                         outerValidity = true;
+
+
                     }
                     else
                     {

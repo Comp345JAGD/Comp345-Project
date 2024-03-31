@@ -109,7 +109,7 @@ void GameMap::setCell(int row, int column, IGridCell *cell)
         throw std::invalid_argument("desired cell is out of bounds.");
     }
 
-    delete grid[row][column]; // deallocate old memory
+    //delete grid[row][column]; // deallocate old memory
 
     grid[row][column] = cell;
 
