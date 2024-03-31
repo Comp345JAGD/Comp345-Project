@@ -72,10 +72,9 @@ void FriendlyStrategy::execute(Character *character, GameMap *map)
 void AggressorStrategy::execute(Character *character, GameMap *map)
 {
 
-    string info = "";
-
     if (character->getCurrentHealth() <= 0) {
         map->setCell(character->getRow(), character->getColumn(), new EmptyCell()); // change to chest later
+        string info = "";
         info += "Monster ELIMINATED!";
 
         system("CLS");
@@ -158,6 +157,8 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
 {
 
     string info = "";
+    bool moveDone = false;
+    while(!moveDone)
     {
         int decision;
         bool validity = false;
@@ -189,33 +190,49 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
         {
         case 1:
         {
-            bool validity2 = false;
-            int decision2;
-            int targetRow, targetColumn;
+            bool isDecisionDone = false;
 
-            std::cout << "Select a surrounding cell you wish to move to. Your character is represented by 'C'.\n";
+            while (!isDecisionDone) {
 
-            while (!validity2)
-            {
+                bool validity2 = false;
+                int decision2;
+                int targetRow, targetColumn;
 
-                std::cout << "1 2 3\n4 X 5\n6 7 8\n\n";
+                std::cout << "Select a surrounding cell you wish to move to. Choose 9 to cancel. Your character is represented by 'C'.\n";
 
-                if (std::cin >> decision2)
+                bool didCancel = false;
+
+                while (!validity2)
                 {
-                    if (decision2 >= 1 && decision <= 8)
-                        validity2 = true;
+
+                    std::cout << "1 2 3\n4 C 5\n6 7 8\n\n";
+
+
+                    if (std::cin >> decision2)
+                    {
+                        if (decision2 == 9) {
+                            didCancel = true;
+                            isDecisionDone = true;
+                            std::cout << "\nYou Canceled your decision!\n\n";
+                            break;
+                        }
+
+                        if (decision2 >= 1 && decision <= 8)
+                            validity2 = true;
+                        else
+                            std::cout << "Invalid integer, please enter a number between 1 and 9.\n";
+                    }
                     else
-                        std::cout << "Invalid integer, please enter a number between 1 and 8.\n";
-                }
-                else
-                {
-                    std::cin.clear();
-                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                    std::cout << "Invalid input, please enter a number between 1 and 8.\n";
+                    {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << "Invalid input, please enter a number between 1 and 9.\n";
+                    }
                 }
 
-                switch (decision2)
-                {
+                if (!didCancel) {
+                    switch (decision2)
+                    {
                     case 1:
                     {
                         targetRow = character->getRow() - 1;
@@ -264,130 +281,156 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
                         targetColumn = character->getColumn() + 1;
                         break;
                     }
-                }
+                    }
 
 
-                if (!map->moveCell(character->getRow(), character->getColumn(), targetRow, targetColumn)) {
-                    info = "You can't move there YO!";
+                    if (!map->moveCell(character->getRow(), character->getColumn(), targetRow, targetColumn)) {
+                        std::cout << "You can't move there YO! Try again:\n";
+                    }
+                    else {
+                        info = "You moved!";
+                        isDecisionDone = true;
+                        moveDone = true;
+                    }
+
                 }
-                else {
-                    info = "You moved!";
-                }
+
             }
+
+            
             break;
         }
         case 2:
         {
-            bool outerValidity = false;
-            int decision2;
-            bool validity2 = false;
-            int targetRow, targetColumn;
+            
+            bool isDecisionDone = false;
 
-            while (!outerValidity)
-            {
+            while (!isDecisionDone) {
 
-                std::cout << "Select a surrounding cell you wish to attack. Your character is represented by the 'C'.\n";
+                int decision2;
+                bool validity2 = false;
+                int targetRow, targetColumn;
+                bool didCancel = false;
 
                 while (!validity2)
                 {
+                    std::cout << "Select a surrounding cell you wish to attack. Press 9 to cancel. Your character is represented by the 'C'.\n";
+
                     std::cout << "1 2 3\n4 C 5\n6 7 8\n\n";
 
                     if (std::cin >> decision2)
                     {
+
+                        if (decision2 == 9) {
+                            didCancel = true;
+                            isDecisionDone = true;
+                            std::cout << "\nYou Canceled your decision!\n\n";
+                            break;
+                        }
+
                         if (decision2 >= 1 && decision2 <= 8)
                             validity2 = true;
                         else
-                            std::cout << "Invalid integer, please enter a number between 1 and 8.\n";
+                            std::cout << "Invalid integer, please enter a number between 1 and 9.\n";
                     }
                     else
                     {
                         std::cin.clear();
                         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        std::cout << "Invalid input, please enter a number between 1 and 8.\n";
+                        std::cout << "Invalid input, please enter a number between 1 and 9.\n";
                     }
                 }
 
-                switch (decision2)
-                {
-                case 1:
-                {
-                    targetRow = character->getRow() - 1;
-                    targetColumn = character->getColumn() - 1;
-                    break;
-                }
-                case 2:
-                {
-                    targetRow = character->getRow() - 1;
-                    targetColumn = character->getColumn();
-                    break;
-                }
-                case 3:
-                {
-                    targetRow = character->getRow() - 1;
-                    targetColumn = character->getColumn() + 1;
-                    break;
-                }
-                case 4:
-                {
-                    targetRow = character->getRow();
-                    targetColumn = character->getColumn() - 1;
-                    break;
-                }
-                case 5:
-                {
-                    targetRow = character->getRow();
-                    targetColumn = character->getColumn() + 1;
-                    break;
-                }
-                case 6:
-                {
-                    targetRow = character->getRow() + 1;
-                    targetColumn = character->getColumn() - 1;
-                    break;
-                }
-                case 7:
-                {
-                    targetRow = character->getRow() + 1;
-                    targetColumn = character->getColumn();
-                    break;
-                }
-                case 8:
-                {
-                    targetRow = character->getRow() + 1;
-                    targetColumn = character->getColumn() + 1;
-                    break;
-                }
-                }
+                if (!didCancel) {
 
-                bool isOutOfBounds = map->isOutOfBounds(targetRow, targetColumn);
-                if (isOutOfBounds) // if out of bound, select new target
-                {
-                    std::cout << "Selected target is out of bounds, please try again.\n";
-                }
-                else
-                {
-                    Character *targetChar = dynamic_cast<Character *>(map->getCell(targetRow, targetColumn));
-                    if (targetChar != nullptr) //  if correct, find if the cell is a character cell
+                    switch (decision2)
                     {
-                        int damage = character->attack() + 100;
-                        int damageTaken = targetChar->attacked(damage);
-                        info = "Player dealt "  + std::to_string(damageTaken) + " damage to the target.\n";
-                        outerValidity = true;
+                    case 1:
+                    {
+                        targetRow = character->getRow() - 1;
+                        targetColumn = character->getColumn() - 1;
+                        break;
+                    }
+                    case 2:
+                    {
+                        targetRow = character->getRow() - 1;
+                        targetColumn = character->getColumn();
+                        break;
+                    }
+                    case 3:
+                    {
+                        targetRow = character->getRow() - 1;
+                        targetColumn = character->getColumn() + 1;
+                        break;
+                    }
+                    case 4:
+                    {
+                        targetRow = character->getRow();
+                        targetColumn = character->getColumn() - 1;
+                        break;
+                    }
+                    case 5:
+                    {
+                        targetRow = character->getRow();
+                        targetColumn = character->getColumn() + 1;
+                        break;
+                    }
+                    case 6:
+                    {
+                        targetRow = character->getRow() + 1;
+                        targetColumn = character->getColumn() - 1;
+                        break;
+                    }
+                    case 7:
+                    {
+                        targetRow = character->getRow() + 1;
+                        targetColumn = character->getColumn();
+                        break;
+                    }
+                    case 8:
+                    {
+                        targetRow = character->getRow() + 1;
+                        targetColumn = character->getColumn() + 1;
+                        break;
+                    }
+                    }
 
-
+                    bool isOutOfBounds = map->isOutOfBounds(targetRow, targetColumn);
+                    if (isOutOfBounds) // if out of bound, select new target
+                    {
+                        std::cout << "Selected target is out of bounds, please try again.\n";
                     }
                     else
                     {
-                        std::cout << "Selected target is not a enemy, please try again.\n";
-                        validity2 = false;
+                        Character* targetChar = dynamic_cast<Character*>(map->getCell(targetRow, targetColumn));
+                        if (targetChar != nullptr) //  if correct, find if the cell is a character cell
+                        {
+                            int damage = character->attack();
+                            int damageTaken = targetChar->attacked(damage);
+                            info = "Player dealt " + std::to_string(damageTaken) + " damage to the target.\n";
+
+                            isDecisionDone = true;
+                            moveDone = true;
+                        }
+                        else
+                        {
+                            std::cout << "Selected target is not a enemy, please try again.\n";
+                        }
                     }
+                    
+
                 }
+
             }
+            
+
             break;
         }
         case 3:
         {
             info = "You perform a passionate pose!\nIt has no effects, but looked great.";
+            moveDone = true;
+
             break;
         }
         }
