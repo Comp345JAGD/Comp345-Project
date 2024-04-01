@@ -12,9 +12,12 @@ class CharacterBuilder
 {
 public:
     Character *getCharacter() { return produced_character; }
-    void createFighter()
+    void createCharacter(string characterType)
     {
-        produced_character = new Character();
+        if (characterType._Equal("Fighter")) 
+            produced_character = new Fighter();
+        else
+            produced_character = new Character();
         /*Character *tempCharPointer = static_cast<Character*>(produced_character);
         Logger *charLogPointer = new Logger(tempCharPointer);
         Logger *diceLogPointer = new Logger(&(produced_character->getDice()));*/
@@ -59,7 +62,8 @@ public:
     {
         return produced_characterBuilder->getCharacter();
     }
-    void constructCharacter();
+    void constructCharacter(string classType);
+    void creationMenu();
 
 private:
     CharacterBuilder *produced_characterBuilder;
