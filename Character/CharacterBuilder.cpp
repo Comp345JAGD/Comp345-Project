@@ -4,7 +4,7 @@
 void CharacterBuilder::randomizeStats()
 {
 	std::cout << "We will now roll for your starting ability scores.\n";
-	std::string characterCreation = "Creating a character:\n";
+	// std::string characterCreation = "Creating a character:\n";
 	// charLogPointer->log(characterCreation, 1);
 	for (int i = 0; i < randomizedStats.size(); i++)
 	{
@@ -24,7 +24,7 @@ void CharacterBuilder::randomizeStats()
 	for (int k = 0; k < randomizedStats.size(); k++)
 	{
 		std::cout << "Num at " << k << ": " << randomizedStats[k] << "\n";
-		characterCreation = "The stat roll for the " + std::to_string(k + 1) + " stat is: " + std::to_string(randomizedStats[k]) + ".\n";
+		// characterCreation = "The stat roll for the " + std::to_string(k + 1) + " stat is: " + std::to_string(randomizedStats[k]) + ".\n";
 		// charLogPointer->log(characterCreation, 1);
 	}
 }
@@ -70,7 +70,7 @@ void DungeonMaster::constructCharacter(string classType)
 	produced_characterBuilder->build();
 }
 
-void DungeonMaster::creationMenu() {
+Character* DungeonMaster::creationMenu() {
 	system("CLS");
 
 	std::string characterCreationScreen = R"(
@@ -200,12 +200,6 @@ void DungeonMaster::creationMenu() {
 	case 1:
 		cout << "Good choice! Now creating your fighter..." << "\n";
 		constructCharacter("Fighter");
-		myChar = getCharacter();
-
-		std::cout << "Here are the stat allocations based on your build:\n";
-
-		myChar->displayScores1();
-		myChar->groupedCalculate();
 		break;
 	case 2:
 		cout << "Magician has not been implemented yet, sorry!\n";
@@ -219,4 +213,13 @@ void DungeonMaster::creationMenu() {
 		cout << "Priest has not been implemented yet, sorry!\n";
 		break;
 	}
+
+	myChar = getCharacter();
+
+	std::cout << "\nHere are the stat allocations based on your build:\n\n";
+
+	myChar->displayScores2();
+	myChar->groupedCalculate();
+
+	return myChar;
 }

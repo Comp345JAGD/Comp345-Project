@@ -158,5 +158,5 @@ void characterTestDriver()
     //}
     //}
 DungeonMaster dm;
-dm.creationMenu();
+Character* myChar = dm.creationMenu();
 }

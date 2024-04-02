@@ -63,7 +63,7 @@ public:
         return produced_characterBuilder->getCharacter();
     }
     void constructCharacter(string classType);
-    void creationMenu();
+    Character* creationMenu();
 
 private:
     CharacterBuilder *produced_characterBuilder;

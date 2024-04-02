@@ -179,7 +179,7 @@ void Character::displayScores2() const
               << "Constitution: " << constitution << "\n"
               << "Intelligence: " << intelligence << "\n"
               << "Wisdom: " << wisdom << "\n"
-              << "Charisma: " << charisma << std::endl;
+              << "Charisma: " << charisma << "\n\n";
 }
 
 void Character::displayScores3() const
