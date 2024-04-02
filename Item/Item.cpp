@@ -74,7 +74,7 @@ bool CharacterEquipment::isSlotEmpty(ItemType slot) const
     return equipmentSlots[static_cast<size_t>(slot)] == nullptr;
 }
 
-CharacterEquipment::CharacterEquipment() : character("John Doe", 1)
+CharacterEquipment::CharacterEquipment() : character("John Doe")
 {
     for (int i = 0; i < static_cast<int>(ItemType::Weapon) + 1; ++i)
     {

@@ -16,6 +16,7 @@ class CharacterStrategy; // https://stackoverflow.com/a/15782499
 class Character : public Subject, public IGridCell //, public logSubject
 {
 public:
+    Character();
     Character(std::string name);
     Character(const std::string &inputName, int inputLevel);
     Character(int level, CharacterStrategy *charStrat);
