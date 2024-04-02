@@ -19,6 +19,7 @@ public:
     Character();
     Character(std::string name);
     Character(const std::string &inputName, int inputLevel);
+    Character(std::string name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma);
     Character(int level, CharacterStrategy *charStrat);
     void generateAbilityScore();
     void assignAbilityScore(const std::vector<int> rolls);

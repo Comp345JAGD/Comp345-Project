@@ -114,6 +114,7 @@ std::vector<Character> DungeonMaster::loadCharacters() {
 			iss >> stats[statsIndex++];
 		}
 	}
+	return loadedCharacters;
 }
 
 Character* DungeonMaster::creationMenu() {

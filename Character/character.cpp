@@ -1,10 +1,22 @@
 #include "character.h"
 #include "CharacterStrategy.h"
 
-Character::Character() : name("NPC"), level(1), strength(0), dexterity(0), constitution(0), intelligence(0), wisdom(0), charisma(0) {}
+Character::Character() : name("NPC"), level(1), strength(0), dexterity(0), constitution(0), intelligence(0), wisdom(0), charisma(0) 
+{
+}
 
 Character::Character(std::string name) : name(name), level(1), strength(0), dexterity(0), constitution(0), intelligence(0), wisdom(0), charisma(0)
 {
+}
+
+Character::Character(std::string inputName, int inputStrength, int inputDexterity, int inputConstitution, int inputIntelligence, int inputWisdom, int inputCharisma) {
+	name = inputName;
+	strength = inputStrength;
+	dexterity = inputDexterity;
+	constitution = inputConstitution;
+	intelligence = inputIntelligence;
+	wisdom = inputWisdom;
+	charisma = inputCharisma;
 }
 
 Character::Character(const std::string& inputName, int inputLevel) : name(inputName), level(inputLevel), strength(8), dexterity(8), constitution(8), intelligence(8), wisdom(8), charisma(8)
