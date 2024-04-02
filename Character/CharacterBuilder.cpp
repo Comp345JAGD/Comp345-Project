@@ -71,28 +71,28 @@ void DungeonMaster::constructCharacter(string classType)
 }
 
 void DungeonMaster::creationMenu() {
+	system("CLS");
+
 	std::string characterCreationScreen = R"(
                          : === C H A R A C T E R  C R E A T I O N === :
 ======================================================================================================
      (o.o)                                                                                  (o.o)
       |=|                                                                                    |=|
-     |                                                                                  |
-   //.=|=.\                                                                              //.=|=.\
-  // .=|=. \       ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗       // .=|=. \
-  \ .=|=. //       ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝       \ .=|=. // 
-   \(=)//        ██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗          \(=)//
+     __|__                                                                                  __|__    
+   //.=|=.\\                                                                              //.=|=.\\	
+  // .=|=. \\       ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗       // .=|=. \\
+  \\ .=|=. //       ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝       \\ .=|=. // 
+   \\(_=_)//        ██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗          \\(_=_)//
     (:| |:)         ██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝           (:| |:)
-                ╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗            
+     || ||          ╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗          || || 
      () ()           ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝          () () 
-                                                                                         
-                                                                                         
+     || ||                                                                                  || ||
+     || ||                                                                                  || ||  
     ==' '==                                                                                ==' '==
 ======================================================================================================
 )";
 
-	std::cout << characterCreationScreen << std::endl;
-
-	return 0;
+	std::cout << characterCreationScreen << "\n\n\n";
 
 	int decision;
 	bool validity = false;
@@ -101,8 +101,17 @@ void DungeonMaster::creationMenu() {
 
 	while (!validity)
 	{
-		cout << "1. Scientist 2. Doctor 3. Fighter\n"
-			<< "4. Paladin, 5. Rogue, 6. Archer\n";
+		cout << "What class would you like your character to be? Selection an option from 1-4.\n";
+
+		std::string characterSelectionScreen = R"(
+1. FIGHTER      2. Magician      3. Hunter       4. Priest
+   (oo) ^           (oo)*+*       ▲ (oo) ▲        (oo) +
+ (-)||__|          __||__|         |__||__|        //||\\|
+    /\  |           /  \ |         *  /\  *          /\  |
+   ()()            /____\|           ()()           /__\ |
+)";
+
+		std::cout << characterSelectionScreen << std::endl;
 
 		if (std::cin >> decision)
 		{
@@ -119,28 +128,95 @@ void DungeonMaster::creationMenu() {
 		}
 	}
 
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	string inputName;
+	cout << "Please enter a name for your character: ";
+	std::getline(std::cin, inputName);
+
+	int decision2;
+	bool validity2 = false;
+	CharacterBuilder* chosenBuild;
+	Character* myChar;
+
+	while (!validity2)
+	{
+		std::cout << "What build type would you like your character to implement?\n\n";
+		std::cout << "1. Nimble: favors dexterity and armor class to evade blows\n";
+		std::cout << "2. Bully: uses brute strength to destroy his enemies\n";
+		std::cout << "3. Tank: favors survival by more hit points through high constitution score\n";
+
+		if (std::cin >> decision2)
+		{
+			if (decision2 >= 1 && decision2 <= 3)
+				validity2 = true;
+			else
+				std::cout << "Invalid integer, please enter a number between 1 and 3.\n";
+		}
+		else
+		{
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cout << "Invalid input, please enter a number between 1 and 3.\n";
+		}
+	}
+
+	switch (decision2)
+	{
+	case 1:
+	{
+		std::cout << "You have chosen the Nimble build.\n";
+		chosenBuild = new nimbleCharacterBuilder;
+		setCharacterBuilder(chosenBuild);
+		// constructCharacter();
+		// Character* test1 = dm.getCharacter();
+
+		//std::cout << "Here are the stat allocations based on your build:\n";
+
+		//test1->displayScores1();
+		//test1->groupedCalculate();
+
+		break;
+	}
+	case 2:
+	{
+		std::cout << "You have chosen the Bully build.\n";
+		chosenBuild = new bullyCharacterBuilder;
+		setCharacterBuilder(chosenBuild);
+
+		break;
+	}
+	case 3:
+	{
+		std::cout << "You have chosen the Tank build.\n";
+		chosenBuild = new tankCharacterBuilder;
+		setCharacterBuilder(chosenBuild);
+
+		break;
+	}
+	}
+
 	switch (decision)
 	{
 	case 1:
-		cout << "Scientist has no been implemented yet, sorry!\n";
+		cout << "Good choice! Now creating your fighter..." << "\n";
+		constructCharacter("Fighter");
+		myChar = getCharacter();
+
+		std::cout << "Here are the stat allocations based on your build:\n";
+
+		myChar->displayScores1();
+		myChar->groupedCalculate();
 		break;
 	case 2:
-		cout << "Doctor has not been implemented yet, sorry!\n";
+		cout << "Magician has not been implemented yet, sorry!\n";
 		break;
 	case 3:
 	{
-		cout << "Good choice! Now creating your fighter..." << "\n";
-		constructCharacter("Fighter");
+		cout << "Hunter has not been implemented yet, sorry!\n";
 		break;
 	}
 	case 4:
-		cout << "Paladin has not been implemented yet, sorry!\n";
-		break;
-	case 5:
-		cout << "Rogue has not been implemented yet, sorry!\n";
-		break;
-	case 6:
-		cout << "Archer has not been implemented yet, sorry!\n";
+		cout << "Priest has not been implemented yet, sorry!\n";
 		break;
 	}
 }
