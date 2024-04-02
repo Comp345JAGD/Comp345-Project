@@ -1,6 +1,6 @@
 #include "fighter.h"
 
-Fighter::Fighter() : Character()
+Fighter::Fighter(std::string name) : Character(name)
 {
 }
 

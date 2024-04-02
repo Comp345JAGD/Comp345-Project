@@ -12,12 +12,12 @@ class CharacterBuilder
 {
 public:
     Character *getCharacter() { return produced_character; }
-    void createCharacter(string characterType)
+    void createCharacter(string characterType, string name)
     {
         if (characterType._Equal("Fighter")) 
-            produced_character = new Fighter();
+            produced_character = new Fighter(name);
         else
-            produced_character = new Character();
+            produced_character = new Character(name);
         /*Character *tempCharPointer = static_cast<Character*>(produced_character);
         Logger *charLogPointer = new Logger(tempCharPointer);
         Logger *diceLogPointer = new Logger(&(produced_character->getDice()));*/
@@ -62,8 +62,10 @@ public:
     {
         return produced_characterBuilder->getCharacter();
     }
-    void constructCharacter(string classType);
+    void constructCharacter(string classType, string name);
     Character* creationMenu();
+    void saveCharacter(Character* character);
+    std::vector<Character> loadCharacters();
 
 private:
     CharacterBuilder *produced_characterBuilder;

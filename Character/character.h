@@ -16,7 +16,7 @@ class CharacterStrategy; // https://stackoverflow.com/a/15782499
 class Character : public Subject, public IGridCell //, public logSubject
 {
 public:
-    Character();
+    Character(std::string name);
     Character(const std::string &inputName, int inputLevel);
     Character(int level, CharacterStrategy *charStrat);
     void generateAbilityScore();
@@ -30,6 +30,7 @@ public:
     virtual void calculateDamageBonus();
     virtual void groupedCalculate();
     void addStats(StatType type, int value);
+    void setName(std::string name);
     void setStrength(int value);
     void setDexterity(int value);
     void setConstitution(int value);
@@ -37,6 +38,7 @@ public:
     void setWisdom(int value);
     void setCharisma(int value);
     void setLevel(int value);
+    std::string getName();
     int getLevel();
     int getStrength();
     int getDexterity();

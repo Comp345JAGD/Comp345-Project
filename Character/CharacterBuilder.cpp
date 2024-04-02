@@ -1,4 +1,6 @@
 ﻿#include <limits>
+#include <fstream>
+#include <sstream>
 #include "CharacterBuilder.h"
 
 void CharacterBuilder::randomizeStats()
@@ -63,11 +65,55 @@ void tankCharacterBuilder::build()
 	produced_character->setWisdom(randomizedStats[5]);
 }
 
-void DungeonMaster::constructCharacter(string classType)
+void DungeonMaster::constructCharacter(string classType, string name)
 {
-	produced_characterBuilder->createCharacter(classType);
+	produced_characterBuilder->createCharacter(classType, name);
 	produced_characterBuilder->randomizeStats();
 	produced_characterBuilder->build();
+}
+
+void DungeonMaster::saveCharacter(Character* character) {
+	std::ofstream file("createdCharacters.txt", std::ios::app);
+	if (file.is_open()) {
+		if (character != nullptr) {
+			file << "Name: " << character->getName() << "\n";
+			file << "Strength: " << character->getStrength() << "\n";
+			file << "Dexterity: " << character->getDexterity() << "\n";
+			file << "Constitution: " << character->getConstitution() << "\n";
+			file << "Intelligence: " << character->getIntelligence() << "\n";
+			file << "Wisdom: " << character->getWisdom() << "\n";
+			file << "Charisma: " << character->getCharisma() << "\n";
+			file << "---: " << "\n";
+		}
+	}
+	else {
+		std::cerr << "Error, file not open.\n";
+	}
+
+	file.close();
+}
+
+std::vector<Character> DungeonMaster::loadCharacters() {
+	std::vector<Character> loadedCharacters;
+	std::ifstream file("createdCharacters.txt");
+	std::string line, name;
+	int stats[6] = { 0 };
+	int statsIndex = 0;
+
+	if (file.is_open()) {
+		while (getline(file, line)) {
+			if (line.substr(0, 5) == "Name:") {
+				name = line.substr(line.find(":") + 2);
+				continue;
+			}
+			if (line == "---") {
+				loadedCharacters.emplace_back(name, stats[0], stats[1], stats[2], stats[3], stats[4], stats[5]);
+				statsIndex = 0;
+			}
+			std::istringstream iss(line.substr(line.find(":") + 2));
+			iss >> stats[statsIndex++];
+		}
+	}
 }
 
 Character* DungeonMaster::creationMenu() {
@@ -199,7 +245,7 @@ Character* DungeonMaster::creationMenu() {
 	{
 	case 1:
 		cout << "Good choice! Now creating your fighter..." << "\n";
-		constructCharacter("Fighter");
+		constructCharacter("Fighter", inputName);
 		break;
 	case 2:
 		cout << "Magician has not been implemented yet, sorry!\n";
