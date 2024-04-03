@@ -14,3 +14,11 @@ Intelligence: 13
 Wisdom: 8
 Charisma: 10
 ---: 
+Name: adam
+Strength: 14
+Dexterity: 16
+Constitution: 12
+Intelligence: 8
+Wisdom: 6
+Charisma: 8
+---: 
