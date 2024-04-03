@@ -1,6 +1,6 @@
 #include "fighter.h"
 
-Fighter::Fighter() : Character()
+Fighter::Fighter(std::string name) : Character(name)
 {
 }
 
@@ -34,12 +34,12 @@ Fighter::Fighter(const std::string &inputName, int inputLevel) : Character(input
 
 void Fighter::addFighterBonus()
 {
-    std::cout << "\nBecause you have selected the Fighter class, you get 2 bonus strength and 1 bonus dexterity!\n";
+    std::cout << "Because you have selected the Fighter class, you get 2 bonus strength and 1 bonus dexterity!\n";
 
     strength += 2;
     dexterity += 1;
 
-    std::cout << "Here are now your final Fighter stats:\n";
+    std::cout << "Here are now your final Fighter stats:\n\n";
     displayScores2();
 }
 

@@ -157,6 +157,10 @@ private:
     vector<Item *> items;
 
 public:
+    void displayInventory() const;
+
+    string toString(EnhancementType type) const;
+
     void addItem(ItemType itemType, string itemName, EnhancementType enhancementType, int enhancementBonus);
 
     void dropItem(Item *item);
@@ -171,6 +175,7 @@ class CharacterEquipment :public Character
 private:
     Character character;
     vector<Item *> equipmentSlots;
+    ItemContainer inventory;
     map<EnhancementType, int> bonusesByType;
 
     bool isSlotEmpty(ItemType slot) const;
@@ -194,6 +199,8 @@ public:
     int getTotalDamageBonus();
     void displayScores2();
     void displayScores3();
+
+ 
 
     ~CharacterEquipment();
 };

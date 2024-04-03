@@ -7,7 +7,7 @@ class Fighter : public Character
 {
 
 public:
-    Fighter();
+    Fighter(std::string name);
     Fighter(const std::string &inputName, int inputLevel);
     void addFighterBonus();
     void calculateHitPoints() override;
