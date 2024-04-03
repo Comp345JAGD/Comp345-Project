@@ -1,0 +1,16 @@
+Name: adam
+Strength: 15
+Dexterity: 15
+Constitution: 14
+Intelligence: 13
+Wisdom: 7
+Charisma: 12
+---: 
+Name: adam
+Strength: 16
+Dexterity: 17
+Constitution: 15
+Intelligence: 13
+Wisdom: 8
+Charisma: 10
+---: 

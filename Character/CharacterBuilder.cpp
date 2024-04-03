@@ -151,11 +151,11 @@ Character* DungeonMaster::creationMenu() {
 		cout << "What class would you like your character to be? Selection an option from 1-4.\n";
 
 		std::string characterSelectionScreen = R"(
-1. FIGHTER      2. Magician      3. Hunter       4. Priest
-   (oo) ^           (oo)*+*       ▲ (oo) ▲        (oo) +
+1. FIGHTER      2. Magician      3. Hunter       4. Archer
+   (oo) ^           (oo)*+*       ^ (oo) ^        (oo) ^
  (-)||__|          __||__|         |__||__|        //||\\|
-    /\  |           /  \ |         *  /\  *          /\  |
-   ()()            /____\|           ()()           /__\ |
+    /\  |           /  \ |         *  /\  *          /\  *
+   ()()            /____\            ()()           /__\ 
 )";
 
 		std::cout << characterSelectionScreen << std::endl;
