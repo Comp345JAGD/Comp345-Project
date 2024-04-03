@@ -8,6 +8,11 @@ void itemTestDriver()
 	// Assume you have created instances of Helmet, Armor, Ring, etc.
 
 	// Equip items
+	ItemContainer characterInventory;
+	characterInventory.addItem(new Helmet("Iron Helmet", EnhancementType::Intelligence, 2));
+	characterInventory.displayInventory();
+
+	/*
 	characterEquipment.equip(new Helmet("Iron Helmet", EnhancementType::Intelligence, 2));
 	characterEquipment.equip(new Armor("Iron Armor", EnhancementType::ArmorClass, 3));
 	characterEquipment.equip(new Ring("Ring of Strength", EnhancementType::Strength, 1));
@@ -24,5 +29,5 @@ void itemTestDriver()
 	characterEquipment.displayWornItems();
 	characterEquipment.displayTotalGearBonuses();
 	characterEquipment.displayScores2();
-	characterEquipment.displayScores3();
+	characterEquipment.displayScores3();*/
 }

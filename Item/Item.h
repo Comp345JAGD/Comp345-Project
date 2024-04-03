@@ -162,7 +162,7 @@ public:
     string toString(EnhancementType type) const;
 
     void addItem(ItemType itemType, string itemName, EnhancementType enhancementType, int enhancementBonus);
-
+    void addItem(Item* item);
     void dropItem(Item *item);
 
     vector<Item *> getItems(ItemType type) const;
@@ -170,7 +170,7 @@ public:
     ~ItemContainer();
 };
 
-class CharacterEquipment :public Character
+class CharacterEquipment :public Character,ItemContainer
 {
 private:
     Character character;

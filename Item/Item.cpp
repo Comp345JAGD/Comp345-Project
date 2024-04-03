@@ -1,5 +1,8 @@
 #include "Item.h"
-
+void ItemContainer::addItem(Item *newItem) {
+    
+    items.push_back(newItem);
+}
 void ItemContainer::addItem(ItemType itemType, string itemName, EnhancementType enhancementType, int enhancementBonus)
 {
     Item *newItem = nullptr;
