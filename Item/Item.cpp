@@ -210,3 +210,49 @@ void CharacterEquipment::displayScores3()
         << "Attack Bonus: " << getTotalAttackBonus() << "\n"
         << "Damage Bonus: " << getTotalDamageBonus() << "\n\n";
 }
+
+void ItemContainer::displayInventory() const
+{
+    if (items.empty())
+    {
+        std::cout << "Inventory is empty." << std::endl;
+        return;
+    }
+
+    std::cout << "===========================" << std::endl;
+    int index = 1;
+    for (Item* item : items)
+    {
+        std::cout << index << ". ";
+        std::cout << "+" << item->getEnhancement().bonus << " " << item->getName() << " (" << toString(item->getEnhancement().type) << ")" << std::endl;
+        index++;
+    }
+    std::cout << "===========================" << std::endl;
+}
+
+std::string ItemContainer::toString(EnhancementType type) const
+{
+    switch (type)
+    {
+    case EnhancementType::Strength:
+        return "Strength";
+    case EnhancementType::Dexterity:
+        return "Dexterity";
+    case EnhancementType::Constitution:
+        return "Constitution";
+    case EnhancementType::Intelligence:
+        return "Intelligence";
+    case EnhancementType::Wisdom:
+        return "Wisdom";
+    case EnhancementType::Charisma:
+        return "Charisma";
+    case EnhancementType::ArmorClass:
+        return "Armor Class";
+    case EnhancementType::AttackBonus:
+        return "Attack Bonus";
+    case EnhancementType::DamageBonus:
+        return "Damage Bonus";
+    default:
+        return "Unknown";
+    }
+}
