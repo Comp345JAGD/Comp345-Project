@@ -151,10 +151,10 @@ Character* DungeonMaster::creationMenu() {
 		cout << "What class would you like your character to be? Selection an option from 1-4.\n";
 
 		std::string characterSelectionScreen = R"(
-1. FIGHTER      2. Magician      3. Hunter       4. Archer
-   (oo) ^           (oo)*+*       ^ (oo) ^        (oo) ^
+1. FIGHTER      2. Doctor       3. Hunter       4. Archer
+   (oo) ^           (oo) O        ^ (oo) ^        (oo) ^
  (-)||__|          __||__|         |__||__|        //||\\|
-    /\  |           /  \ |         *  /\  *          /\  *
+    /\  |           /  \           *  /\  *          /\  *
    ()()            /____\            ()()           /__\ 
 )";
 
@@ -249,7 +249,7 @@ Character* DungeonMaster::creationMenu() {
 		constructCharacter("Fighter", inputName);
 		break;
 	case 2:
-		cout << "Magician has not been implemented yet, sorry!\n";
+		cout << "Doctor has not been implemented yet, sorry!\n";
 		break;
 	case 3:
 	{
@@ -257,7 +257,7 @@ Character* DungeonMaster::creationMenu() {
 		break;
 	}
 	case 4:
-		cout << "Priest has not been implemented yet, sorry!\n";
+		cout << "Archer has not been implemented yet, sorry!\n";
 		break;
 	}
 
