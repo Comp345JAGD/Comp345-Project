@@ -229,15 +229,21 @@ Character *DungeonMaster::creationMenu()
 		constructCharacter("Fighter", inputName);
 		break;
 	case 2:
-		cout << "Magician has not been implemented yet, sorry!\n";
+		cout << "Good choice! Now creating your magician..."
+			<< "\n";
+		constructCharacter("Magician", inputName);
 		break;
 	case 3:
 	{
-		cout << "Hunter has not been implemented yet, sorry!\n";
+		cout << "Good choice! Now creating your hunter..."
+			<< "\n";
+		constructCharacter("Hunter", inputName);
 		break;
 	}
 	case 4:
-		cout << "Priest has not been implemented yet, sorry!\n";
+		cout << "Good choice! Now creating your Archer..."
+			<< "\n";
+		constructCharacter("Archer", inputName);
 		break;
 	}
 
