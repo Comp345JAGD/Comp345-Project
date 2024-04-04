@@ -21,7 +21,6 @@ std::unique_ptr<Character> DungeonMaster::createCharType(std::string& classType,
 
 }
 
-
 void DungeonMaster::saveCharacter(Character* character) {
 	std::ofstream file("createdCharacters.txt", std::ios::app);
 	if (file.is_open()) {
