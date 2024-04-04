@@ -78,6 +78,9 @@
     <ClCompile Include="Character\CharacterStrategy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Character\DungeonMaster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="character\character.h">
@@ -138,6 +141,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Character\CharacterStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Character\DungeonMaster.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

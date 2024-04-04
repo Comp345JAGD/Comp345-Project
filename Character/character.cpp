@@ -19,11 +19,6 @@ Character::Character(std::string inputName, int inputStrength, int inputDexterit
 	charisma = inputCharisma;
 }
 
-Character::Character(const std::string& inputName, int inputLevel) : name(inputName), level(inputLevel), strength(8), dexterity(8), constitution(8), intelligence(8), wisdom(8), charisma(8)
-{
-	generateAbilityScore();
-}
-
 Character::Character(int level, CharacterStrategy* charStrat) : level(level), strength(8), dexterity(8), constitution(8), intelligence(8), wisdom(8), charisma(8), cs(charStrat)
 
 {
@@ -245,6 +240,10 @@ void Character::setName(std::string userName) {
 
 std::string Character::getName() {
 	return name;
+}
+
+std::string Character::getClassType() {
+	return classType;
 }
 
 int Character::getLevel()

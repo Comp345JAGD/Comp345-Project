@@ -8,7 +8,7 @@ class Fighter : public Character
 
 public:
     Fighter(std::string name);
-    Fighter(const std::string &inputName, int inputLevel);
+    Fighter(std::string inputName, int inputStrength, int inputDexterity, int inputConstitution, int inputIntelligence, int inputWisdom, int inputCharisma);
     void addFighterBonus();
     void calculateHitPoints() override;
     void calculateArmorClass() override;

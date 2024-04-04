@@ -5,6 +5,9 @@
 #include <array>
 #include <algorithm>
 #include "dice.h"
+#include <limits>
+#include <fstream>
+#include <sstream>
 // #include "Logger.h"
 // #include "logSubject.h"
 
@@ -49,26 +52,6 @@ class tankCharacterBuilder : public CharacterBuilder
 {
 public:
     void build() override;
-};
-
-class DungeonMaster // Director Class
-{
-public:
-    void setCharacterBuilder(CharacterBuilder *cb)
-    {
-        produced_characterBuilder = cb;
-    }
-    Character *getCharacter()
-    {
-        return produced_characterBuilder->getCharacter();
-    }
-    void constructCharacter(string classType, string name);
-    Character* creationMenu();
-    void saveCharacter(Character* character);
-    std::vector<Character> loadCharacters();
-
-private:
-    CharacterBuilder *produced_characterBuilder;
 };
 
 #endif // CHARACTERBUILDER_H

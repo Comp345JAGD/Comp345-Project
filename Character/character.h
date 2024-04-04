@@ -53,6 +53,7 @@ public:
     int getDamageBonus();
     int getHitPoints();
     int getCurrentHealth();
+    std::string getClassType();
     Dice getDice()
     {
         return dice;
@@ -82,6 +83,7 @@ protected:
     Dice dice;
     CharacterStrategy *cs;
     std::string name;
+    std::string classType;
 };
 
 #endif // CHARACTER_H

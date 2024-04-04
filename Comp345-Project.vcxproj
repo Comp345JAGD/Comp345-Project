@@ -124,6 +124,7 @@
     <ClCompile Include="Character\CharacterStrategy.cpp" />
     <ClCompile Include="character\characterTestDriver.cpp" />
     <ClCompile Include="character\dice.cpp" />
+    <ClCompile Include="Character\DungeonMaster.cpp" />
     <ClCompile Include="character\fighter.cpp" />
     <ClCompile Include="Character\Observer.cpp" />
     <ClCompile Include="Character\Player.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="Character\CharacterStrategy.h" />
     <ClInclude Include="character\characterTestDriver.h" />
     <ClInclude Include="character\dice.h" />
+    <ClInclude Include="Character\DungeonMaster.h" />
     <ClInclude Include="character\fighter.h" />
     <ClInclude Include="character\Observer.h" />
     <ClInclude Include="Character\Player.h" />

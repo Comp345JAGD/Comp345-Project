@@ -5,7 +5,7 @@
 #include "character.h"
 #include "fighter.h"
 #include "Player.h"
-#include "CharacterBuilder.h"
+#include "DungeonMaster.h"
 #include <limits>
 using std::cin;
 using std::cout;

@@ -14,3 +14,43 @@ Intelligence: 13
 Wisdom: 8
 Charisma: 10
 ---: 
+Name: david
+Strength: 17
+Dexterity: 18
+Constitution: 16
+Intelligence: 12
+Wisdom: 10
+Charisma: 11
+---: 
+Name: david
+Strength: 15
+Dexterity: 14
+Constitution: 13
+Intelligence: 11
+Wisdom: 9
+Charisma: 11
+---: 
+Name: 2
+Strength: 17
+Dexterity: 17
+Constitution: 15
+Intelligence: 13
+Wisdom: 7
+Charisma: 11
+---: 
+Name: david
+Strength: 14
+Dexterity: 15
+Constitution: 13
+Intelligence: 12
+Wisdom: 7
+Charisma: 11
+---: 
+Name: ggg
+Strength: 13
+Dexterity: 16
+Constitution: 15
+Intelligence: 10
+Wisdom: 7
+Charisma: 10
+---: 
