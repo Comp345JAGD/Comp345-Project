@@ -2,10 +2,12 @@
 
 Fighter::Fighter(std::string name) : Character(name)
 {
-    classType = "Fighter";
+    setClassType("Fighter");
 }
 
-Fighter::Fighter(std::string inputName, int inputStrength, int inputDexterity, int inputConstitution, int inputIntelligence, int inputWisdom, int inputCharisma) : Character(name, strength, dexterity, constitution, intelligence, wisdom, charisma) {
+Fighter::Fighter(std::string inputName, int inputStrength, int inputDexterity, int inputConstitution, int inputIntelligence, int inputWisdom, int inputCharisma) : Character(name, strength, dexterity, constitution, intelligence, wisdom, charisma)
+{
+    setClassType("Fighter");
 }
 
 void Fighter::addFighterBonus()

@@ -7,7 +7,8 @@ void DungeonMaster::constructCharacter(string classType, string name)
 	produced_characterBuilder->build();
 }
 
-std::unique_ptr<Character> DungeonMaster::createCharType(std::string& classType, std::string& name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
+std::unique_ptr<Character> DungeonMaster::createCharType(std::string &classType, std::string &name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma)
+{
 	if (classType == "Fighter")
 		return std::make_unique<Fighter>(name, strength, dexterity, constitution, intelligence, wisdom, charisma);
 	else if (classType == "Archer")
@@ -18,13 +19,15 @@ std::unique_ptr<Character> DungeonMaster::createCharType(std::string& classType,
 		return std::make_unique<Character>(name, strength, dexterity, constitution, intelligence, wisdom, charisma);
 	else
 		return nullptr;
-
 }
 
-void DungeonMaster::saveCharacter(Character* character) {
+void DungeonMaster::saveCharacter(Character *character)
+{
 	std::ofstream file("createdCharacters.txt", std::ios::app);
-	if (file.is_open()) {
-		if (character != nullptr) {
+	if (file.is_open())
+	{
+		if (character != nullptr)
+		{
 			file << "Class: " << character->getClassType() << "\n";
 			file << "Name: " << character->getName() << "\n";
 			file << "Strength: " << character->getStrength() << "\n";
@@ -33,34 +36,42 @@ void DungeonMaster::saveCharacter(Character* character) {
 			file << "Intelligence: " << character->getIntelligence() << "\n";
 			file << "Wisdom: " << character->getWisdom() << "\n";
 			file << "Charisma: " << character->getCharisma() << "\n";
-			file << "---: " << "\n";
+			file << "---: "
+				 << "\n";
 		}
 	}
-	else {
+	else
+	{
 		std::cerr << "Error, file not open.\n";
 	}
 
 	file.close();
 }
 
-std::vector<std::unique_ptr<Character>> DungeonMaster::loadCharacters() {
+std::vector<std::unique_ptr<Character>> DungeonMaster::loadCharacters()
+{
 	std::vector<std::unique_ptr<Character>> loadedCharacters;
 	std::ifstream file("createdCharacters.txt");
 	std::string line, name, classType;
-	int stats[6] = { 0 };
+	int stats[6] = {0};
 	int statsIndex = 0;
 
-	if (file.is_open()) {
-		while (getline(file, line)) {
-			if (line.substr(0, 4) == "Name") {
+	if (file.is_open())
+	{
+		while (getline(file, line))
+		{
+			if (line.substr(0, 4) == "Name")
+			{
 				name = line.substr(line.find(":") + 2);
 				continue;
 			}
-			if (line.substr(0, 5) == "Class") {
+			if (line.substr(0, 5) == "Class")
+			{
 				classType = line.substr(line.find(":") + 2);
 				continue;
 			}
-			if (line == "---") {
+			if (line == "---")
+			{
 				loadedCharacters.push_back(createCharType(classType, name, stats[0], stats[1], stats[2], stats[3], stats[4], stats[5]));
 				statsIndex = 0;
 			}
@@ -68,7 +79,8 @@ std::vector<std::unique_ptr<Character>> DungeonMaster::loadCharacters() {
 			iss >> stats[statsIndex++];
 		}
 	}
-	else {
+	else
+	{
 		std::cerr << "Error opening file for reading.\n";
 	}
 	file.close();
@@ -76,7 +88,8 @@ std::vector<std::unique_ptr<Character>> DungeonMaster::loadCharacters() {
 	return loadedCharacters;
 }
 
-Character* DungeonMaster::creationMenu() {
+Character *DungeonMaster::creationMenu()
+{
 	system("CLS");
 
 	std::string characterCreationScreen = R"(
@@ -142,8 +155,8 @@ Character* DungeonMaster::creationMenu() {
 
 	int decision2;
 	bool validity2 = false;
-	CharacterBuilder* chosenBuild;
-	Character* myChar;
+	CharacterBuilder *chosenBuild;
+	Character *myChar;
 
 	while (!validity2)
 	{
@@ -177,10 +190,10 @@ Character* DungeonMaster::creationMenu() {
 		// constructCharacter();
 		// Character* test1 = dm.getCharacter();
 
-		//std::cout << "Here are the stat allocations based on your build:\n";
+		// std::cout << "Here are the stat allocations based on your build:\n";
 
-		//test1->displayScores1();
-		//test1->groupedCalculate();
+		// test1->displayScores1();
+		// test1->groupedCalculate();
 
 		break;
 	}
@@ -205,7 +218,8 @@ Character* DungeonMaster::creationMenu() {
 	switch (decision)
 	{
 	case 1:
-		cout << "Good choice! Now creating your fighter..." << "\n";
+		cout << "Good choice! Now creating your fighter..."
+			 << "\n";
 		constructCharacter("Fighter", inputName);
 		break;
 	case 2:
