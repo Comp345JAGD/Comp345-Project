@@ -21,6 +21,12 @@ void Magician::addMagicianBonus()
     displayScores2();
 }
 
+void Magician::addMagicianBonusSilent()
+{
+    intelligence += 2;
+    wisdom += 1;
+}
+
 void Magician::groupedCalculate()
 {
     addMagicianBonus();
@@ -28,4 +34,10 @@ void Magician::groupedCalculate()
 
     std::cout << "Here are your class bonuses:\n";
     displayScores3();
+}
+
+void Magician::groupCalculateSilent()
+{
+    addMagicianBonusSilent();
+    Character::groupCalculateSilent();
 }

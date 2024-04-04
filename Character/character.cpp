@@ -348,6 +348,16 @@ void Character::groupedCalculate()
 	attackRate = 1 + (level / 5);
 }
 
+void Character::groupCalculateSilent()
+{
+	calculateHitPoints();
+	calculateArmorClass();
+	calculateAttackBonus();
+	calculateDamageBonus();
+	currentHp = hitPoints;
+	attackRate = 1 + (level / 5);
+}
+
 // Map movement functions
 
 bool Character::isWalkable()

@@ -31,6 +31,7 @@ public:
     virtual void calculateAttackBonus();
     virtual void calculateDamageBonus();
     virtual void groupedCalculate();
+    virtual void groupCalculateSilent();
     void addStats(StatType type, int value);
     void setName(std::string name);
     void setStrength(int value);
