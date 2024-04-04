@@ -1,4 +1,4 @@
-﻿#include "CharacterBuilder.h"
+#include "CharacterBuilder.h"
 
 void CharacterBuilder::randomizeStats()
 {
