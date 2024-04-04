@@ -12,11 +12,11 @@ std::unique_ptr<Character> DungeonMaster::createCharType(std::string &classType,
 	if (classType == "Fighter")
 		return std::make_unique<Fighter>(name, strength, dexterity, constitution, intelligence, wisdom, charisma);
 	else if (classType == "Archer")
-		return std::make_unique<Character>(name, strength, dexterity, constitution, intelligence, wisdom, charisma);
+		return std::make_unique<Archer>(name, strength, dexterity, constitution, intelligence, wisdom, charisma);
 	else if (classType == "Hunter")
-		return std::make_unique<Character>(name, strength, dexterity, constitution, intelligence, wisdom, charisma);
+		return std::make_unique<Hunter>(name, strength, dexterity, constitution, intelligence, wisdom, charisma);
 	else if (classType == "Magician")
-		return std::make_unique<Character>(name, strength, dexterity, constitution, intelligence, wisdom, charisma);
+		return std::make_unique<Magician>(name, strength, dexterity, constitution, intelligence, wisdom, charisma);
 	else
 		return nullptr;
 }
@@ -36,7 +36,7 @@ void DungeonMaster::saveCharacter(Character *character)
 			file << "Intelligence: " << character->getIntelligence() << "\n";
 			file << "Wisdom: " << character->getWisdom() << "\n";
 			file << "Charisma: " << character->getCharisma() << "\n";
-			file << "---: "
+			file << "---"
 				 << "\n";
 		}
 	}
@@ -86,6 +86,12 @@ std::vector<std::unique_ptr<Character>> DungeonMaster::loadCharacters()
 	file.close();
 
 	return loadedCharacters;
+}
+
+void DungeonMaster::displayCharacters(std::vector<std::unique_ptr<Character>>& characters) {
+	for (int i = 0; i < characters.size(); i++) {
+		std::cout << "Class Type: " << characters[i]->getClassType() << ", Name: " << characters[i]->getName() << std::endl;
+	}
 }
 
 Character *DungeonMaster::creationMenu()

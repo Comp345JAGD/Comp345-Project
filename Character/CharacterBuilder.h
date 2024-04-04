@@ -2,6 +2,9 @@
 #define CHARACTERBUILDER_H
 
 #include "fighter.h"
+#include "archer.h"
+#include "magician.h"
+#include "hunter.h"
 #include <array>
 #include <algorithm>
 #include "dice.h"
@@ -17,8 +20,14 @@ public:
     Character *getCharacter() { return produced_character; }
     void createCharacter(string characterType, string name)
     {
-        if (characterType._Equal("Fighter")) 
+        if (characterType._Equal("Fighter"))
             produced_character = new Fighter(name);
+        else if (characterType._Equal("Archer"))
+            produced_character = new Archer(name);
+        else if (characterType._Equal("Magician"))
+            produced_character = new Magician(name);
+        else if (characterType._Equal("Hunter"))
+            produced_character = new Hunter(name);
         else
             produced_character = new Character(name);
         /*Character *tempCharPointer = static_cast<Character*>(produced_character);

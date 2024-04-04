@@ -18,6 +18,8 @@ Character::Character(std::string inputName, int inputStrength, int inputDexterit
 	intelligence = inputIntelligence;
 	wisdom = inputWisdom;
 	charisma = inputCharisma;
+	cs = new HumanPlayerStrategy();
+	groupCalculateSilent();
 }
 
 Character::Character(int level, CharacterStrategy *charStrat) : level(level), strength(8), dexterity(8), constitution(8), intelligence(8), wisdom(8), charisma(8), cs(charStrat)
