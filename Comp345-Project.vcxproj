@@ -129,6 +129,7 @@
     <ClCompile Include="character\fighter.cpp" />
     <ClCompile Include="Character\hunter.cpp" />
     <ClCompile Include="Character\magician.cpp" />
+    <ClCompile Include="Character\monster.cpp" />
     <ClCompile Include="Character\Observer.cpp" />
     <ClCompile Include="Character\Player.cpp" />
     <ClCompile Include="Character\Subject.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="character\fighter.h" />
     <ClInclude Include="Character\hunter.h" />
     <ClInclude Include="Character\magician.h" />
+    <ClInclude Include="Character\monster.h" />
     <ClInclude Include="character\Observer.h" />
     <ClInclude Include="Character\Player.h" />
     <ClInclude Include="character\Subject.h" />

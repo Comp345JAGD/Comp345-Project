@@ -21,7 +21,7 @@ std::unique_ptr<Character> DungeonMaster::createCharType(std::string classType, 
 		return nullptr;
 }
 
-void DungeonMaster::saveCharacter(Character *character)
+void DungeonMaster::saveCharacter(Character* character)
 {
 	std::ofstream file("createdCharacters.txt", std::ios::app);
 	if (file.is_open())
@@ -37,7 +37,7 @@ void DungeonMaster::saveCharacter(Character *character)
 			file << "Wisdom: " << character->getWisdom() << "\n";
 			file << "Charisma: " << character->getCharisma() << "\n";
 			file << "---"
-				 << "\n";
+				<< "\n";
 		}
 	}
 	else
@@ -53,7 +53,7 @@ std::vector<std::unique_ptr<Character>> DungeonMaster::loadCharacters()
 	std::vector<std::unique_ptr<Character>> loadedCharacters;
 	std::ifstream file("createdCharacters.txt");
 	std::string line, name, classType;
-	int stats[6] = {0};
+	int stats[6] = { 0 };
 	int statsIndex = 0;
 
 	if (file.is_open())
@@ -70,7 +70,7 @@ std::vector<std::unique_ptr<Character>> DungeonMaster::loadCharacters()
 				classType = line.substr(line.find(":") + 2);
 				continue;
 			}
-			if (line == "---")	
+			if (line == "---")
 			{
 				loadedCharacters.push_back(createCharType(classType, name, stats[0], stats[1], stats[2], stats[3], stats[4], stats[5]));
 				statsIndex = 0;
@@ -91,11 +91,11 @@ std::vector<std::unique_ptr<Character>> DungeonMaster::loadCharacters()
 
 void DungeonMaster::displayCharacters(std::vector<std::unique_ptr<Character>>& characters) {
 	for (int i = 0; i < characters.size(); i++) {
-		std::cout << "Class Type: " << characters[i]->getClassType() << ", Name: " << characters[i]->getName() << std::endl;
+		std::cout << i + 1 << ".   " << "Class Type: " << characters[i]->getClassType() << ", Name: " << characters[i]->getName() << std::endl;
 	}
 }
 
-Character *DungeonMaster::creationMenu()
+Character* DungeonMaster::creationMenu()
 {
 	system("CLS");
 
@@ -162,8 +162,8 @@ Character *DungeonMaster::creationMenu()
 
 	int decision2;
 	bool validity2 = false;
-	CharacterBuilder *chosenBuild;
-	Character *myChar;
+	CharacterBuilder* chosenBuild;
+	Character* myChar;
 
 	while (!validity2)
 	{
@@ -226,7 +226,7 @@ Character *DungeonMaster::creationMenu()
 	{
 	case 1:
 		cout << "Good choice! Now creating your fighter..."
-			 << "\n";
+			<< "\n";
 		constructCharacter("Fighter", inputName);
 		break;
 	case 2:
