@@ -1,7 +1,7 @@
 #include "character.h"
 #include "CharacterStrategy.h"
 
-Character::Character() : name("NPC"), level(1), strength(0), dexterity(0), constitution(0), intelligence(0), wisdom(0), charisma(0) 
+Character::Character() : name("NPC"), level(1), strength(0), dexterity(0), constitution(0), intelligence(0), wisdom(0), charisma(0)
 {
 }
 
@@ -9,7 +9,8 @@ Character::Character(std::string name) : name(name), level(1), strength(0), dext
 {
 }
 
-Character::Character(std::string inputName, int inputStrength, int inputDexterity, int inputConstitution, int inputIntelligence, int inputWisdom, int inputCharisma) {
+Character::Character(std::string inputName, int inputStrength, int inputDexterity, int inputConstitution, int inputIntelligence, int inputWisdom, int inputCharisma)
+{
 	name = inputName;
 	strength = inputStrength;
 	dexterity = inputDexterity;
@@ -17,14 +18,11 @@ Character::Character(std::string inputName, int inputStrength, int inputDexterit
 	intelligence = inputIntelligence;
 	wisdom = inputWisdom;
 	charisma = inputCharisma;
+	cs = new HumanPlayerStrategy();
+	groupCalculateSilent();
 }
 
-Character::Character(const std::string& inputName, int inputLevel) : name(inputName), level(inputLevel), strength(8), dexterity(8), constitution(8), intelligence(8), wisdom(8), charisma(8)
-{
-	generateAbilityScore();
-}
-
-Character::Character(int level, CharacterStrategy* charStrat) : level(level), strength(8), dexterity(8), constitution(8), intelligence(8), wisdom(8), charisma(8), cs(charStrat)
+Character::Character(int level, CharacterStrategy *charStrat) : level(level), strength(8), dexterity(8), constitution(8), intelligence(8), wisdom(8), charisma(8), cs(charStrat)
 
 {
 	groupedCalculate();
@@ -179,29 +177,34 @@ void Character::addStats(StatType type, int value)
 void Character::displayScores1() const
 {
 	std::cout << "(1) Strength: " << strength << "\n"
-		<< "(2) Dexterity: " << dexterity << "\n"
-		<< "(3) Constitution: " << constitution << "\n"
-		<< "(4) Intelligence: " << intelligence << "\n"
-		<< "(5) Wisdom: " << wisdom << "\n"
-		<< "(6) Charisma: " << charisma << std::endl;
+			  << "(2) Dexterity: " << dexterity << "\n"
+			  << "(3) Constitution: " << constitution << "\n"
+			  << "(4) Intelligence: " << intelligence << "\n"
+			  << "(5) Wisdom: " << wisdom << "\n"
+			  << "(6) Charisma: " << charisma << std::endl;
 }
 
 void Character::displayScores2() const
 {
 	std::cout << "Strength: " << strength << "\n"
-		<< "Dexterity: " << dexterity << "\n"
-		<< "Constitution: " << constitution << "\n"
-		<< "Intelligence: " << intelligence << "\n"
-		<< "Wisdom: " << wisdom << "\n"
-		<< "Charisma: " << charisma << "\n\n";
+			  << "Dexterity: " << dexterity << "\n"
+			  << "Constitution: " << constitution << "\n"
+			  << "Intelligence: " << intelligence << "\n"
+			  << "Wisdom: " << wisdom << "\n"
+			  << "Charisma: " << charisma << "\n\n";
 }
 
 void Character::displayScores3() const
 {
 	std::cout << "Hit Points: " << hitPoints << "\n"
-		<< "Armor Class: " << armorClass << "\n"
-		<< "Attack Bonus: " << attackBonus << "\n"
-		<< "Damage Bonus: " << damageBonus << "\n\n";
+			  << "Armor Class: " << armorClass << "\n"
+			  << "Attack Bonus: " << attackBonus << "\n"
+			  << "Damage Bonus: " << damageBonus << "\n\n";
+}
+
+void Character::setClassType(std::string type)
+{
+	classType = type;
 }
 
 void Character::setStrength(int value)
@@ -239,12 +242,19 @@ void Character::setLevel(int value)
 	level = value;
 }
 
-void Character::setName(std::string userName) {
+void Character::setName(std::string userName)
+{
 	name = userName;
 }
 
-std::string Character::getName() {
+std::string Character::getName()
+{
 	return name;
+}
+
+std::string Character::getClassType()
+{
+	return classType;
 }
 
 int Character::getLevel()
@@ -340,6 +350,16 @@ void Character::groupedCalculate()
 	attackRate = 1 + (level / 5);
 }
 
+void Character::groupCalculateSilent()
+{
+	calculateHitPoints();
+	calculateArmorClass();
+	calculateAttackBonus();
+	calculateDamageBonus();
+	currentHp = hitPoints;
+	attackRate = 1 + (level / 5);
+}
+
 // Map movement functions
 
 bool Character::isWalkable()
@@ -347,37 +367,32 @@ bool Character::isWalkable()
 	return false;
 }
 
-vector<string>* Character::getGridRepresentation()
+vector<string> *Character::getGridRepresentation()
 {
 
-	vector<string>* art;
+	vector<string> *art;
 
-	if (dynamic_cast<HumanPlayerStrategy*>(cs) != nullptr) {
+	if (dynamic_cast<HumanPlayerStrategy *>(cs) != nullptr)
+	{
 		art = new vector<string>(
-			{
-				"  (oo) ^",
-				"(-)||__|",
-			  R"(   /\  |)",
-				"  ()()  "
-			}
-		);
+			{"  (oo) ^",
+			 "(-)||__|",
+			 R"(   /\  |)",
+			 "  ()()  "});
 	}
-	else {
+	else
+	{
 		art = new vector<string>(
-			{
-				"   }{  |",
-				"__{><}_+",
-				"   []  |",
-			  R"(  /  \  )"
-			}
-		);
+			{"   }{  |",
+			 "__{><}_+",
+			 "   []  |",
+			 R"(  /  \  )"});
 	}
-
 
 	return art;
 }
 
-void Character::playTurn(GameMap* m)
+void Character::playTurn(GameMap *m)
 {
 	cs->execute(this, m);
 	system("pause");
@@ -448,7 +463,7 @@ int Character::attacked(int damage)
 	return damageTaken;
 }
 
-CharacterStrategy* Character::getStrategy()
+CharacterStrategy *Character::getStrategy()
 {
 	return cs;
 }

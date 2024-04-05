@@ -2,34 +2,12 @@
 
 Fighter::Fighter(std::string name) : Character(name)
 {
+    setClassType("Fighter");
 }
 
-Fighter::Fighter(const std::string &inputName, int inputLevel) : Character(inputName, inputLevel)
+Fighter::Fighter(std::string inputName, int inputStrength, int inputDexterity, int inputConstitution, int inputIntelligence, int inputWisdom, int inputCharisma) : Character(inputName, inputStrength, inputDexterity, inputConstitution, inputIntelligence, inputWisdom, inputCharisma)
 {
-    bool validity3 = false;
-    char proceed = '\0';
-
-    std::cout << "When you are ready, we will proceed with your class bonuses and other calculations.\n";
-    std::cout << "Press y if you are ready to proceed\n";
-    while (!validity3)
-    {
-        if (std::cin >> proceed)
-        {
-            if (proceed == 'y')
-                validity3 = true;
-            else
-                std::cout << "You may not proceed until you select 'y'.\n";
-        }
-        else
-        {
-            std::cin.clear();
-            std::cin.ignore(256, '\n');
-            std::cout << "You may not proceed until you select 'y'.\n";
-        }
-    }
-
-    system("CLS");
-    groupedCalculate();
+    setClassType("Fighter");
 }
 
 void Fighter::addFighterBonus()

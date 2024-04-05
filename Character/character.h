@@ -7,8 +7,8 @@
 #include <limits>
 #include "dice.h"
 #include "Subject.h"
-//#include "../Logger/logSubject.h"
-//#include "CharacterStrategy.h"
+// #include "../Logger/logSubject.h"
+// #include "CharacterStrategy.h"
 #include "../Map/cell.h"
 
 class CharacterStrategy; // https://stackoverflow.com/a/15782499
@@ -31,6 +31,7 @@ public:
     virtual void calculateAttackBonus();
     virtual void calculateDamageBonus();
     virtual void groupedCalculate();
+    virtual void groupCalculateSilent();
     void addStats(StatType type, int value);
     void setName(std::string name);
     void setStrength(int value);
@@ -40,6 +41,7 @@ public:
     void setWisdom(int value);
     void setCharisma(int value);
     void setLevel(int value);
+    void setClassType(std::string type);
     std::string getName();
     int getLevel();
     int getStrength();
@@ -53,6 +55,7 @@ public:
     int getDamageBonus();
     int getHitPoints();
     int getCurrentHealth();
+    std::string getClassType();
     Dice getDice()
     {
         return dice;
@@ -66,11 +69,11 @@ public:
     virtual int getTotalArmorClass();
     virtual int getTotalAttackBonus();
     virtual int getTotalDamageBonus();
-    virtual CharacterStrategy* getStrategy();
+    virtual CharacterStrategy *getStrategy();
     virtual bool isWalkable() override;
     virtual void playTurn(GameMap *map) override;
-    virtual vector<string>* getGridRepresentation() override;
-    //virtual void setPosition(int row, int column) override;
+    virtual vector<string> *getGridRepresentation() override;
+    // virtual void setPosition(int row, int column) override;
     int attack();
     int attacked(int damage);
 
@@ -82,6 +85,7 @@ protected:
     Dice dice;
     CharacterStrategy *cs;
     std::string name;
+    std::string classType;
 };
 
 #endif // CHARACTER_H

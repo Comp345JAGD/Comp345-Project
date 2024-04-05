@@ -1,15 +1,17 @@
-Name: adam
-Strength: 15
-Dexterity: 15
+Class: Fighter
+Name: david
+Strength: 13
+Dexterity: 16
 Constitution: 14
-Intelligence: 13
-Wisdom: 7
-Charisma: 12
----: 
-Name: adam
+Intelligence: 11
+Wisdom: 6
+Charisma: 11
+---
+Class: Fighter
+Name: test
 Strength: 16
-Dexterity: 17
-Constitution: 15
+Dexterity: 15
+Constitution: 16
 Intelligence: 13
 Wisdom: 8
 Charisma: 10
@@ -21,4 +23,4 @@ Constitution: 12
 Intelligence: 8
 Wisdom: 6
 Charisma: 8
----: 
+---:

@@ -119,12 +119,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Character\archer.cpp" />
     <ClCompile Include="character\character.cpp" />
     <ClCompile Include="Character\CharacterBuilder.cpp" />
     <ClCompile Include="Character\CharacterStrategy.cpp" />
     <ClCompile Include="character\characterTestDriver.cpp" />
     <ClCompile Include="character\dice.cpp" />
+    <ClCompile Include="Character\DungeonMaster.cpp" />
     <ClCompile Include="character\fighter.cpp" />
+    <ClCompile Include="Character\hunter.cpp" />
+    <ClCompile Include="Character\magician.cpp" />
     <ClCompile Include="Character\Observer.cpp" />
     <ClCompile Include="Character\Player.cpp" />
     <ClCompile Include="Character\Subject.cpp" />
@@ -142,12 +146,16 @@
     <ClCompile Include="testDriver.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Character\archer.h" />
     <ClInclude Include="character\character.h" />
     <ClInclude Include="Character\CharacterBuilder.h" />
     <ClInclude Include="Character\CharacterStrategy.h" />
     <ClInclude Include="character\characterTestDriver.h" />
     <ClInclude Include="character\dice.h" />
+    <ClInclude Include="Character\DungeonMaster.h" />
     <ClInclude Include="character\fighter.h" />
+    <ClInclude Include="Character\hunter.h" />
+    <ClInclude Include="Character\magician.h" />
     <ClInclude Include="character\Observer.h" />
     <ClInclude Include="Character\Player.h" />
     <ClInclude Include="character\Subject.h" />
