@@ -1,45 +1,9 @@
-Class: Fighter
-Name: adam
-Strength: 17
-Dexterity: 16
-Constitution: 15
-Intelligence: 13
-Wisdom: 9
-Charisma: 10
----
-Class: Fighter
-Name: john
-Strength: 14
-Dexterity: 10
-Constitution: 12
-Intelligence: 9
-Wisdom: 6
-Charisma: 8
----
-Class: Archer
-Name: david
-Strength: 13
-Dexterity: 14
-Constitution: 15
-Intelligence: 13
-Wisdom: 7
-Charisma: 12
----
-Class: Hunter
-Name: f
-Strength: 13
+Class: Doctor
+Name: a
+Strength: 12
 Dexterity: 18
-Constitution: 18
-Intelligence: 12
-Wisdom: 8
-Charisma: 12
----
-Class: 
-Name: 1
-Strength: 15
-Dexterity: 13
-Constitution: 13
+Constitution: 14
 Intelligence: 13
-Wisdom: 11
+Wisdom: 6
 Charisma: 11
 ---

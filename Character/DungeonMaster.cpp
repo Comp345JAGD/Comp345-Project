@@ -15,8 +15,8 @@ std::unique_ptr<Character> DungeonMaster::createCharType(std::string classType, 
 		return std::make_unique<Archer>(name, strength, dexterity, constitution, intelligence, wisdom, charisma);
 	else if (classType == "Hunter")
 		return std::make_unique<Hunter>(name, strength, dexterity, constitution, intelligence, wisdom, charisma);
-	else if (classType == "Magician")
-		return std::make_unique<Magician>(name, strength, dexterity, constitution, intelligence, wisdom, charisma);
+	else if (classType == "Doctor")
+		return std::make_unique<Doctor>(name, strength, dexterity, constitution, intelligence, wisdom, charisma);
 	else
 		return nullptr;
 }
@@ -131,10 +131,10 @@ Character* DungeonMaster::creationMenu()
 		cout << "What class would you like your character to be? Selection an option from 1-4.\n";
 
 		std::string characterSelectionScreen = R"(
-1. FIGHTER      2. Magician      3. Hunter       4. Archer
-   (oo) ^           (oo)*+*        ^ (oo) ^         (oo) ^
+1. FIGHTER      2. Doctor        3. Hunter       4. Archer
+   (oo) ^           (oo) O         ^ (oo) ^         (oo) ^
  (-)||__|          __||__|         |__||__|        //||\\|
-    /\  |           /  \ |         *  /\  *          /\  *
+    /\  |           /  \           *  /\  *          /\  *
    ()()            /____\            ()()           /__\ 
 )";
 
@@ -230,9 +230,9 @@ Character* DungeonMaster::creationMenu()
 		constructCharacter("Fighter", inputName);
 		break;
 	case 2:
-		cout << "Good choice! Now creating your magician..."
+		cout << "Good choice! Now creating your Doctor..."
 			<< "\n";
-		constructCharacter("Magician", inputName);
+		constructCharacter("Doctor", inputName);
 		break;
 	case 3:
 	{
@@ -244,7 +244,7 @@ Character* DungeonMaster::creationMenu()
 	case 4:
 		cout << "Good choice! Now creating your Archer..."
 			<< "\n";
-		constructCharacter("", inputName);
+		constructCharacter("Archer", inputName);
 		break;
 	}
 

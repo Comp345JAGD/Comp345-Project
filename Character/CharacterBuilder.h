@@ -3,7 +3,7 @@
 
 #include "fighter.h"
 #include "archer.h"
-#include "magician.h"
+#include "doctor.h"
 #include "hunter.h"
 #include <array>
 #include <algorithm>
@@ -24,8 +24,8 @@ public:
             produced_character = new Fighter(name);
         else if (characterType._Equal("Archer"))
             produced_character = new Archer(name);
-        else if (characterType._Equal("Magician"))
-            produced_character = new Magician(name);
+        else if (characterType._Equal("Doctor"))
+            produced_character = new Doctor(name);
         else if (characterType._Equal("Hunter"))
             produced_character = new Hunter(name);
         else
