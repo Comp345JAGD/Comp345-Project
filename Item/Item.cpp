@@ -259,3 +259,113 @@ std::string ItemContainer::toString(EnhancementType type) const
         return "Unknown";
     }
 }
+
+
+vector<Item*> ItemContainer::loadItemsFromFile(const string& filename) {
+    vector<Item*> loadedItems;
+    ifstream file(filename);
+    string line, itemName, itemTypeStr, enhancementTypeStr;
+    int enhancementBonus;
+
+    if (file.is_open()) {
+        ItemType itemType;
+        EnhancementType enhancementType;
+
+        while (getline(file, line)) {
+            if (line.substr(0, 4) == "Name") {
+                itemName = line.substr(line.find(":") + 2);
+                continue;
+            }
+            else if (line.substr(0, 5) == "Type") {
+                itemTypeStr = line.substr(line.find(":") + 2);
+                itemType = convertItemTypeFromString(itemTypeStr);
+                continue;
+            }
+            else if (line.substr(0, 10) == "Enhancement") {
+                enhancementTypeStr = line.substr(line.find(":") + 2);
+                enhancementType = convertEnhancementTypeFromString(enhancementTypeStr);
+                continue;
+            }
+            else if (line.substr(0, 6) == "Bonus") {
+                istringstream iss(line.substr(line.find(":") + 2));
+                iss >> enhancementBonus;
+            }
+
+            if (line == "---") {
+                loadedItems.push_back(createItem(itemType, itemName, enhancementType, enhancementBonus));
+            }
+        }
+    }
+    else {
+        cerr << "Error opening file for reading.\n";
+    }
+    file.close();
+
+    return loadedItems;
+}
+
+ItemType ItemContainer::convertItemTypeFromString(const std::string& itemTypeStr) {
+    if (itemTypeStr == "Helmet")
+        return ItemType::Helmet;
+    else if (itemTypeStr == "Armor")
+        return ItemType::Armor;
+    else if (itemTypeStr == "Shield")
+        return ItemType::Shield;
+    else if (itemTypeStr == "Ring")
+        return ItemType::Ring;
+    else if (itemTypeStr == "Belt")
+        return ItemType::Belt;
+    else if (itemTypeStr == "Boots")
+        return ItemType::Boots;
+    else if (itemTypeStr == "Weapon")
+        return ItemType::Weapon;
+    else {
+        std::cerr << "Unknown item type: " << itemTypeStr << std::endl;
+    }
+}
+
+EnhancementType ItemContainer::convertEnhancementTypeFromString(const std::string& enhancementTypeStr) {
+    if (enhancementTypeStr == "Strength")
+        return EnhancementType::Strength;
+    else if (enhancementTypeStr == "Dexterity")
+        return EnhancementType::Dexterity;
+    else if (enhancementTypeStr == "Constitution")
+        return EnhancementType::Constitution;
+    else if (enhancementTypeStr == "Intelligence")
+        return EnhancementType::Intelligence;
+    else if (enhancementTypeStr == "Wisdom")
+        return EnhancementType::Wisdom;
+    else if (enhancementTypeStr == "Charisma")
+        return EnhancementType::Charisma;
+    else if (enhancementTypeStr == "ArmorClass")
+        return EnhancementType::ArmorClass;
+    else if (enhancementTypeStr == "AttackBonus")
+        return EnhancementType::AttackBonus;
+    else if (enhancementTypeStr == "DamageBonus")
+        return EnhancementType::DamageBonus;
+    else {
+        std::cerr << "Unknown enhancement type: " << enhancementTypeStr << std::endl;
+    }
+}
+
+Item* ItemContainer::createItem(ItemType itemType, const std::string& itemName, EnhancementType enhancementType, int enhancementBonus) {
+    switch (itemType) {
+    case ItemType::Helmet:
+        return new Helmet(itemName, enhancementType, enhancementBonus);
+    case ItemType::Armor:
+        return new Armor(itemName, enhancementType, enhancementBonus);
+    case ItemType::Shield:
+        return new Shield(itemName, enhancementType, enhancementBonus);
+    case ItemType::Ring:
+        return new Ring(itemName, enhancementType, enhancementBonus);
+    case ItemType::Belt:
+        return new Belt(itemName, enhancementType, enhancementBonus);
+    case ItemType::Boots:
+        return new Boots(itemName, enhancementType, enhancementBonus);
+    case ItemType::Weapon:
+        return new Weapon(itemName, enhancementType, enhancementBonus);
+    default:
+        std::cerr << "Unknown item type: " << static_cast<int>(itemType) << std::endl;
+        return nullptr;
+    }
+}

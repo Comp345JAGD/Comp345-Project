@@ -6,8 +6,12 @@
 #include <string>
 #include <algorithm>
 #include <map>
+#include <fstream>
+#include <iostream>
+#include <sstream>
 #include "../Character/character.h"
 #include "../Character/CharacterStrategy.h"
+
 using namespace std;
 
 // Items and their Attributes
@@ -158,9 +162,11 @@ private:
 
 public:
     void displayInventory() const;
-
+    ItemType convertItemTypeFromString(const std::string& itemTypeStr); 
+    EnhancementType convertEnhancementTypeFromString(const std::string& enhancementTypeStr); 
+    Item* createItem(ItemType itemType, const std::string& itemName, EnhancementType enhancementType, int enhancementBonus); 
     string toString(EnhancementType type) const;
-
+    vector<Item*> loadItemsFromFile(const std::string& filename);
     void addItem(ItemType itemType, string itemName, EnhancementType enhancementType, int enhancementBonus);
     void addItem(Item* item);
     void dropItem(Item *item);

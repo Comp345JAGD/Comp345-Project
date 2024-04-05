@@ -5,7 +5,7 @@ Archer::Archer(std::string name) : Character(name)
     setClassType("Archer");
 }
 
-Archer::Archer(std::string inputName, int inputStrength, int inputDexterity, int inputConstitution, int inputIntelligence, int inputWisdom, int inputCharisma) : Character(name, strength, dexterity, constitution, intelligence, wisdom, charisma)
+Archer::Archer(std::string inputName, int inputStrength, int inputDexterity, int inputConstitution, int inputIntelligence, int inputWisdom, int inputCharisma) : Character(inputName, inputStrength, inputDexterity, inputConstitution, inputIntelligence, inputWisdom, inputCharisma)
 {
     setClassType("Archer");
 }
