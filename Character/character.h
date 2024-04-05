@@ -41,6 +41,7 @@ public:
     void setWisdom(int value);
     void setCharisma(int value);
     void setLevel(int value);
+    void setStrategy(CharacterStrategy* strat);
     void setClassType(std::string type);
     std::string getName();
     int getLevel();
@@ -78,7 +79,7 @@ public:
     int attacked(int damage);
 
 protected:
-    int level;
+    int level = 1;
     int strength, dexterity, constitution, intelligence, wisdom, charisma;
     int hitPoints, armorClass, attackBonus, damageBonus;
     int currentHp, attackRate;
@@ -87,5 +88,7 @@ protected:
     std::string name;
     std::string classType;
 };
+
+void displayCharacters(std::vector<Character*>& characters);
 
 #endif // CHARACTER_H

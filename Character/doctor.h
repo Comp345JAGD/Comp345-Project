@@ -13,6 +13,7 @@ public:
     void addDoctorBonusSilent();
     void groupedCalculate() override;
     void groupCalculateSilent() override;
+    virtual vector<string>* getGridRepresentation() override;
 };
 
 #endif // DOCTOR_H

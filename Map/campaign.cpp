@@ -196,6 +196,7 @@ void selectCampaign() {
     if (file.is_open()) {
         int mapDecision = 0;
         while (mapDecision != 6) {
+            system("CLS");
             cout << "==================================\n";
             cout << "You have selected a campain! Respond with the following integer for desired:\n";
             cout << "0. Play the Campain\n1. Create Map\n2. Edit Map\n3. Move Map\n4. Remove Map\n5. Save Map (Any unsaved data will be lost!)\n6. Exit\n";
@@ -210,28 +211,91 @@ void selectCampaign() {
             switch (mapDecision) {
             case 0:
             {
-                Character* humanCharacter = new Character(1, new HumanPlayerStrategy());
+                DungeonMaster dm;
+                std::vector<std::unique_ptr<Character>> charArr = dm.loadCharacters();
+                
+                Character* chosenCharacter;
+
+                if (charArr.size() == 0) {
+                    cout << "You do not have any characters saved, lets create a new character\n\n";
+
+                    system("pause");
+                    system("CLS");
+                    
+                    chosenCharacter = dm.creationMenu();
+                    dm.saveCharacter(chosenCharacter);
+
+                    system("pause");
+                    system("CLS");
+                }
+                else {
+                    cout << "Here are all your characters:\n\n";
+                    vector<Character*> characters;
+
+                    for (int i = 0; i < charArr.size(); i++)
+                    {
+                        characters.push_back(charArr.at(i).get());
+                    }
+                    displayCharacters(characters);
+
+                    bool isValid = false;
+                    int decision;
+
+                    while (!isValid) {
+
+                        cout << "\nChoose one of them:\n\n";
+
+                        dm.displayCharacters(charArr);
+
+                        if (std::cin >> decision)
+                        {
+                            if (decision >= 1 && decision <= charArr.size())
+                                isValid = true;
+                            else
+                                std::cout << "\nInvalid integer, please enter a number between 1 and " + std::to_string(charArr.size()) + ".\n\n";
+                        }
+                        else
+                        {
+                            std::cin.clear();
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            std::cout << "\nInvalid input, please enter a number between 1 and " + std::to_string(charArr.size()) + ".\n\n";
+                        }
+                    }
+
+
+                    chosenCharacter = charArr.at(decision - 1).get();
+                }
+
+                chosenCharacter->setStrategy(new HumanPlayerStrategy());
+
+                cout << "\nLet's start the campaign!:\n\n";
+
 
                 for (int i = 0; i < campaign.getNumMaps(); i++)
                 {
 
+                    system("pause");
+                    system("CLS");
 
-                    GameLoop gameLoop(campaign.getMapAtIndex(i), humanCharacter);
+                    GameMap* currentMap = campaign.getMapAtIndex(i);
+
+                    GameLoop gameLoop(currentMap, chosenCharacter);
 
                     bool didPlayerWin = gameLoop.play();
 
                     // congrates you won do you want to continue??? unless end
 
-                    if (i == campaign.getNumMaps() - 1) {
-                        cout << "*** Congradulations, you finished the campaign! ***" << endl;
-                        system("pause");
-                        break;
-
-                    }
                     
                     if (didPlayerWin) {
-                        cout << "*** Congradulations, you reached the end of the map! ***" << endl;
-                        cout << "Press any key to continue to the next map. Press 'q' to quit." << endl;
+                        if (i == campaign.getNumMaps() - 1) {
+                            cout << "*** Congradulations, you finished the campaign! ***" << endl;
+                            system("pause");
+                            break;
+
+                        }
+
+                        cout << "\n*** Congradulations, you reached the end of the map! ***\n\n";
+                        cout << "Press any key to continue to the next map. Press 'q' to quit.\n\n";
                         string inputStr;
                         cin >> inputStr;
 
@@ -243,9 +307,11 @@ void selectCampaign() {
                         }
                     }
                     else {
-                        cout << "*** GAME OVER ***" << endl;
+                        cout << "\n*** GAME OVER ***\n\n";
                         break;
                     }
+
+
 
                     // fail go back to main menu
 
@@ -330,6 +396,7 @@ void selectCampaign() {
                 cout << "Error! The input you have tried is invalid. Please try again.\n";
                 break;
             }
+            system("pause");
         }
 
         file.close();
@@ -359,15 +426,23 @@ void loadCampaignInterface() {
     int decision = 0;
     string name;
     while (decision != 3) {
+        system("CLS");
         cout << "==================================\n";
-        cout << "Welcome to Campaign Interface!\nSelect a campaign or create a new campaign:\n1 Select a campaign.\n2 Create a new campaign.\n3 Exit\n";
+        cout << "Welcome to Campaign Interface!\nSelect a campaign or create a new campaign:\n0 Create a Character\n1 Select a campaign.\n2 Create a new campaign.\n3 Exit\n";
         cout << "==================================\n";
         cin >> decision;
-        while (decision < 1 || decision >= 4) {
+        while (decision < 0 || decision >= 4) {
             cout << "Error! The input you have tried is invalid. Please try again.";
             cin >> decision;
         }
         switch (decision) {
+        case 0:
+        {
+            DungeonMaster dm;
+            Character* myChar = dm.creationMenu();
+            dm.saveCharacter(myChar);
+            break;
+        }
         case 1:
             selectCampaign();
             break;
@@ -380,5 +455,6 @@ void loadCampaignInterface() {
         default:
             cout << "Error! The input you have tried is invalid. Please try again.";
         }
+        system("pause");
     }
 }

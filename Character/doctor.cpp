@@ -41,3 +41,19 @@ void Doctor::groupCalculateSilent()
     addDoctorBonusSilent();
     Character::groupCalculateSilent();
 }
+
+
+vector<string>* Doctor::getGridRepresentation()
+{
+
+    vector<string>* art;
+
+    art = new vector<string>(
+        {
+         "  (oo) O",
+         " __||__|",
+       R"(  /  \  )",
+       R"( /____\ )" });
+
+    return art;
+}

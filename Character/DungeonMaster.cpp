@@ -142,16 +142,16 @@ Character* DungeonMaster::creationMenu()
 
 		if (std::cin >> decision)
 		{
-			if (decision >= 1 && decision <= 6)
+			if (decision >= 1 && decision <= 4)
 				validity = true;
 			else
-				std::cout << "Invalid integer, please enter a number between 1 and 6.\n";
+				std::cout << "Invalid integer, please enter a number between 1 and 4.\n";
 		}
 		else
 		{
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			std::cout << "Invalid input, please enter a number between 1 and 6.\n";
+			std::cout << "Invalid input, please enter a number between 1 and 4.\n";
 		}
 	}
 

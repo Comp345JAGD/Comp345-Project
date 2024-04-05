@@ -7,7 +7,7 @@ void FriendlyStrategy::execute(Character *character, GameMap *map)
     
     if (character->getCurrentHealth() <= 0) {
         map->setCell(character->getRow(), character->getColumn(), new EmptyCell()); // change to chest later
-        info += "Monster ELIMINATED!";
+        info += character->getName() + " ELIMINATED!";
 
         system("CLS");
         map->printInfoBar();
@@ -58,7 +58,7 @@ void FriendlyStrategy::execute(Character *character, GameMap *map)
         system("CLS");
         map->printInfoBar();
         map->printMap();
-        std::cout << "MONSTER TURN\n\n" << (didMove ? "Monster moved!" : "Monster was not able to move!") << endl << endl;
+        std::cout << character->getName() + " TURN\n\n" << (didMove ? character->getName() + " moved!" : character->getName() + " was not able to move!") << endl << endl;
     }
     else {
         AggressorStrategy* strat = new AggressorStrategy();
@@ -75,7 +75,7 @@ void AggressorStrategy::execute(Character *character, GameMap *map)
     if (character->getCurrentHealth() <= 0) {
         map->setCell(character->getRow(), character->getColumn(), new EmptyCell()); // change to chest later
         string info = "";
-        info += "Monster ELIMINATED!";
+        info += character->getName() + " ELIMINATED!";
 
         system("CLS");
         map->printInfoBar();
@@ -132,7 +132,7 @@ void AggressorStrategy::execute(Character *character, GameMap *map)
         if (nextRow == playerRow && nextColumn == playerCol) {
             int damage = character->attack();
             int damageTaken = dynamic_cast<Character*>(map->getCell(playerRow, playerCol))->attacked(damage);
-            info = "Monster dealt " + std::to_string(damageTaken) + " damage to the player!\n\n";
+            info = character->getName() + " dealt " + std::to_string(damageTaken) + " damage to the player!\n\n";
 
             didAttack = true;
 
@@ -143,18 +143,22 @@ void AggressorStrategy::execute(Character *character, GameMap *map)
 
     if(!didAttack)
     {
-        info = "Monster moved!";
+        info = character->getName() + " moved!";
         map->moveOneCellTowardsTarget(character->getRow(), character->getColumn(), playerRow, playerCol);
     }
 
     system("CLS");
     map->printInfoBar();
     map->printMap();
-    std::cout << "MONSTER TURN\n\n" << info << endl << endl;
+    std::cout << character->getName() + " TURN\n\n" << info << endl << endl;
 }
 
 void HumanPlayerStrategy::execute(Character *character, GameMap *map)
 {
+
+    system("CLS");
+    map->printInfoBar();
+    map->printMap();
 
     string info = "";
     bool moveDone = false;

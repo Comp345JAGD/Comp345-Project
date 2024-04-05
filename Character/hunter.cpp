@@ -29,3 +29,18 @@ void Hunter::groupedCalculate()
     std::cout << "Here are your class bonuses:\n";
     displayScores3();
 }
+
+vector<string>* Hunter::getGridRepresentation()
+{
+
+	vector<string>* art;
+
+    art = new vector<string>(
+        { 
+         "^ (oo) ^",
+         "|__||__|",
+       R"(*  /\  *)",
+         "  ()()  " });
+
+	return art;
+}

@@ -3,6 +3,8 @@
 
 Monster::Monster(std::string monsterName) {
 
+	name = monsterName;
+
 	if (monsterName == "Goblin") {
 		strength = 3;
 		dexterity = 3;
@@ -14,7 +16,7 @@ Monster::Monster(std::string monsterName) {
 
 		groupCalculateSilent();
 	}
-	else if (monsterName == "Troll") {
+	else if (monsterName == "Insect") {
 		strength = 4;
 		dexterity = 3;
 		constitution = 3;
@@ -36,7 +38,7 @@ Monster::Monster(std::string monsterName) {
 
 		groupCalculateSilent();
 	}
-	else if (monsterName == "Adam the Almighty") {
+	else if (monsterName == "Adam the Strong") {
 		strength = 12;
 		dexterity = 6;
 		constitution = 8;
@@ -47,7 +49,7 @@ Monster::Monster(std::string monsterName) {
 
 		groupCalculateSilent();
 	}
-	else if (monsterName == "John the Jester") {
+	else if (monsterName == "John the Prankster") {
 		strength = 7;
 		dexterity = 8;
 		constitution = 11;
@@ -69,4 +71,61 @@ Monster::Monster(std::string monsterName) {
 
 		groupCalculateSilent();
 	}
+	else {
+		strength = 7;
+		dexterity = 15;
+		constitution = 10;
+		intelligence = 6;
+		wisdom = 6;
+		charisma = 15;
+		cs = new FriendlyStrategy();
+
+		groupCalculateSilent();
+	}
+
+	string classString = "";
+	
+	if (dynamic_cast<HumanPlayerStrategy*>(this->getStrategy()) != nullptr) {
+		classString = "Human Player";
+	}
+	else if (dynamic_cast<FriendlyStrategy*>(this->getStrategy()) != nullptr) {
+		classString = "Friendly";
+	}
+	else if (dynamic_cast<AggressorStrategy*>(this->getStrategy()) != nullptr) {
+		classString = "Aggressor";
+	}
+	else {
+		classString = "???";
+	}
+
+	classType = classString;
+					
+}
+
+vector<string>* Monster::getGridRepresentation()
+{
+
+	vector<string>* art;
+
+	if (name == "Insect")
+	{
+		art = new vector<string>(
+			{
+				R"( \ /\ / )",
+				R"( \{==}/ )",
+				R"(   ()   )",
+				R"( /{OO}\ )",
+			}
+		);
+	}
+	else
+	{
+		art = new vector<string>(
+			{ "   }{  |",
+			 "__{><}_+",
+			 "   []  |",
+			 R"(  /  \  )" });
+	}
+
+	return art;
 }

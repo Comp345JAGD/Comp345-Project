@@ -41,3 +41,18 @@ void Archer::groupCalculateSilent()
     addArcherBonusSilent();
     Character::groupCalculateSilent();
 }
+
+vector<string>* Archer::getGridRepresentation()
+{
+
+    vector<string>* art;
+
+    art = new vector<string>(
+        {
+         "  (oo) ^",
+       R"( //||\\|)",
+       R"(   /\  *)",
+       R"(  /__\  )" });
+
+    return art;
+}

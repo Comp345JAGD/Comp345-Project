@@ -467,3 +467,79 @@ CharacterStrategy *Character::getStrategy()
 {
 	return cs;
 }
+
+void Character::setStrategy(CharacterStrategy* strat) {
+	cs = strat;
+}
+
+
+void displayCharacters(std::vector<Character*>& characters)
+{
+	for (int i = 0; i < 8; i++)
+	{
+
+		for (int j = 0; j < characters.size(); j++)
+		{
+			if (j == 0) {
+
+				if (i == 0 || i == 7) {
+					std::cout << "+";
+				}
+				else {
+					std::cout << "|";
+				}
+
+			}
+
+			if (i == 0 || i == 7) {
+				std::cout << "---------------------------+";
+			}
+			else if (i == 1 || i == 6) {
+				std::cout << "                           |";
+			}
+			else { // i == 2, 3, 4, 5
+
+				vector<string>* art = dynamic_cast<Character*>(characters.at(j))->getGridRepresentation();
+
+				std::cout << "  " << art->at(i - 2) << "   ";
+
+				string info = "";
+
+				if (i == 2) {
+
+					info = characters.at(j)->getName();
+
+				}
+				else if (i == 3) {
+					info = characters.at(j)->getClassType();
+				}
+				else if (i == 4) {
+					info = "HP: " + std::to_string(characters.at(j)->getCurrentHealth()) + "/" + std::to_string(characters.at(j)->getHitPoints());
+				}
+				else if (i == 5) {
+					info = "Level: " + std::to_string(characters.at(j)->getLevel());
+
+				}
+
+				string padding = "";
+
+				int numPadding = 14 - info.length();
+
+				numPadding = numPadding >= 0 ? numPadding : 0;
+
+				for (int i = 0; i < numPadding; i++)
+				{
+					padding += " ";
+				}
+
+				std::cout << info << padding << "|";
+
+			}
+
+		}
+		std::cout << endl;
+
+	}
+
+	std::cout << endl;
+}

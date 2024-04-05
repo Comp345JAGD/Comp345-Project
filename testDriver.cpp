@@ -20,9 +20,9 @@ int main()
 
 
 
-	characterTestDriver();
+	//characterTestDriver();
 	//gameMapDriver();
-	//loadCampaignInterface();
+	loadCampaignInterface();
 
 	//gameLoopDriver();
 	

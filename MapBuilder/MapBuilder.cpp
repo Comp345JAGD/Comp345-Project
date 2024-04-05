@@ -80,17 +80,26 @@ GameMap* EditorMapBuilder::build() {
 
 			column = 0;
 			while (getline(cellStream, cell, ',')) {
+
+				//cout << cell << endl;
+
 				if (cell == "S") {
 					gameMap->setStartRow(row);
 					gameMap->setStartColumn(column);
 				}
-				else if ("E") {
+				else if (cell == "E") {
 					gameMap->setEndRow(row);
 					gameMap->setEndColumn(column);
 
 				}
-				else if ("W") {
+				else if (cell == "W") {
 					gameMap->setCell(row, column, new WallCell());
+				}
+				else if (cell == "A") {
+					gameMap->setCell(row, column, new Monster("Insect"));
+				}
+				else if (cell == "F") {
+					gameMap->setCell(row, column, new Monster("Goblin"));
 				}
 				column++;
 			}

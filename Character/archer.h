@@ -13,6 +13,7 @@ public:
     void addArcherBonusSilent();
     void groupedCalculate() override;
     void groupCalculateSilent() override;
+    virtual vector<string>* getGridRepresentation() override;
 };
 
 #endif // ARCHER_H

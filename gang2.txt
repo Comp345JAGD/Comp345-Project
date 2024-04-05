@@ -1,8 +1,7 @@
 Map1
 S,O,O,O,
-O,O,O,O,
-O,O,O,E,
+O,O,W,F,
+A,O,W,E,
 
 Map2
-S,O,O,O,E,
-
+S,O,A,O,E,
