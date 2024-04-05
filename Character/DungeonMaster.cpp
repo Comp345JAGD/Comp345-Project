@@ -7,7 +7,7 @@ void DungeonMaster::constructCharacter(string classType, string name)
 	produced_characterBuilder->build();
 }
 
-std::unique_ptr<Character> DungeonMaster::createCharType(std::string &classType, std::string &name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma)
+std::unique_ptr<Character> DungeonMaster::createCharType(std::string classType, std::string name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma)
 {
 	if (classType == "Fighter")
 		return std::make_unique<Fighter>(name, strength, dexterity, constitution, intelligence, wisdom, charisma);
@@ -65,15 +65,16 @@ std::vector<std::unique_ptr<Character>> DungeonMaster::loadCharacters()
 				name = line.substr(line.find(":") + 2);
 				continue;
 			}
-			if (line.substr(0, 5) == "Class")
+			else if (line.substr(0, 5) == "Class")
 			{
 				classType = line.substr(line.find(":") + 2);
 				continue;
 			}
-			if (line == "---")
+			if (line == "---")	
 			{
 				loadedCharacters.push_back(createCharType(classType, name, stats[0], stats[1], stats[2], stats[3], stats[4], stats[5]));
 				statsIndex = 0;
+				continue;
 			}
 			std::istringstream iss(line.substr(line.find(":") + 2));
 			iss >> stats[statsIndex++];
@@ -243,7 +244,7 @@ Character *DungeonMaster::creationMenu()
 	case 4:
 		cout << "Good choice! Now creating your Archer..."
 			<< "\n";
-		constructCharacter("Archer", inputName);
+		constructCharacter("", inputName);
 		break;
 	}
 
