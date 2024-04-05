@@ -1,0 +1,15 @@
+Name: Iron Sword
+Type: Weapon
+Enhancement: Strength
+Bouns: 1
+---
+Name: Leather Shield
+Type: Shield
+Enhancement: ArmorClass
+Bouns: 1
+---
+Name: Leather Armor
+Type: Armor
+Enhancement: ArmorClass
+Bonus: 2
+---
