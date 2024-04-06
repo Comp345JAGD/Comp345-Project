@@ -316,6 +316,9 @@ void selectCampaign() {
                     // fail go back to main menu
 
                 }
+
+                system("pause");
+
                
                 break;
             }
@@ -396,7 +399,6 @@ void selectCampaign() {
                 cout << "Error! The input you have tried is invalid. Please try again.\n";
                 break;
             }
-            system("pause");
         }
 
         file.close();
