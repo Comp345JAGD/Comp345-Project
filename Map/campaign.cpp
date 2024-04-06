@@ -3,6 +3,8 @@
 #include <iostream>
 #include <sstream>
 #include "../MapBuilder/MapBuilder.h"
+#include "../GameFileWriter.h"
+
 
 using namespace std;
 
@@ -183,6 +185,8 @@ void selectCampaign() {
     string filePath;
     GameMap targetMap(2, 2, 0, 0, 0, 0);
 
+    GameFileWriter Logger("Game_Log.txt");
+
     cout << "Input campaign name.\n";
     cin >> campaignName;
 
@@ -265,8 +269,10 @@ void selectCampaign() {
 
                     chosenCharacter = charArr.at(decision - 1).get();
                 }
+                
 
                 chosenCharacter->setStrategy(new HumanPlayerStrategy());
+                chosenCharacter->logAttach(&Logger);
 
                 cout << "\nLet's start the campaign!:\n\n";
 
@@ -288,13 +294,13 @@ void selectCampaign() {
                     
                     if (didPlayerWin) {
                         if (i == campaign.getNumMaps() - 1) {
-                            cout << "*** Congradulations, you finished the campaign! ***" << endl;
+                            cout << "*** Congratulations, you finished the campaign! ***" << endl;
                             system("pause");
                             break;
 
                         }
 
-                        cout << "\n*** Congradulations, you reached the end of the map! ***\n\n";
+                        cout << "\n*** Congratulations, you reached the end of the map! ***\n\n";
                         cout << "Press any key to continue to the next map. Press 'q' to quit.\n\n";
                         string inputStr;
                         cin >> inputStr;

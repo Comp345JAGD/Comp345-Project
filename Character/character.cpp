@@ -1,15 +1,19 @@
 #include "character.h"
 #include "CharacterStrategy.h"
 
-Character::Character() : name("NPC"), level(1), strength(0), dexterity(0), constitution(0), intelligence(0), wisdom(0), charisma(0)
+
+
+Character::Character() : name("NPC"), level(1), strength(0), dexterity(0), constitution(0), intelligence(0), wisdom(0), charisma(0), Logger("Game_log.txt")
 {
+
 }
 
-Character::Character(std::string name) : name(name), level(1), strength(0), dexterity(0), constitution(0), intelligence(0), wisdom(0), charisma(0)
+Character::Character(std::string name) : name(name), level(1), strength(0), dexterity(0), constitution(0), intelligence(0), wisdom(0), charisma(0), Logger("Game_log.txt")
 {
+
 }
 
-Character::Character(std::string inputName, int inputStrength, int inputDexterity, int inputConstitution, int inputIntelligence, int inputWisdom, int inputCharisma)
+Character::Character(std::string inputName, int inputStrength, int inputDexterity, int inputConstitution, int inputIntelligence, int inputWisdom, int inputCharisma) : Logger("Game_Log.txt")
 {
 	name = inputName;
 	strength = inputStrength;
@@ -19,12 +23,14 @@ Character::Character(std::string inputName, int inputStrength, int inputDexterit
 	wisdom = inputWisdom;
 	charisma = inputCharisma;
 	cs = new HumanPlayerStrategy();
+
 	groupCalculateSilent();
 }
 
-Character::Character(int level, CharacterStrategy *charStrat) : level(level), strength(8), dexterity(8), constitution(8), intelligence(8), wisdom(8), charisma(8), cs(charStrat)
+Character::Character(int level, CharacterStrategy *charStrat) : level(level), strength(8), dexterity(8), constitution(8), intelligence(8), wisdom(8), charisma(8), cs(charStrat), Logger("Game_log.txt")
 
-{
+{	
+	this->logAttach(&Logger);
 	groupedCalculate();
 }
 
@@ -451,6 +457,7 @@ int Character::attack()
 {
 	int dmg = 0;
 	dmg = dice.roll2("1d12") + attackBonus + damageBonus + 1;
+	log(this->getName() + " attacked for: " + to_string(dmg) + " damage.");
 	return dmg;
 }
 
@@ -459,7 +466,7 @@ int Character::attacked(int damage)
 	int damageTaken = damage - armorClass;
 	damageTaken = damageTaken > 0 ? damageTaken : 1;
 	currentHp = currentHp - damageTaken;
-
+	log(this->getName() + " took: " + to_string(damageTaken) + " damage and has current HP of: " + to_string(currentHp));
 	return damageTaken;
 }
 
