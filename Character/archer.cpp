@@ -29,3 +29,30 @@ void Archer::groupedCalculate()
     std::cout << "Here are your class bonuses:\n";
     displayScores3();
 }
+
+void Archer::addArcherBonusSilent()
+{
+    dexterity += 2;
+    charisma += 1;
+}
+
+void Archer::groupCalculateSilent()
+{
+    addArcherBonusSilent();
+    Character::groupCalculateSilent();
+}
+
+vector<string>* Archer::getGridRepresentation()
+{
+
+    vector<string>* art;
+
+    art = new vector<string>(
+        {
+         "  (oo) ^",
+       R"( //||\\|)",
+       R"(   /\  *)",
+       R"(  /__\  )" });
+
+    return art;
+}

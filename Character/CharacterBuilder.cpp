@@ -61,3 +61,4 @@ void tankCharacterBuilder::build()
 	produced_character->setCharisma(randomizedStats[4]);
 	produced_character->setWisdom(randomizedStats[5]);
 }
+

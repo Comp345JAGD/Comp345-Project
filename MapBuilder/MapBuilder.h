@@ -1,4 +1,5 @@
 #include "../Map/gameMap.h"
+#include "../Character/monster.h"
 #include <string>
 using namespace std;
 

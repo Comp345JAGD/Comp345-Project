@@ -11,6 +11,7 @@ public:
     Hunter(std::string inputName, int inputStrength, int inputDexterity, int inputConstitution, int inputIntelligence, int inputWisdom, int inputCharisma);
     void addHunterBonus();
     void groupedCalculate() override;
+    virtual vector<string>* getGridRepresentation() override;
 };
 
 #endif // HUNTER_H

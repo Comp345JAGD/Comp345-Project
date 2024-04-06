@@ -88,6 +88,7 @@
     <ClCompile>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>C:\Users\Geoffrey\source\repos\Comp345-Project\GameLogger</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -125,10 +126,10 @@
     <ClCompile Include="Character\CharacterStrategy.cpp" />
     <ClCompile Include="character\characterTestDriver.cpp" />
     <ClCompile Include="character\dice.cpp" />
+    <ClCompile Include="Character\doctor.cpp" />
     <ClCompile Include="Character\DungeonMaster.cpp" />
     <ClCompile Include="character\fighter.cpp" />
     <ClCompile Include="Character\hunter.cpp" />
-    <ClCompile Include="Character\magician.cpp" />
     <ClCompile Include="Character\monster.cpp" />
     <ClCompile Include="Character\Observer.cpp" />
     <ClCompile Include="Character\Player.cpp" />
@@ -136,8 +137,10 @@
     <ClCompile Include="dice\dice2.cpp" />
     <ClCompile Include="dice\diceTestDriver.cpp" />
     <ClCompile Include="GameController\GameLoop.cpp" />
+    <ClCompile Include="GameFileWriter.cpp" />
     <ClCompile Include="item\Item.cpp" />
     <ClCompile Include="item\itemTestDriver.cpp" />
+    <ClCompile Include="GameLogger.cpp" />
     <ClCompile Include="MapBuilder\MapBuilder.cpp" />
     <ClCompile Include="Map\campaign.cpp" />
     <ClCompile Include="map\cell.cpp" />
@@ -153,10 +156,10 @@
     <ClInclude Include="Character\CharacterStrategy.h" />
     <ClInclude Include="character\characterTestDriver.h" />
     <ClInclude Include="character\dice.h" />
+    <ClInclude Include="Character\doctor.h" />
     <ClInclude Include="Character\DungeonMaster.h" />
     <ClInclude Include="character\fighter.h" />
     <ClInclude Include="Character\hunter.h" />
-    <ClInclude Include="Character\magician.h" />
     <ClInclude Include="Character\monster.h" />
     <ClInclude Include="character\Observer.h" />
     <ClInclude Include="Character\Player.h" />
@@ -164,6 +167,9 @@
     <ClInclude Include="dice\dice2.h" />
     <ClInclude Include="dice\diceTestDriver.h" />
     <ClInclude Include="GameController\GameLoop.h" />
+    <ClInclude Include="GameFileWriter.h" />
+    <ClInclude Include="GameLogger.h" />
+    <ClInclude Include="GameObserver.h" />
     <ClInclude Include="item\Item.h" />
     <ClInclude Include="item\itemTestDriver.h" />
     <ClInclude Include="MapBuilder\MapBuilder.h" />

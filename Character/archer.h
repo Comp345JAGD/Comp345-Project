@@ -10,7 +10,10 @@ public:
     Archer(std::string name);
     Archer(std::string inputName, int inputStrength, int inputDexterity, int inputConstitution, int inputIntelligence, int inputWisdom, int inputCharisma);
     void addArcherBonus();
+    void addArcherBonusSilent();
     void groupedCalculate() override;
+    void groupCalculateSilent() override;
+    virtual vector<string>* getGridRepresentation() override;
 };
 
 #endif // ARCHER_H

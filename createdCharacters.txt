@@ -1,18 +1,45 @@
+Class: Doctor
+Name: Steven
+Strength: 12
+Dexterity: 18
+Constitution: 14
+Intelligence: 13
+Wisdom: 6
+Charisma: 11
+---
 Class: Fighter
-Name: david
-Strength: 18
+Name: John
+Strength: 19
 Dexterity: 16
 Constitution: 16
-Intelligence: 13
-Wisdom: 12
-Charisma: 12
----
-Class: Magician
-Name: david
-Strength: 14
-Dexterity: 15
-Constitution: 14
 Intelligence: 14
 Wisdom: 11
+Charisma: 13
+---
+Class: Archer
+Name: Adam
+Strength: 12
+Dexterity: 18
+Constitution: 14
+Intelligence: 11
+Wisdom: 7
 Charisma: 12
+---
+Class: Hunter
+Name: David
+Strength: 16
+Dexterity: 14
+Constitution: 14
+Intelligence: 11
+Wisdom: 10
+Charisma: 10
+---
+Class: Fighter
+Name: Geoff
+Strength: 14
+Dexterity: 17
+Constitution: 15
+Intelligence: 12
+Wisdom: 9
+Charisma: 11
 ---

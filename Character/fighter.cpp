@@ -73,3 +73,18 @@ void Fighter::groupCalculateSilent() {
 	addFighterBonusSilent();
 	Character::groupCalculateSilent();
 }
+
+
+vector<string>* Fighter::getGridRepresentation()
+{
+
+	vector<string>* art;
+
+	art = new vector<string>(
+		{ "  (oo) ^",
+		  "(-)||__|",
+		R"(   /\  |)",
+		  "  ()()  " });
+
+	return art;
+}

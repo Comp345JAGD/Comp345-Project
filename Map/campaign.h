@@ -1,6 +1,7 @@
 
 #pragma once
 #include "gameMap.h"
+#include "../Character/DungeonMaster.h"
 #include <iostream>
 #include <map>
 #include <vector>

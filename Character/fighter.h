@@ -16,7 +16,8 @@ public:
     void calculateAttackBonus() override;
     void calculateDamageBonus() override;
     void groupedCalculate() override;
-    void groupCalculateSilent()override;
+    void groupCalculateSilent() override;
+    virtual vector<string>* getGridRepresentation() override;
 };
 
 #endif // FIGHTER_H
