@@ -50,10 +50,40 @@ class Item
 protected:
     string name;
     Enhancement enhancement;
-
+    ItemType itemType;
 public:
     Item(string &itemName, EnhancementType enhancementType, int enhancementBonus)
         : name(itemName), enhancement({enhancementType, enhancementBonus}) {}
+
+    Item(const Item& other)
+        : name(other.name), enhancement(other.enhancement) {}
+
+     string toString(ItemType type) const {
+        switch (itemType) {
+        case ItemType::Helmet:
+            return "Helmet";
+            break;
+        case ItemType::Armor:
+            return "Armor";
+            break;
+        case ItemType::Shield:
+            return "Shield";
+            break;
+        case ItemType::Ring:
+            return "Ring";
+            break;
+        case ItemType::Belt:
+            return "Belt";
+            break;
+        case ItemType::Boots:
+            return "Boots";
+            break;
+        case ItemType::Weapon:
+            return "Weapon";
+            break;
+        }
+        return "Unknown";
+    }
 
     Enhancement getEnhancement() const
     {
@@ -66,7 +96,7 @@ public:
     {
         return name;
     }
-
+    virtual std::string toString() const = 0;
     virtual ~Item() {}
 };
 
@@ -80,6 +110,9 @@ public:
     {
         return ItemType::Helmet;
     }
+   string toString() const override {
+        return "Helmet";
+    }
 };
 
 class Armor : public Item
@@ -91,6 +124,9 @@ public:
     ItemType getItemType() const override
     {
         return ItemType::Armor;
+    }
+    string toString() const override {
+        return "Armor";
     }
 };
 
@@ -104,6 +140,9 @@ public:
     {
         return ItemType::Shield;
     }
+    string toString() const override {
+        return "Shield";
+    }
 };
 
 class Ring : public Item
@@ -115,6 +154,9 @@ public:
     ItemType getItemType() const override
     {
         return ItemType::Ring;
+    }
+    string toString() const override {
+        return "Ring";
     }
 };
 
@@ -128,6 +170,9 @@ public:
     {
         return ItemType::Belt;
     }
+    string toString() const override {
+        return "Belt";
+    }
 };
 
 class Boots : public Item
@@ -139,6 +184,9 @@ public:
     ItemType getItemType() const override
     {
         return ItemType::Boots;
+    }
+    string toString() const override {
+        return "Boots";
     }
 };
 
@@ -152,7 +200,9 @@ public:
     {
         return ItemType::Weapon;
     }
-
+    string toString() const override {
+        return "Weapon";
+    }
 };
 
 class ItemContainer
@@ -162,17 +212,17 @@ private:
 
 public:
     void displayInventory() const;
-    ItemType convertItemTypeFromString(const std::string& itemTypeStr); 
-    EnhancementType convertEnhancementTypeFromString(const std::string& enhancementTypeStr); 
-    Item* createItem(ItemType itemType, const std::string& itemName, EnhancementType enhancementType, int enhancementBonus); 
+    ItemType convertItemTypeFromString(string& itemTypeStr); 
+    EnhancementType convertEnhancementTypeFromString(string& enhancementTypeStr); 
+    Item* createItem(ItemType itemType, string& itemName, EnhancementType enhancementType, int enhancementBonus); 
     string toString(EnhancementType type) const;
-    vector<Item*> loadItemsFromFile(const std::string& filename);
+    void loadItemsFromFile(const std::string& filename);
     void addItem(ItemType itemType, string itemName, EnhancementType enhancementType, int enhancementBonus);
     void addItem(Item* item);
     void dropItem(Item *item);
-
+    Item* getItem(int index);
     vector<Item *> getItems(ItemType type) const;
-
+    void saveItemsToFile(const string& filename) const;
     ~ItemContainer();
 };
 
@@ -205,11 +255,17 @@ public:
     int getTotalDamageBonus();
     void displayScores2();
     void displayScores3();
+    void setInventory(const ItemContainer& newInventory);
+    ItemContainer getInventory();
 
- 
+   /* Item* getItemFromInventory(int index) const;
+    vector<Item*> getItems(ItemType type) const;
+    
+    */
 
     ~CharacterEquipment();
-};
+    
+    };
 
 
 

@@ -5,12 +5,16 @@ Bonus: 1
 ---
 Name: Leather Shield
 Type: Shield
-Enhancement: ArmorClass
+Enhancement: Armor Class
 Bonus: 1
 ---
 Name: Leather Armor
 Type: Armor
-Enhancement: ArmorClass
+Enhancement: Armor Class
 Bonus: 2
 ---
-
+Name: Intermediate Ring of Strength
+Type: Ring
+Enhancement: Strength
+Bonus: 2
+---
