@@ -111,7 +111,7 @@ void CharacterEquipment::equip(Item *item)
     std::cout << "Equipped " << item->getName() << " in slot " << static_cast<int>(itemType) << std::endl;
 }
 
-void CharacterEquipment::unequip(ItemType itemType)
+void CharacterEquipment::remove(ItemType itemType)
 {
     if (equipmentSlots[static_cast<size_t>(itemType)] != nullptr)
     {

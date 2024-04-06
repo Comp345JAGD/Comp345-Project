@@ -240,7 +240,7 @@ public:
     CharacterEquipment();
     CharacterEquipment(Character character);
     void equip(Item *item);
-    void unequip(ItemType itemType);
+    void remove(ItemType itemType);
     void displayWornItems() const;
     int calculateTotalBonus(EnhancementType type) const;
     void displayTotalGearBonuses() const;
