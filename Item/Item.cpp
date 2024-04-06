@@ -45,6 +45,8 @@ void ItemContainer::addItem(ItemType itemType, string itemName, EnhancementType 
     items.push_back(newItem);
 }
 
+
+
 void ItemContainer::dropItem(Item *item)
 {
     items.erase(std::remove(items.begin(), items.end(), item), items.end());
@@ -71,6 +73,7 @@ ItemContainer::~ItemContainer()
         delete item;
     }
 }
+
 
 bool CharacterEquipment::isSlotEmpty(ItemType slot) const
 {
@@ -159,6 +162,7 @@ void CharacterEquipment::displayTotalGearBonuses() const
     }
 }
 
+
 CharacterEquipment::~CharacterEquipment()
 {
     for (Item *item : equipmentSlots)
@@ -166,6 +170,7 @@ CharacterEquipment::~CharacterEquipment()
         delete item;
     }
 }
+
 
 int CharacterEquipment::getTotalStength() {
     return character.getStrength() + bonusesByType[EnhancementType::Strength];
@@ -261,50 +266,50 @@ std::string ItemContainer::toString(EnhancementType type) const
 }
 
 
-vector<Item*> ItemContainer::loadItemsFromFile(const string& filename) {
-    vector<Item*> loadedItems;
+void ItemContainer::loadItemsFromFile(const string& filename) {
     ifstream file(filename);
     string line, itemName, itemTypeStr, enhancementTypeStr;
-    int enhancementBonus;
+    int enhancementBonus = 1;
+    EnhancementType enhancementType = EnhancementType::Dexterity;
+    ItemType itemType = ItemType::Weapon;
 
     if (file.is_open()) {
-        ItemType itemType;
-        EnhancementType enhancementType;
-
         while (getline(file, line)) {
             if (line.substr(0, 4) == "Name") {
                 itemName = line.substr(line.find(":") + 2);
                 continue;
             }
-            else if (line.substr(0, 5) == "Type") {
+            else if (line.substr(0, 4) == "Type") {
                 itemTypeStr = line.substr(line.find(":") + 2);
                 itemType = convertItemTypeFromString(itemTypeStr);
                 continue;
             }
-            else if (line.substr(0, 10) == "Enhancement") {
+            else if (line.substr(0, 11) == "Enhancement") {
                 enhancementTypeStr = line.substr(line.find(":") + 2);
                 enhancementType = convertEnhancementTypeFromString(enhancementTypeStr);
                 continue;
             }
-            else if (line.substr(0, 6) == "Bonus") {
+            else if (line.substr(0, 5) == "Bonus") {
                 istringstream iss(line.substr(line.find(":") + 2));
                 iss >> enhancementBonus;
             }
 
             if (line == "---") {
-                loadedItems.push_back(createItem(itemType, itemName, enhancementType, enhancementBonus));
+                // Create Item object using createItem function and add it to the container
+                Item* newItem = createItem(itemType, itemName, enhancementType, enhancementBonus);
+                if (newItem != nullptr) {
+                    items.push_back(newItem);
+                }
             }
         }
     }
     else {
-        cerr << "Error opening file for reading.\n";
+        cerr << "Error opening file for reading." << endl;
     }
     file.close();
-
-    return loadedItems;
 }
 
-ItemType ItemContainer::convertItemTypeFromString(const std::string& itemTypeStr) {
+ItemType ItemContainer::convertItemTypeFromString(string& itemTypeStr) {
     if (itemTypeStr == "Helmet")
         return ItemType::Helmet;
     else if (itemTypeStr == "Armor")
@@ -324,7 +329,7 @@ ItemType ItemContainer::convertItemTypeFromString(const std::string& itemTypeStr
     }
 }
 
-EnhancementType ItemContainer::convertEnhancementTypeFromString(const std::string& enhancementTypeStr) {
+EnhancementType ItemContainer::convertEnhancementTypeFromString( string& enhancementTypeStr) {
     if (enhancementTypeStr == "Strength")
         return EnhancementType::Strength;
     else if (enhancementTypeStr == "Dexterity")
@@ -348,7 +353,7 @@ EnhancementType ItemContainer::convertEnhancementTypeFromString(const std::strin
     }
 }
 
-Item* ItemContainer::createItem(ItemType itemType, const std::string& itemName, EnhancementType enhancementType, int enhancementBonus) {
+Item* ItemContainer::createItem(ItemType itemType,  string& itemName, EnhancementType enhancementType, int enhancementBonus) {
     switch (itemType) {
     case ItemType::Helmet:
         return new Helmet(itemName, enhancementType, enhancementBonus);
@@ -369,3 +374,52 @@ Item* ItemContainer::createItem(ItemType itemType, const std::string& itemName, 
         return nullptr;
     }
 }
+
+void ItemContainer::saveItemsToFile(const string& filename) const {
+    ofstream file(filename);
+    if (file.is_open()) {
+        for (Item* item : items) {
+            file << "Name: " << item->getName() << endl;
+            file << "Type: " << item->toString() << endl;
+            file << "Enhancement: " << toString(item->getEnhancement().type) << endl;
+            file << "Bonus: " << item->getEnhancement().bonus << endl;
+            file << "---" << endl;
+        }
+        cout << "Items saved to file: " << filename << endl;
+    }
+    else {
+        cerr << "Error opening file for writing." << endl;
+    }
+    file.close();
+}
+
+Item* ItemContainer::getItem(int index) {
+    if (index >= 0 && index < items.size()) {
+        return items[index];
+    }
+    else {
+        return nullptr;
+    }
+}
+
+void CharacterEquipment::setInventory(const ItemContainer& newInventory) {
+    inventory = newInventory;
+}
+
+ItemContainer CharacterEquipment::getInventory() {
+    return inventory;
+}
+/*
+Item CharacterEquipment::getItemFromInventory(int index) const {
+    return inventory.getItem(index);
+}
+
+Item* CharacterEquipment::getItems(int index) {
+    if (index >= 0 && index < items.size()) {
+        return items[index];
+    }
+    else {
+        return nullptr;
+    }
+}
+*/

@@ -1,0 +1,15 @@
+Name: Iron Sword
+Type: Weapon
+Enhancement: Strength
+Bonus: 1
+---
+Name: Iron Shield
+Type: Helmet
+Enhancement: ArmorClass
+Bonus: 1
+---
+Name: Ring of Dexterity
+Type: Ring
+Enhancement: Dexterity
+Bonus: 1
+---

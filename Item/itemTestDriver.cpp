@@ -6,12 +6,16 @@ void itemTestDriver()
 	// Example usage
 	CharacterEquipment characterEquipment(character);
 	// Assume you have created instances of Helmet, Armor, Ring, etc.
-
 	// Equip items
+	
 	ItemContainer characterInventory;
-	characterInventory.addItem(new Helmet("Iron Helmet", EnhancementType::Intelligence, 2));
+	characterInventory.loadItemsFromFile("CharacterEquipment.txt");
+	//characterInventory.addItem(new Helmet("Iron Helmet", EnhancementType::Intelligence, 2));
 	characterInventory.displayInventory();
+	characterInventory.addItem(new Ring("Intermediate Ring of Strength", EnhancementType::Strength, 2));
+	characterInventory.saveItemsToFile("CharacterEquipmentSave.txt");
 
+	//characterEquipment.displayWornItems();
 	/*
 	characterEquipment.equip(new Helmet("Iron Helmet", EnhancementType::Intelligence, 2));
 	characterEquipment.equip(new Armor("Iron Armor", EnhancementType::ArmorClass, 3));
