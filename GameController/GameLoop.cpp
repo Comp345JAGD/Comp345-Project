@@ -3,11 +3,12 @@
 #include <string>
 using namespace std;
 
-GameLoop::GameLoop(GameMap* currentMap, Character* humanCharacter) {
+GameLoop::GameLoop(GameMap* currentMap, Character* humanCharacter) : Logger("Game_Log.txt") {
 	this->currentMap = currentMap;
     this->humanCharacter = humanCharacter;
 
     this->currentMap->setCell(currentMap->getStartRow(), currentMap->getStartColumn(), humanCharacter);
+    this->logAttach(&Logger);
 }
 
 void GameLoop::setHumanCharacter(Character* humanCharacter) {
@@ -24,7 +25,7 @@ bool GameLoop::play() {
 	while (true) {
         
         cout << "Turn Cycle: " << turnCycleNum << endl << endl;
-
+        
         currentMap->printInfoBar();
         currentMap->printMap();
         
@@ -95,9 +96,9 @@ void gameLoopDriver() {
 
     GameLoop gameLoop(gameMap, humanCharacter);
 
-    /*Logger gameLoopLog(&gameLoop);
+    
     string gameStarting = "Game Starting...\n";
-    gameLoop.logNotify(gameStarting);*/
+    gameLoop.log(gameStarting);
     
     bool didWin = gameLoop.play();
 

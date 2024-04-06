@@ -34,3 +34,12 @@ Intelligence: 11
 Wisdom: 10
 Charisma: 10
 ---
+Class: Fighter
+Name: Geoff
+Strength: 14
+Dexterity: 17
+Constitution: 15
+Intelligence: 12
+Wisdom: 9
+Charisma: 11
+---

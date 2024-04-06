@@ -87,10 +87,16 @@
     <ClCompile Include="Character\hunter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Character\magician.cpp">
+    <ClCompile Include="Character\monster.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Character\monster.cpp">
+    <ClCompile Include="Character\doctor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLogger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameFileWriter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -161,13 +167,22 @@
     <ClInclude Include="Character\archer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Character\magician.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Character\hunter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Character\monster.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Character\doctor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObserver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameFileWriter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

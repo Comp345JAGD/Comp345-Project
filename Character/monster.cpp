@@ -13,7 +13,8 @@ Monster::Monster(std::string monsterName) {
 		wisdom = 1;
 		charisma = 1;
 		cs = new FriendlyStrategy();
-
+		Logger = GameFileWriter("Game_Log.txt");
+		this->logAttach(&Logger);
 		groupCalculateSilent();
 	}
 	else if (monsterName == "Insect") {
@@ -24,7 +25,8 @@ Monster::Monster(std::string monsterName) {
 		wisdom = 1;
 		charisma = 1;
 		cs = new AggressorStrategy();
-
+		Logger = GameFileWriter("Game_Log.txt");
+		this->logAttach(&Logger);
 		groupCalculateSilent();
 	}
 	else if (monsterName == "Goblin Enforcer") {
@@ -35,7 +37,8 @@ Monster::Monster(std::string monsterName) {
 		wisdom = 1;
 		charisma = 1;
 		cs = new FriendlyStrategy();
-
+		Logger = GameFileWriter("Game_Log.txt");
+		this->logAttach(&Logger);
 		groupCalculateSilent();
 	}
 	else if (monsterName == "Adam the Strong") {
@@ -46,7 +49,8 @@ Monster::Monster(std::string monsterName) {
 		wisdom = 8;
 		charisma = 8;
 		cs = new FriendlyStrategy();
-
+		Logger = GameFileWriter("Game_Log.txt");
+		this->logAttach(&Logger);
 		groupCalculateSilent();
 	}
 	else if (monsterName == "John the Prankster") {
@@ -57,7 +61,8 @@ Monster::Monster(std::string monsterName) {
 		wisdom = 11;
 		charisma = 11;
 		cs = new FriendlyStrategy();
-
+		Logger = GameFileWriter("Game_Log.txt");
+		this->logAttach(&Logger);
 		groupCalculateSilent();
 	}
 	else if (monsterName == "David the Dragonknight") {
@@ -68,7 +73,8 @@ Monster::Monster(std::string monsterName) {
 		wisdom = 6;
 		charisma = 15;
 		cs = new FriendlyStrategy();
-
+		Logger = GameFileWriter("Game_Log.txt");
+		this->logAttach(&Logger);
 		groupCalculateSilent();
 	}
 	else {
@@ -79,7 +85,8 @@ Monster::Monster(std::string monsterName) {
 		wisdom = 6;
 		charisma = 15;
 		cs = new FriendlyStrategy();
-
+		Logger = GameFileWriter("Game_Log.txt");
+		this->logAttach(&Logger);
 		groupCalculateSilent();
 	}
 

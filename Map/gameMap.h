@@ -15,12 +15,14 @@
 
 #include "cell.h"
 #include "../SubjectObserver/subjectObserver.h"
+#include "GameLogger.h"
+#include "GameFileWriter.h"
 // #include "logSubject.h"
 
 #ifndef GAMEMAP_H
 #define GAMEMAP_H
 
-class GameMap : public BSubject //, public logSubject
+class GameMap : public BSubject , public GameLogger
 {
 private:
     IGridCell ***grid; // 2d array
@@ -32,6 +34,7 @@ private:
     int endColumn;
     bool dfsCanGetMapEnd(int row, int column, bool **isVisited);
     int bfsMinStepsToTarget(int subjectRow, int subjectColumn, int targetRow, int targetColumn, int originalRow, int originalColumn);
+    GameFileWriter Logger;
 
 public:
     GameMap(

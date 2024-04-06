@@ -1,0 +1,38 @@
+Creating a 2x2 map.
+Creating a 2x2 map.
+Creating a 2x2 map.
+Creating a 3x4 map.
+Creating a 1x5 map.
+Geoff turn starting...
+Geoff moved to position: [0][1].
+Geoff turn ended.
+Goblin turn starting...
+Goblin moved to position: [0][3].
+Insect turn starting...
+Insect moved to position: [1][0].
+Insect turn ended.
+Geoff turn starting...
+Geoff moved to position: [0][2].
+Geoff turn ended.
+Goblin turn starting...
+Goblin moved to position: [0][3].
+Insect turn starting...
+Insect moved to position: [0][0].
+Insect turn ended.
+Insect turn starting...
+Insect moved to position: [0][1].
+Insect turn ended.
+Geoff turn starting...
+The 1d12 Rolled: 6on the #1 roll.
+
+Geoff attacked for: 9 damage.
+Insect took: 2 and has current HP of: 5
+Geoff turn ended.
+Goblin turn starting...
+Goblin moved to position: [0][3].
+Insect turn starting...
+The 1d12 Rolled: 1on the #1 roll.
+
+Insect attacked for: 4 damage.
+Geoff took: 1 and has current HP of: 11
+Insect turn ended.

@@ -88,6 +88,7 @@
     <ClCompile>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>C:\Users\Geoffrey\source\repos\Comp345-Project</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -136,8 +137,10 @@
     <ClCompile Include="dice\dice2.cpp" />
     <ClCompile Include="dice\diceTestDriver.cpp" />
     <ClCompile Include="GameController\GameLoop.cpp" />
+    <ClCompile Include="GameFileWriter.cpp" />
     <ClCompile Include="item\Item.cpp" />
     <ClCompile Include="item\itemTestDriver.cpp" />
+    <ClCompile Include="GameLogger.cpp" />
     <ClCompile Include="MapBuilder\MapBuilder.cpp" />
     <ClCompile Include="Map\campaign.cpp" />
     <ClCompile Include="map\cell.cpp" />
@@ -164,6 +167,9 @@
     <ClInclude Include="dice\dice2.h" />
     <ClInclude Include="dice\diceTestDriver.h" />
     <ClInclude Include="GameController\GameLoop.h" />
+    <ClInclude Include="GameFileWriter.h" />
+    <ClInclude Include="GameLogger.h" />
+    <ClInclude Include="GameObserver.h" />
     <ClInclude Include="item\Item.h" />
     <ClInclude Include="item\itemTestDriver.h" />
     <ClInclude Include="MapBuilder\MapBuilder.h" />

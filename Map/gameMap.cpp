@@ -57,20 +57,26 @@ GameMap::GameMap(
     int startRow,
     int startColumn,
     int endRow,
-    int endColumn)
+    int endColumn) : Logger("Game_Log.txt")
 {
     this->numRows = numRows;
     this->numColumns = numColumns;
+
+    
 
     if (isOutOfBounds(startRow, startColumn) || isOutOfBounds(endRow, endColumn))
     {
         throw std::invalid_argument("start or end cell is out of bounds.");
     }
 
+    this->logAttach(&Logger);
+
     this->startRow = startRow;
     this->startColumn = startColumn;
     this->endRow = endRow;
     this->endColumn = endColumn;
+
+    this->log("Creating a " + to_string(numRows) + "x" + to_string(numColumns) + " map.");
 
     grid = new IGridCell **[numRows];
 

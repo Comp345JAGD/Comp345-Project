@@ -5,9 +5,12 @@ void FriendlyStrategy::execute(Character *character, GameMap *map)
 
     string info = "";
     
+    character->log(character->getName() + " turn starting...");
+
     if (character->getCurrentHealth() <= 0) {
         map->setCell(character->getRow(), character->getColumn(), new EmptyCell()); // change to chest later
         info += character->getName() + " ELIMINATED!";
+        character->log("Player killed " + character->getName() + ".");
 
         system("CLS");
         map->printInfoBar();
@@ -52,6 +55,7 @@ void FriendlyStrategy::execute(Character *character, GameMap *map)
         {
 
             didMove = map->moveOneCellTowardsTarget(character->getRow(), character->getColumn(), playerRow, playerCol);
+            character->log(character->getName() + " moved to position: [" + to_string(character->getRow()) + "][" + to_string(character->getColumn()) + "].");
         }
 
         // clear HERE, and wait for user input in map
@@ -70,12 +74,15 @@ void FriendlyStrategy::execute(Character *character, GameMap *map)
 }
 
 void AggressorStrategy::execute(Character *character, GameMap *map)
-{
+{   
+    character->log(character->getName() + " turn starting...");
 
     if (character->getCurrentHealth() <= 0) {
         map->setCell(character->getRow(), character->getColumn(), new EmptyCell()); // change to chest later
         string info = "";
         info += character->getName() + " ELIMINATED!";
+        character->log("Player killed " + character->getName() + ".");
+        
 
         system("CLS");
         map->printInfoBar();
@@ -145,12 +152,14 @@ void AggressorStrategy::execute(Character *character, GameMap *map)
     {
         info = character->getName() + " moved!";
         map->moveOneCellTowardsTarget(character->getRow(), character->getColumn(), playerRow, playerCol);
+        character->log(character->getName() + " moved to position: [" + to_string(character->getRow()) + "][" + to_string(character->getColumn()) + "].");
     }
 
     system("CLS");
     map->printInfoBar();
     map->printMap();
     std::cout << character->getName() + " TURN\n\n" << info << endl << endl;
+    character->log(character->getName() + " turn ended.");
 }
 
 void HumanPlayerStrategy::execute(Character *character, GameMap *map)
@@ -167,7 +176,7 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
         int decision;
         bool validity = false;
 
-        // character->logNotify("Player turn starting...");
+        character->log(character->getName() + " turn starting...");
 
         std::cout << "YOUR TURN\n\nPlease choose an action:\n";
 
@@ -293,6 +302,7 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
                     }
                     else {
                         info = "You moved!";
+                        character->log(character->getName() + " moved to position: [" + to_string(targetRow) + "][" + to_string(targetColumn) + "].");
                         isDecisionDone = true;
                         moveDone = true;
                     }
@@ -445,4 +455,5 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
     map->printInfoBar();
     map->printMap();
     std::cout << info << endl << endl;
+    character->log(character->getName() + " turn ended.");
 }

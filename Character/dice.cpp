@@ -3,12 +3,13 @@
 #include <ctime>
 #include <string>
 
-Dice::Dice()
+Dice::Dice() : Logger("Game_Log.txt")
 {
     std::srand(std::time(nullptr));
+    this->logAttach(&Logger);
 }
 
-int Dice::roll(const std::string &notation)
+int Dice::roll(const std::string &notation) 
 {
     int x, y, z = 0;
 
@@ -53,8 +54,8 @@ int Dice::roll2(const std::string &notation)
         {
             int thisRoll = 0;
             thisRoll = rand() % y + 1;
-            std::string rollMsg = "The " + notation + " Rolled: " + std::to_string(thisRoll) +"on the #" + std::to_string(i+1) + " roll.\n";
-            //this->logNotify(rollMsg);
+            std::string rollMsg = "The " + notation + " Rolled: " + std::to_string(thisRoll) +" on the #" + std::to_string(i+1) + " roll.";
+            this->log(rollMsg);
             sum += thisRoll;
         }
 

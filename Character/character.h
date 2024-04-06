@@ -7,13 +7,14 @@
 #include <limits>
 #include "dice.h"
 #include "Subject.h"
-// #include "../Logger/logSubject.h"
+#include "GameLogger.h"
+#include "GameFileWriter.h"
 // #include "CharacterStrategy.h"
 #include "../Map/cell.h"
 
 class CharacterStrategy; // https://stackoverflow.com/a/15782499
 
-class Character : public Subject, public IGridCell //, public logSubject
+class Character : public Subject, public IGridCell , public GameLogger
 {
 public:
     Character();
@@ -87,6 +88,7 @@ protected:
     CharacterStrategy *cs;
     std::string name;
     std::string classType;
+    GameFileWriter Logger;
 };
 
 void displayCharacters(std::vector<Character*>& characters);

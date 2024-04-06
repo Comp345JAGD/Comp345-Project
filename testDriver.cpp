@@ -15,6 +15,8 @@
 
 int main()
 {
+	GameFileWriter masterLog("Game_Log.txt");
+	masterLog.newLog();
 	//itemTestDriver();
 	// diceTestDriver();
 
