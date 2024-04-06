@@ -3,7 +3,8 @@
 #include <iostream>
 #include <sstream>
 #include "../MapBuilder/MapBuilder.h"
-#include "GameFileWriter.h"
+#include "../GameFileWriter.h"
+
 
 using namespace std;
 

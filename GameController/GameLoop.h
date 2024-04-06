@@ -2,8 +2,8 @@
 #include "../Map/gameMapDriver.h"
 #include "../Character/character.h"
 #include "../Character/CharacterStrategy.h"
-#include "GameLogger.h"
-#include "GameFileWriter.h"
+#include "../GameLogger.h"
+#include "../GameFileWriter.h"
 //#include "logSubject.h"
 //#include "Logger.h"
 

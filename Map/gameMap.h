@@ -15,8 +15,8 @@
 
 #include "cell.h"
 #include "../SubjectObserver/subjectObserver.h"
-#include "GameLogger.h"
-#include "GameFileWriter.h"
+#include "../GameLogger.h"
+#include "../GameFileWriter.h"
 // #include "logSubject.h"
 
 #ifndef GAMEMAP_H

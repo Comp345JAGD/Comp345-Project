@@ -3,8 +3,8 @@
 
 #include <string>
 #include <iostream>
-#include "GameLogger.h"
-#include "GameFileWriter.h"
+#include "../GameLogger.h"
+#include "../GameFileWriter.h"
 //#include "../Logger/logSubject.h"
 
 class Dice : public GameLogger

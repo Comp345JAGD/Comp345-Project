@@ -88,7 +88,7 @@
     <ClCompile>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>C:\Users\Geoffrey\source\repos\Comp345-Project</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Geoffrey\source\repos\Comp345-Project\GameLogger</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

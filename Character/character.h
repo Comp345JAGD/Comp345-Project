@@ -7,8 +7,8 @@
 #include <limits>
 #include "dice.h"
 #include "Subject.h"
-#include "GameLogger.h"
-#include "GameFileWriter.h"
+#include "../GameLogger.h"
+#include "../GameFileWriter.h"
 // #include "CharacterStrategy.h"
 #include "../Map/cell.h"
 
