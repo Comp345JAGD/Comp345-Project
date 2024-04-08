@@ -101,6 +101,9 @@ GameMap* EditorMapBuilder::build() {
 				else if (cell == "F") {
 					gameMap->setCell(row, column, new Monster("Goblin"));
 				}
+				else if (cell == "C") {
+					gameMap->setCell(row, column, new ChestCell());
+				}
 				column++;
 			}
 			row++;
