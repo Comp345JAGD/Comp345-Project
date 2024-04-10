@@ -454,6 +454,7 @@ void CharacterEquipment::addInventory(ItemContainer& otherInventory)
 
     for (Item* item : otherItems)
     {
+        cout << "Obtained " << item->getName() << "!" << endl;
         addItem(item);
     }
 }

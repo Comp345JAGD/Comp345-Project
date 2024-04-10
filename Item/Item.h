@@ -56,7 +56,7 @@ public:
         : name(itemName), enhancement({enhancementType, enhancementBonus}) {}
 
     Item(const Item& other)
-        : name(other.name), enhancement(other.enhancement) {}
+        : name(other.name), enhancement(other.enhancement) {};
 
      string toString(ItemType type) const {
         switch (itemType) {
