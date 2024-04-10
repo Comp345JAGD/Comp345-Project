@@ -109,6 +109,11 @@ Monster::Monster(std::string monsterName) {
 					
 }
 
+void Monster::calculateArmorClass() {
+
+	armorClass = 5 + (dexterity - 10) / 2;
+}
+
 vector<string>* Monster::getGridRepresentation()
 {
 
