@@ -207,9 +207,8 @@ public:
 
 class ItemContainer
 {
-private:
+protected:
     vector<Item *> items;
-
 public:
     void displayInventory() const;
     ItemType convertItemTypeFromString(string& itemTypeStr); 
@@ -221,6 +220,7 @@ public:
     void addItem(Item* item);
     void dropItem(Item *item);
     Item* getItem(int index);
+    vector<Item*> getItems();
     vector<Item *> getItems(ItemType type) const;
     void saveItemsToFile(const string& filename) const;
     ~ItemContainer();
@@ -228,10 +228,10 @@ public:
 
 class CharacterEquipment :public Character,ItemContainer
 {
-private:
+protected:
     Character character;
     vector<Item *> equipmentSlots;
-    ItemContainer inventory;
+    vector<Item*> inventory;
     map<EnhancementType, int> bonusesByType;
 
     bool isSlotEmpty(ItemType slot) const;
@@ -239,6 +239,10 @@ private:
 public:
     CharacterEquipment();
     CharacterEquipment(Character character);
+ 
+    void addInventory( ItemContainer& otherInventory);
+    void displayInventory() const;
+    void addItem(Item* item);
     void equip(Item *item);
     void remove(ItemType itemType);
     void displayWornItems() const;

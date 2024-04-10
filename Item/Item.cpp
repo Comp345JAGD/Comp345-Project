@@ -3,6 +3,11 @@ void ItemContainer::addItem(Item *newItem) {
     
     items.push_back(newItem);
 }
+
+void CharacterEquipment::addItem(Item* newItem) {
+
+    inventory.push_back(newItem);
+}
 void ItemContainer::addItem(ItemType itemType, string itemName, EnhancementType enhancementType, int enhancementBonus)
 {
     Item *newItem = nullptr;
@@ -169,6 +174,7 @@ CharacterEquipment::~CharacterEquipment()
     {
         delete item;
     }
+
 }
 
 
@@ -226,10 +232,29 @@ void ItemContainer::displayInventory() const
         std::cout << "Inventory is empty." << std::endl;
         return;
     }
-
-    std::cout << "===========================" << std::endl;
+    cout << "         Inventory         "<<endl;
+    cout << "===========================" << std::endl;
     int index = 1;
     for (Item* item : items)
+    {
+        std::cout << index << ". ";
+        std::cout << "+" << item->getEnhancement().bonus << " " << item->getName() << " (" << toString(item->getEnhancement().type) << ")" << std::endl;
+        index++;
+    }
+    std::cout << "===========================" << std::endl;
+}
+
+void CharacterEquipment::displayInventory() const
+{
+    if (inventory.empty())
+    {
+        std::cout << "Inventory is empty." << std::endl;
+        return;
+    }
+    cout << "         Inventory         " << endl;
+    std::cout << "===========================" << std::endl;
+    int index = 1;
+    for (Item* item : inventory)
     {
         std::cout << index << ". ";
         std::cout << "+" << item->getEnhancement().bonus << " " << item->getName() << " (" << toString(item->getEnhancement().type) << ")" << std::endl;
@@ -402,12 +427,18 @@ Item* ItemContainer::getItem(int index) {
     }
 }
 
-void CharacterEquipment::setInventory(const ItemContainer& newInventory) {
-    inventory = newInventory;
-}
+void CharacterEquipment::addInventory( ItemContainer& otherInventory)
+{
+    vector<Item*> otherItems = otherInventory.getItems();
 
-ItemContainer CharacterEquipment::getInventory() {
-    return inventory;
+    for (Item* item : otherItems)
+    {
+       addItem(item);
+    }
+}
+vector<Item*> ItemContainer::getItems()
+{
+    return items;
 }
 /*
 Item CharacterEquipment::getItemFromInventory(int index) const {
