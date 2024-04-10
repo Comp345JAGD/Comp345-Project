@@ -269,5 +269,21 @@ public:
     };
 
 
+class Chest : public ItemContainer {
+protected:
+    int index;
+    vector<ItemContainer*> containers;
+public:
+    Chest();
+    ItemContainer* getItemContainer(int index) const;
+    void loadContainers();
+    ~Chest() {
+        for (auto container : containers) {
+            delete container;
+        }
+    }
+
+
+};
 
 #endif // ITEM_H

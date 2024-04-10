@@ -9,15 +9,13 @@ void itemTestDriver()
 	// Equip items
 	
 	ItemContainer characterInventory;
+	Chest chest;
 	characterInventory.loadItemsFromFile("CharacterEquipment.txt");
-	//characterInventory.addItem(new Helmet("Iron Helmet", EnhancementType::Intelligence, 2));
-	characterInventory.displayInventory();
 	characterInventory.addItem(new Ring("Intermediate Ring of Strength", EnhancementType::Strength, 2));
-	
 	characterEquipment.addInventory(characterInventory);
+	characterEquipment.addInventory(*chest.getItemContainer(0));
 	characterEquipment.displayInventory();
 	characterEquipment.equip(characterInventory.getItem(2));
-	characterEquipment.displayInventory();
 	characterEquipment.displayWornItems();
 
 

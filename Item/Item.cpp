@@ -496,3 +496,53 @@ string ItemContainer::toString(ItemType type) {
         return "Unknown";
     }
 }
+
+Chest::Chest() {
+    containers.push_back(new ItemContainer());
+    containers[0]->addItem(ItemType::Weapon, "Iron Dagger", EnhancementType::Strength, 1);
+    containers[0]->addItem(ItemType::Weapon, "Wooden Staff", EnhancementType::Intelligence, 1);
+
+    containers.push_back(new ItemContainer());
+    containers[1]->addItem(ItemType::Boots, "Leather Boots", EnhancementType::ArmorClass, 1);
+
+    containers.push_back(new ItemContainer());
+    containers[2]->addItem(ItemType::Helmet, "Leather Helmet", EnhancementType::Dexterity, 1);
+
+    containers.push_back(new ItemContainer());
+    containers[3]->addItem(ItemType::Ring, "Ring of Strength", EnhancementType::Strength, 2);
+    containers[3]->addItem(ItemType::Ring, "Ring of Intelligence", EnhancementType::Intelligence, 2);
+
+    containers.push_back(new ItemContainer());
+    containers[4]->addItem(ItemType::Shield, "Iron Studded Shield", EnhancementType::ArmorClass, 2);
+
+    containers.push_back(new ItemContainer());
+    containers[5]->addItem(ItemType::Weapon, "Silver Sword", EnhancementType::Strength, 3);
+
+    containers.push_back(new ItemContainer());
+    containers[6]->addItem(ItemType::Armor, "Steel Plated Armor", EnhancementType::ArmorClass, 4);
+
+    containers.push_back(new ItemContainer());
+    containers[7]->addItem(ItemType::Shield, "Steel Plated Shield", EnhancementType::ArmorClass, 3);
+
+    containers.push_back(new ItemContainer());
+    containers[8]->addItem(ItemType::Weapon, "Staff of Piercing", EnhancementType::Intelligence, 5);
+
+    containers.push_back(new ItemContainer());
+    containers[9]->addItem(ItemType::Weapon, "Master Sword", EnhancementType::Strength, 5);
+
+    containers.push_back(new ItemContainer());
+    containers[10]->addItem(ItemType::Boots, "Boots of Swiftness", EnhancementType::Dexterity, 5);
+}
+void Chest::loadContainers() {
+
+
+}
+
+ItemContainer* Chest::getItemContainer(int index) const {
+    if (index >= 0 && index < containers.size()) {
+        return containers[index];
+    }
+    else {
+        return nullptr;
+    }
+}
