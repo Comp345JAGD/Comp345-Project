@@ -215,6 +215,7 @@ public:
     EnhancementType convertEnhancementTypeFromString(string& enhancementTypeStr); 
     Item* createItem(ItemType itemType, string& itemName, EnhancementType enhancementType, int enhancementBonus); 
     string toString(EnhancementType type) const;
+    string toString(ItemType type);
     void loadItemsFromFile(const std::string& filename);
     void addItem(ItemType itemType, string itemName, EnhancementType enhancementType, int enhancementBonus);
     void addItem(Item* item);
@@ -233,18 +234,20 @@ protected:
     vector<Item *> equipmentSlots;
     vector<Item*> inventory;
     map<EnhancementType, int> bonusesByType;
-
     bool isSlotEmpty(ItemType slot) const;
 
 public:
     CharacterEquipment();
     CharacterEquipment(Character character);
  
+    Item* getItem(int index);
     void addInventory( ItemContainer& otherInventory);
     void displayInventory() const;
     void addItem(Item* item);
     void equip(Item *item);
+    void equip(int index);
     void remove(ItemType itemType);
+    void remove(int index);
     void displayWornItems() const;
     int calculateTotalBonus(EnhancementType type) const;
     void displayTotalGearBonuses() const;
@@ -259,13 +262,7 @@ public:
     int getTotalDamageBonus();
     void displayScores2();
     void displayScores3();
-    void setInventory(const ItemContainer& newInventory);
-    ItemContainer getInventory();
 
-   /* Item* getItemFromInventory(int index) const;
-    vector<Item*> getItems(ItemType type) const;
-    
-    */
 
     ~CharacterEquipment();
     

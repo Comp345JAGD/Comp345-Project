@@ -13,12 +13,12 @@ void itemTestDriver()
 	//characterInventory.addItem(new Helmet("Iron Helmet", EnhancementType::Intelligence, 2));
 	characterInventory.displayInventory();
 	characterInventory.addItem(new Ring("Intermediate Ring of Strength", EnhancementType::Strength, 2));
-	characterEquipment.addItem(new Ring("Intermediate Ring of Strength", EnhancementType::Strength, 2));
-
+	
 	characterEquipment.addInventory(characterInventory);
 	characterEquipment.displayInventory();
-
-
+	characterEquipment.equip(characterInventory.getItem(2));
+	characterEquipment.displayInventory();
+	characterEquipment.displayWornItems();
 
 
 	//characterEquipment.displayWornItems();
