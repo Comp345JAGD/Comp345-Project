@@ -1,0 +1,115 @@
+The 1d6 Rolled: 5 on the #1 roll.
+The 1d6 Rolled: 2 on the #1 roll.
+The 1d6 Rolled: 6 on the #1 roll.
+The 1d6 Rolled: 3 on the #1 roll.
+The 1d6 Rolled: 4 on the #1 roll.
+The 1d6 Rolled: 3 on the #1 roll.
+The 1d6 Rolled: 4 on the #1 roll.
+The 1d6 Rolled: 3 on the #1 roll.
+The 1d6 Rolled: 2 on the #1 roll.
+The 1d6 Rolled: 3 on the #1 roll.
+The 1d6 Rolled: 6 on the #1 roll.
+The 1d6 Rolled: 3 on the #1 roll.
+The 1d6 Rolled: 1 on the #1 roll.
+The 1d6 Rolled: 2 on the #1 roll.
+The 1d6 Rolled: 2 on the #1 roll.
+The 1d6 Rolled: 5 on the #1 roll.
+The 1d6 Rolled: 5 on the #1 roll.
+The 1d6 Rolled: 4 on the #1 roll.
+The 1d6 Rolled: 1 on the #1 roll.
+The 1d6 Rolled: 4 on the #1 roll.
+The 1d6 Rolled: 5 on the #1 roll.
+The 1d6 Rolled: 3 on the #1 roll.
+The 1d6 Rolled: 1 on the #1 roll.
+The 1d6 Rolled: 2 on the #1 roll.
+Creating a 2x2 map.
+Creating a 3x4 map.
+Creating a 1x5 map.
+david2 turn starting...
+david2 moved to position: [0][1].
+david2 turn ended.
+Goblin turn starting...
+Goblin moved to position: [0][3].
+Insect turn starting...
+Insect moved to position: [1][0].
+Insect turn ended.
+david2 turn starting...
+The 1d12 Rolled: 4 on the #1 roll.
+david2 attacked for: 7 damage.
+Insect took: 1 damage and has current HP of: 6
+david2 turn ended.
+Goblin turn starting...
+Goblin moved to position: [0][2].
+Insect turn starting...
+Insect moved to position: [0][0].
+Insect turn ended.
+Insect turn starting...
+The 1d12 Rolled: 11 on the #1 roll.
+Insect attacked for: 14 damage.
+david2 took: 1 damage and has current HP of: 10
+Insect turn ended.
+david2 turn starting...
+The 1d12 Rolled: 3 on the #1 roll.
+david2 attacked for: 6 damage.
+Insect took: 1 damage and has current HP of: 5
+david2 turn ended.
+Goblin turn starting...
+Goblin moved to position: [0][2].
+Insect turn starting...
+The 1d12 Rolled: 8 on the #1 roll.
+Insect attacked for: 11 damage.
+david2 took: 1 damage and has current HP of: 9
+Insect turn ended.
+david2 turn starting...
+The 1d12 Rolled: 2 on the #1 roll.
+david2 attacked for: 5 damage.
+Insect took: 1 damage and has current HP of: 4
+david2 turn ended.
+Goblin turn starting...
+Goblin moved to position: [0][2].
+Insect turn starting...
+The 1d12 Rolled: 3 on the #1 roll.
+Insect attacked for: 6 damage.
+david2 took: 1 damage and has current HP of: 8
+Insect turn ended.
+david2 turn starting...
+The 1d12 Rolled: 3 on the #1 roll.
+david2 attacked for: 6 damage.
+Insect took: 1 damage and has current HP of: 3
+david2 turn ended.
+Goblin turn starting...
+Goblin moved to position: [0][2].
+Insect turn starting...
+The 1d12 Rolled: 5 on the #1 roll.
+Insect attacked for: 8 damage.
+david2 took: 1 damage and has current HP of: 7
+Insect turn ended.
+david2 turn starting...
+The 1d12 Rolled: 9 on the #1 roll.
+david2 attacked for: 12 damage.
+Insect took: 5 damage and has current HP of: -2
+david2 turn ended.
+Goblin turn starting...
+Goblin moved to position: [0][2].
+Insect turn starting...
+Player killed Insect.
+david2 turn starting...
+The 1d12 Rolled: 10 on the #1 roll.
+david2 attacked for: 13 damage.
+Goblin took: 6 damage and has current HP of: 0
+david2 turn ended.
+Goblin turn starting...
+Player killed Goblin.
+david2 turn starting...
+david2 moved to position: [0][2].
+david2 turn ended.
+david2 turn starting...
+david2 moved to position: [0][3].
+david2 turn ended.
+david2 turn starting...
+david2 moved to position: [1][3].
+david2 turn ended.
+david2 turn starting...
+david2 moved to position: [2][3].
+david2 turn ended.
+The 1d12 Rolled: 3 on the #1 roll.

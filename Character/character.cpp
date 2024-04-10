@@ -329,7 +329,7 @@ void Character::calculateHitPoints()
 
 void Character::calculateArmorClass()
 {
-	armorClass = 10 + (dexterity - 10) / 2;
+	armorClass = 5 + (dexterity - 10) / 2;
 
 	notify(aClass, armorClass);
 }
@@ -455,8 +455,7 @@ int Character::getCurrentHealth()
 
 int Character::attack()
 {
-	int dmg = 0;
-	dmg = dice.roll2("1d12") + attackBonus + damageBonus + 1;
+	int dmg = dice.roll2("1d12") + attackBonus + damageBonus + 1;
 	log(this->getName() + " attacked for: " + to_string(dmg) + " damage.");
 	return dmg;
 }
