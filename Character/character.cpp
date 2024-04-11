@@ -549,3 +549,11 @@ void displayCharacters(std::vector<Character*>& characters)
 
 	std::cout << endl;
 }
+
+int Character::getChestEncountered() {
+	return chestEncountered;
+}
+
+void Character::addChestEncountered() {
+	chestEncountered++;
+}

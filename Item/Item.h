@@ -271,7 +271,6 @@ public:
 
 class Chest : public ItemContainer {
 protected:
-    int index;
     vector<ItemContainer*> containers;
 public:
     Chest();

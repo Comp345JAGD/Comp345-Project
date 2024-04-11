@@ -1,5 +1,9 @@
 #include "CharacterStrategy.h"
 
+
+Chest chest;
+int chestEnocuntered = 0;
+
 void FriendlyStrategy::execute(Character *character, GameMap *map)
 {
 
@@ -174,6 +178,7 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
     system("CLS");
     map->printInfoBar();
     map->printMap();
+  
 
     string info = "";
     bool moveDone = false;
@@ -188,11 +193,11 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
 
         while (!validity)
         {
-            std::cout << "1. Move\n2. Attack\n3. Free Action\n4. Loot Chest" << endl;
+            std::cout << "1. Move\n2. Attack\n3. Free Action\n4. Loot Chest\n5. Open Inventory" << endl;
 
             if (std::cin >> decision)
             {
-                if (decision >= 1 && decision <= 4)
+                if (decision >= 1 && decision <= 5)
                     validity = true;
                 else
                     std::cout << "Invalid integer, please enter a number between 1 and 4.\n";
@@ -453,6 +458,7 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
 
             break;
         }
+        
         case 4:
         {
 
@@ -475,20 +481,16 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
 
                 if (dynamic_cast<ChestCell*>(map->getCell(nextRow, nextColumn)) != nullptr) {
                     didOpenChest = true;
-
-                    // TODO: GIVE CHARACTER RANDOM ITEM
-
                     map->setCell(nextRow, nextColumn, new EmptyCell());
-
+                    
                     break;
                 }
-                
             }
 
             if (didOpenChest) {
-
-                // TODO: tell the user what they got
+             //  TODO characterEquipment.addInventory(*chest.getItemContainer(chestEnocuntered));
                 info = "You Opened a chest!";
+                chestEnocuntered++;
                 moveDone = true;
             }
             else {
@@ -500,6 +502,12 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
 
             break;
         }
+        case 5: {
+
+           //  characterEquipment.displayInventory();
+            break;
+
+        }
         }
     }
 
@@ -509,3 +517,4 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
     std::cout << info << endl << endl;
     character->log(character->getName() + " turn ended.");
 }
+

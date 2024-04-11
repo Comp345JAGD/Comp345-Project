@@ -78,8 +78,12 @@ public:
     // virtual void setPosition(int row, int column) override;
     int attack();
     int attacked(int damage);
+    int getChestEncountered();
+    void addChestEncountered();
 
 protected:
+
+    int chestEncountered = 0;
     int level = 1;
     int strength, dexterity, constitution, intelligence, wisdom, charisma;
     int hitPoints, armorClass, attackBonus, damageBonus;
