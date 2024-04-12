@@ -27,8 +27,7 @@ Character::Character(std::string inputName, int inputStrength, int inputDexterit
 	groupCalculateSilent();
 }
 
-Character::Character(int level, CharacterStrategy *charStrat) : level(level), strength(8), dexterity(8), constitution(8), intelligence(8), wisdom(8), charisma(8), cs(charStrat), Logger("Game_log.txt")
-
+Character::Character(int level, CharacterStrategy *charStrat) : level(level), strength(8), dexterity(8), constitution(8), intelligence(8), wisdom(8), charisma(8), cs(charStrat), Logger("Game_log.txt"), characterEquipment(new CharacterEquipment(this))
 {	
 	this->logAttach(&Logger);
 	groupedCalculate();

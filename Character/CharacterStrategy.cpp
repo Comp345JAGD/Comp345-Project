@@ -488,7 +488,18 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
 
             if (didOpenChest) {
              //  TODO characterEquipment.addInventory(*chest.getItemContainer(chestEnocuntered));
-                info = "You Opened a chest!";
+                Chest chest;
+                ItemContainer* container = chest.getItemContainer(chestEnocuntered);
+                character->characterEquipment->addInventory(container);
+
+                vector<Item*>* otherItems = container->getItems();
+
+                info = "You Opened a chest!\n\n";
+
+                for (Item* item : *otherItems)
+                {
+                    info += "Obtained " + item->getName() + "!\n";
+                }
                 chestEnocuntered++;
                 moveDone = true;
             }
@@ -503,7 +514,7 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
         }
         case 5: {
 
-           //  characterEquipment.displayInventory();
+            character->characterEquipment->displayInventory();
             break;
 
         }
