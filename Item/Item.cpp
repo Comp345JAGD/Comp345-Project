@@ -2,7 +2,7 @@
 #include "Item.h"
 void ItemContainer::addItem(Item* newItem) {
 
-    items.push_back(newItem);
+    items->push_back(newItem);
 }
 
 void CharacterEquipment::addItem(Item* newItem) {
@@ -48,33 +48,38 @@ void ItemContainer::addItem(ItemType itemType, string itemName, EnhancementType 
         return; // Do not proceed if the type is invalid
     }
 
-    items.push_back(newItem);
+    items->push_back(newItem);
 }
 
 
 
 void ItemContainer::dropItem(Item* item)
 {
-    items.erase(std::remove(items.begin(), items.end(), item), items.end());
+    items->erase(std::remove(items->begin(), items->end(), item), items->end());
     delete item;
 }
 
-vector<Item*> ItemContainer::getItems(ItemType type) const
+ItemContainer::ItemContainer()
+{
+    items = new vector<Item*>();
+}
+
+vector<Item*> * ItemContainer::getItems(ItemType type)
 {
     vector<Item*> foundItems;
-    for (Item* item : items)
+    for (Item* item : *items)
     {
         if (item->getItemType() == type)
         {
             foundItems.push_back(item);
         }
     }
-    return foundItems;
+    return &foundItems;
 }
 
 ItemContainer::~ItemContainer()
 {
-    for (Item* item : items)
+    for (Item* item : *items)
     {
         delete item;
     }
@@ -87,13 +92,16 @@ bool CharacterEquipment::isSlotEmpty(ItemType slot) const
 }
 
 
-CharacterEquipment::CharacterEquipment(Character* player) : character(player)
+CharacterEquipment::CharacterEquipment(Character* player) : character(player), ItemContainer()
 {
     /*for (int i = 0; i < static_cast<int>(ItemType::Weapon) + 1; ++i)
     {
         equipmentSlots->push_back(nullptr);
     }*/
-
+    
+    equipmentSlots = new vector<Item*>();
+    inventory = new vector<Item*>();
+    bonusesByType = new map<EnhancementType, int>();
 }
 void CharacterEquipment::equip(Item* item) {
     ItemType itemType = item->getItemType();
@@ -237,7 +245,7 @@ void CharacterEquipment::displayScores3()
 
 void ItemContainer::displayInventory() const
 {
-    if (items.empty())
+    if (items->empty())
     {
         std::cout << "Inventory is empty." << std::endl;
         return;
@@ -245,7 +253,7 @@ void ItemContainer::displayInventory() const
     cout << "         Inventory         " << endl;
     cout << "===========================" << std::endl;
     int index = 1;
-    for (Item* item : items)
+    for (Item* item : *items)
     {
         std::cout << index << ". ";
         std::cout << "+" << item->getEnhancement().bonus << " " << item->getName() << " (" << toString(item->getEnhancement().type) << ")" << std::endl;
@@ -333,7 +341,7 @@ void ItemContainer::loadItemsFromFile(const string& filename) {
                 // Create Item object using createItem function and add it to the container
                 Item* newItem = createItem(itemType, itemName, enhancementType, enhancementBonus);
                 if (newItem != nullptr) {
-                    items.push_back(newItem);
+                    items->push_back(newItem);
                 }
             }
         }
@@ -413,7 +421,7 @@ Item* ItemContainer::createItem(ItemType itemType, string& itemName, Enhancement
 void ItemContainer::saveItemsToFile(const string& filename) const {
     ofstream file(filename);
     if (file.is_open()) {
-        for (Item* item : items) {
+        for (Item* item : *items) {
             file << "Name: " << item->getName() << endl;
             file << "Type: " << item->toString() << endl;
             file << "Enhancement: " << toString(item->getEnhancement().type) << endl;
@@ -436,8 +444,8 @@ Item* CharacterEquipment::getItem(int index) {
     }
 }
 Item* ItemContainer::getItem(int index) {
-    if (index >= 0 && index < items.size()) {
-        return items[index];
+    if (index >= 0 && index < items->size()) {
+        return items->at(index);
     }
     else {
         return nullptr;
@@ -446,15 +454,15 @@ Item* ItemContainer::getItem(int index) {
 
 void CharacterEquipment::addInventory(ItemContainer* otherInventory)
 {
-    vector<Item*> otherItems = otherInventory->getItems();
+    vector<Item*> * otherItems = otherInventory->getItems();
 
-    for (Item* item : otherItems)
+    for (Item* item : *otherItems)
     {
         cout << "Obtained " << item->getName() << "!" << endl;
         addItem(item);
     }
 }
-vector<Item*> ItemContainer::getItems()
+vector<Item*> * ItemContainer::getItems()
 {
     return items;
 }
@@ -495,82 +503,47 @@ string ItemContainer::toString(ItemType type) {
 }
 
 Chest::Chest(){
-    containers.push_back(new ItemContainer());
-    containers[0]->addItem(ItemType::Weapon, "Iron Dagger", EnhancementType::Strength, 1);
-    containers[0]->addItem(ItemType::Weapon, "Wooden Staff", EnhancementType::Intelligence, 1);
 
-    containers.push_back(new ItemContainer());
-    containers[1]->addItem(ItemType::Boots, "Leather Boots", EnhancementType::ArmorClass, 1);
+    containers = new vector<ItemContainer*>();
+    containers->push_back(new ItemContainer());
+    containers->at(0)->addItem(ItemType::Weapon, "Iron Dagger", EnhancementType::Strength, 1);
+    containers->at(0)->addItem(ItemType::Weapon, "Wooden Staff", EnhancementType::Intelligence, 1);
 
-    containers.push_back(new ItemContainer());
-    containers[2]->addItem(ItemType::Helmet, "Leather Helmet", EnhancementType::Dexterity, 1);
+    containers->push_back(new ItemContainer());
+    containers->at(1)->addItem(ItemType::Boots, "Leather Boots", EnhancementType::ArmorClass, 1);
 
-    containers.push_back(new ItemContainer());
-    containers[3]->addItem(ItemType::Ring, "Ring of Strength", EnhancementType::Strength, 2);
-    containers[3]->addItem(ItemType::Ring, "Ring of Intelligence", EnhancementType::Intelligence, 2);
+    containers->push_back(new ItemContainer());
+    containers->at(2)->addItem(ItemType::Helmet, "Leather Helmet", EnhancementType::Dexterity, 1);
 
-    containers.push_back(new ItemContainer());
-    containers[4]->addItem(ItemType::Shield, "Iron Studded Shield", EnhancementType::ArmorClass, 2);
+    containers->push_back(new ItemContainer());
+    containers->at(3)->addItem(ItemType::Ring, "Ring of Strength", EnhancementType::Strength, 2);
+    containers->at(3)->addItem(ItemType::Ring, "Ring of Intelligence", EnhancementType::Intelligence, 2);
 
-    containers.push_back(new ItemContainer());
-    containers[5]->addItem(ItemType::Weapon, "Silver Sword", EnhancementType::Strength, 3);
+    containers->push_back(new ItemContainer());
+    containers->at(4)->addItem(ItemType::Shield, "Iron Studded Shield", EnhancementType::ArmorClass, 2);
 
-    containers.push_back(new ItemContainer());
-    containers[6]->addItem(ItemType::Armor, "Steel Plated Armor", EnhancementType::ArmorClass, 4);
+    containers->push_back(new ItemContainer());
+    containers->at(5)->addItem(ItemType::Weapon, "Silver Sword", EnhancementType::Strength, 3);
 
-    containers.push_back(new ItemContainer());
-    containers[7]->addItem(ItemType::Shield, "Steel Plated Shield", EnhancementType::ArmorClass, 3);
+    containers->push_back(new ItemContainer());
+    containers->at(6)->addItem(ItemType::Armor, "Steel Plated Armor", EnhancementType::ArmorClass, 4);
 
-    containers.push_back(new ItemContainer());
-    containers[8]->addItem(ItemType::Weapon, "Staff of Piercing", EnhancementType::Intelligence, 5);
+    containers->push_back(new ItemContainer());
+    containers->at(7)->addItem(ItemType::Shield, "Steel Plated Shield", EnhancementType::ArmorClass, 3);
 
-    containers.push_back(new ItemContainer());
-    containers[9]->addItem(ItemType::Weapon, "Master Sword", EnhancementType::Strength, 5);
+    containers->push_back(new ItemContainer());
+    containers->at(8)->addItem(ItemType::Weapon, "Staff of Piercing", EnhancementType::Intelligence, 5);
 
-    containers.push_back(new ItemContainer());
-    containers[10]->addItem(ItemType::Boots, "Boots of Swiftness", EnhancementType::Dexterity, 5);
-}
-void Chest::loadContainers() {
-    containers.push_back(new ItemContainer());
-    containers[0]->addItem(ItemType::Weapon, "Iron Dagger", EnhancementType::Strength, 1);
-    containers[0]->addItem(ItemType::Weapon, "Wooden Staff", EnhancementType::Intelligence, 1);
+    containers->push_back(new ItemContainer());
+    containers->at(9)->addItem(ItemType::Weapon, "Master Sword", EnhancementType::Strength, 5);
 
-    containers.push_back(new ItemContainer());
-    containers[1]->addItem(ItemType::Boots, "Leather Boots", EnhancementType::ArmorClass, 1);
-
-    containers.push_back(new ItemContainer());
-    containers[2]->addItem(ItemType::Helmet, "Leather Helmet", EnhancementType::Dexterity, 1);
-
-    containers.push_back(new ItemContainer());
-    containers[3]->addItem(ItemType::Ring, "Ring of Strength", EnhancementType::Strength, 2);
-    containers[3]->addItem(ItemType::Ring, "Ring of Intelligence", EnhancementType::Intelligence, 2);
-
-    containers.push_back(new ItemContainer());
-    containers[4]->addItem(ItemType::Shield, "Iron Studded Shield", EnhancementType::ArmorClass, 2);
-
-    containers.push_back(new ItemContainer());
-    containers[5]->addItem(ItemType::Weapon, "Silver Sword", EnhancementType::Strength, 3);
-
-    containers.push_back(new ItemContainer());
-    containers[6]->addItem(ItemType::Armor, "Steel Plated Armor", EnhancementType::ArmorClass, 4);
-
-    containers.push_back(new ItemContainer());
-    containers[7]->addItem(ItemType::Shield, "Steel Plated Shield", EnhancementType::ArmorClass, 3);
-
-    containers.push_back(new ItemContainer());
-    containers[8]->addItem(ItemType::Weapon, "Staff of Piercing", EnhancementType::Intelligence, 5);
-
-    containers.push_back(new ItemContainer());
-    containers[9]->addItem(ItemType::Weapon, "Master Sword", EnhancementType::Strength, 5);
-
-    containers.push_back(new ItemContainer());
-    containers[10]->addItem(ItemType::Boots, "Boots of Swiftness", EnhancementType::Dexterity, 5);
-
+    containers->push_back(new ItemContainer());
+    containers->at(10)->addItem(ItemType::Boots, "Boots of Swiftness", EnhancementType::Dexterity, 5);
 }
 
 ItemContainer* Chest::getItemContainer(int index) const {
-    if (index >= 0 && index < containers.size()) {
-        return containers[index];
+    if (index >= 0 && index < containers->size()) {
+        return containers->at(index);
     }
     else {
         return nullptr;

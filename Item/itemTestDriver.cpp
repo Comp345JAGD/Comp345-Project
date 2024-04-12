@@ -4,7 +4,7 @@ void itemTestDriver()
 {
 	Character character(1, new HumanPlayerStrategy());
 	// Example usage
-	CharacterEquipment characterEquipment(&character);
+	CharacterEquipment * equipment = new CharacterEquipment(&character);
 	// Assume you have created instances of Helmet, Armor, Ring, etc.
 	// Equip items
 	
@@ -20,6 +20,8 @@ void itemTestDriver()
 	characterEquipment.displayWornItems();
 	*/
 	//characterEquipment.addInventory(*chest.getItemContainer(character.getChestEncountered())); 
+
+	character.characterEquipment = equipment;
 
 	character.characterEquipment->addInventory(chest.getItemContainer(character.getChestEncountered()));
 

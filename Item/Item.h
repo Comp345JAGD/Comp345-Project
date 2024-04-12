@@ -209,8 +209,9 @@ public:
 class ItemContainer
 {
 protected:
-    vector<Item *> items;
+    vector<Item *> * items;
 public:
+    ItemContainer();
     void displayInventory() const;
     ItemType convertItemTypeFromString(string& itemTypeStr); 
     EnhancementType convertEnhancementTypeFromString(string& enhancementTypeStr); 
@@ -222,8 +223,8 @@ public:
     void addItem(Item* item);
     void dropItem(Item *item);
     Item* getItem(int index);
-    vector<Item*> getItems();
-    vector<Item *> getItems(ItemType type) const;
+    vector<Item*> *getItems();
+    vector<Item *> *getItems(ItemType type);
     void saveItemsToFile(const string& filename) const;
     ~ItemContainer();
 };
@@ -271,16 +272,11 @@ public:
 
 class Chest : public ItemContainer {
 protected:
-    vector<ItemContainer*> containers;
+    vector<ItemContainer*> * containers;
 public:
     Chest();
     ItemContainer* getItemContainer(int index) const;
     void loadContainers();
-    ~Chest() {
-        for (auto container : containers) {
-            delete container;
-        }
-    }
 
 
 };

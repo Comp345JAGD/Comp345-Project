@@ -1,7 +1,6 @@
 #include "CharacterStrategy.h"
 
 
-Chest chest;
 int chestEnocuntered = 0;
 
 void FriendlyStrategy::execute(Character *character, GameMap *map)
