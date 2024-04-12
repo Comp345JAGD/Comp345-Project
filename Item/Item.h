@@ -223,6 +223,7 @@ public:
     void addItem(Item* item);
     void dropItem(Item *item);
     Item* getItem(int index);
+ 
     vector<Item*> *getItems();
     vector<Item *> *getItems(ItemType type);
     void saveItemsToFile(const string& filename) const;
@@ -242,6 +243,7 @@ public:
     CharacterEquipment(Character* character);
  
     Item* getItem(int index);
+    Item* getWornItem(int index);
     void addInventory( ItemContainer* otherInventory);
     void displayInventory() const;
     void addItem(Item* item);

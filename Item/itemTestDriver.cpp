@@ -22,9 +22,13 @@ void itemTestDriver()
 	//characterEquipment.addInventory(*chest.getItemContainer(character.getChestEncountered())); 
 
 	character.characterEquipment = equipment;
-
+	character.characterEquipment->addInventory(&characterInventory);
 	character.characterEquipment->addInventory(chest.getItemContainer(character.getChestEncountered()));
 
+	character.characterEquipment->equip(character.characterEquipment->getItem(0));
+	character.characterEquipment->remove(ItemType::Weapon);
+	character.characterEquipment->displayWornItems();
+	character.characterEquipment->displayInventory();
 	//characterEquipment.displayWornItems();
 	/*
 	characterEquipment.equip(new Helmet("Iron Helmet", EnhancementType::Intelligence, 2));

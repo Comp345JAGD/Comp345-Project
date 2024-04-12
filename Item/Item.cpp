@@ -1,4 +1,4 @@
-
+#include <exception>
 #include "Item.h"
 void ItemContainer::addItem(Item* newItem) {
 
@@ -79,29 +79,44 @@ vector<Item*> * ItemContainer::getItems(ItemType type)
 
 ItemContainer::~ItemContainer()
 {
+    /*
     for (Item* item : *items)
     {
         delete item;
-    }
+    }*/
 }
 
 
 bool CharacterEquipment::isSlotEmpty(ItemType slot) const
 {
-    return equipmentSlots->at(static_cast<size_t>(slot)) == nullptr;
+    return  equipmentSlots->at(static_cast<size_t>(slot)) == nullptr;
+
+
+    /*try{
+        equipmentSlots->at(static_cast<size_t>(slot));
+        return true;
+    }
+    catch (exception e) {
+        return false;
+    }*/
 }
 
 
 CharacterEquipment::CharacterEquipment(Character* player) : character(player), ItemContainer()
 {
-    /*for (int i = 0; i < static_cast<int>(ItemType::Weapon) + 1; ++i)
-    {
-        equipmentSlots->push_back(nullptr);
-    }*/
     
     equipmentSlots = new vector<Item*>();
     inventory = new vector<Item*>();
     bonusesByType = new map<EnhancementType, int>();
+    for (int i = static_cast<int> (EnhancementType::Strength); i <= static_cast<int> (EnhancementType::DamageBonus); i++) {
+        bonusesByType->insert({ static_cast<EnhancementType>(i),0 });
+    }
+
+
+    for (int i = 0; i < static_cast<int>(ItemType::Weapon) + 1; ++i)
+    {
+        equipmentSlots->push_back(nullptr);
+    }
 }
 void CharacterEquipment::equip(Item* item) {
     ItemType itemType = item->getItemType();
@@ -131,8 +146,8 @@ void CharacterEquipment::equip(int index) {
 void CharacterEquipment::remove(int index) {
     Item* item = getItem(index);
     if (item != nullptr) {
-        inventory->erase(inventory->begin() + index); // Remove the item from the inventory vector
-        delete item; // Delete the item from memory
+        inventory->erase(inventory->begin() + index); 
+        
     } else {
         std::cerr << "No item found at index " << index << std::endl;
     }
@@ -149,7 +164,7 @@ void CharacterEquipment::remove(ItemType itemType)
 
         std::cout << "Unequipped " << equippedItem->getName() << " from slot " << static_cast<int>(itemType) << std::endl;
 
-        delete equippedItem;
+        inventory->push_back(equippedItem);
     }
     else
     {
@@ -165,7 +180,7 @@ void CharacterEquipment::displayWornItems() const {
     for (size_t i = 0; i < equipmentSlots->size(); ++i) {
         if (equipmentSlots->at(i) != nullptr) {
             std::cout << equipmentSlots->at(i)->getName() << " - Slot: " << slotNames[i]
-                << ", Type: " << static_cast<int>(equipmentSlots->at(i)->getEnhancement().type)
+                << ", Type: " << toString(equipmentSlots->at(i)->getEnhancement().type)
                 << ", Bonus: " << equipmentSlots->at(i)->getEnhancement().bonus << std::endl;
         }
         else {
@@ -442,6 +457,15 @@ Item* CharacterEquipment::getItem(int index) {
     if (index >= 0 && index < inventory->size()) {
         return inventory->at(index);
     }
+
+    return nullptr;
+}
+
+Item* CharacterEquipment::getWornItem(int index) {
+    if (index >= 0 && index < equipmentSlots->size()) {
+        return equipmentSlots->at(index);
+    }
+    return nullptr;
 }
 Item* ItemContainer::getItem(int index) {
     if (index >= 0 && index < items->size()) {
