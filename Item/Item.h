@@ -92,6 +92,7 @@ public:
 
     virtual ItemType getItemType() const = 0;
 
+
     string getName()
     {
         return name;
@@ -230,18 +231,17 @@ public:
 class CharacterEquipment :public Character,ItemContainer
 {
 protected:
-    Character character;
-    vector<Item *> equipmentSlots;
-    vector<Item*> inventory;
-    map<EnhancementType, int> bonusesByType;
+    Character *character;
+    vector<Item*> *equipmentSlots;
+    vector<Item*> *inventory;
+    map<EnhancementType, int> *bonusesByType;
     bool isSlotEmpty(ItemType slot) const;
 
 public:
-    CharacterEquipment();
-    CharacterEquipment(Character character);
+    CharacterEquipment(Character* character);
  
     Item* getItem(int index);
-    void addInventory( ItemContainer& otherInventory);
+    void addInventory( ItemContainer* otherInventory);
     void displayInventory() const;
     void addItem(Item* item);
     void equip(Item *item);

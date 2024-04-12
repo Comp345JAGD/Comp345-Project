@@ -1,7 +1,7 @@
+#pragma once
 #include "character.h"
 #include "CharacterStrategy.h"
-
-
+#include "../Item/Item.h"
 
 Character::Character() : name("NPC"), level(1), strength(0), dexterity(0), constitution(0), intelligence(0), wisdom(0), charisma(0), Logger("Game_log.txt")
 {

@@ -1,3 +1,0 @@
-Creating a 4x4 map.
-Game Starting...
-

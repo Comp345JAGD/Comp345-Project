@@ -7,7 +7,7 @@ void ItemContainer::addItem(Item* newItem) {
 
 void CharacterEquipment::addItem(Item* newItem) {
 
-    inventory.push_back(newItem);
+    inventory->push_back(newItem);
 }
 void ItemContainer::addItem(ItemType itemType, string itemName, EnhancementType enhancementType, int enhancementBonus)
 {
@@ -83,22 +83,16 @@ ItemContainer::~ItemContainer()
 
 bool CharacterEquipment::isSlotEmpty(ItemType slot) const
 {
-    return equipmentSlots[static_cast<size_t>(slot)] == nullptr;
+    return equipmentSlots->at(static_cast<size_t>(slot)) == nullptr;
 }
 
-CharacterEquipment::CharacterEquipment() : character("John Doe")
+
+CharacterEquipment::CharacterEquipment(Character* player) : character(player)
 {
-    for (int i = 0; i < static_cast<int>(ItemType::Weapon) + 1; ++i)
+    /*for (int i = 0; i < static_cast<int>(ItemType::Weapon) + 1; ++i)
     {
-        equipmentSlots.push_back(nullptr);
-    }
-}
-CharacterEquipment::CharacterEquipment(Character player) : character(player)
-{
-    for (int i = 0; i < static_cast<int>(ItemType::Weapon) + 1; ++i)
-    {
-        equipmentSlots.push_back(nullptr);
-    }
+        equipmentSlots->push_back(nullptr);
+    }*/
 
 }
 void CharacterEquipment::equip(Item* item) {
@@ -109,9 +103,9 @@ void CharacterEquipment::equip(Item* item) {
         return;
     }
 
-    equipmentSlots[static_cast<size_t>(itemType)] = item;
+    equipmentSlots->at(static_cast<size_t>(itemType)) = item;
 
-    bonusesByType[item->getEnhancement().type] += item->getEnhancement().bonus;
+    bonusesByType->at(item->getEnhancement().type) += item->getEnhancement().bonus;
 
     std::cout << "Equipped " << item->getName() << " in " << toString(itemType) << " Slot" << std::endl;
 }
@@ -129,7 +123,7 @@ void CharacterEquipment::equip(int index) {
 void CharacterEquipment::remove(int index) {
     Item* item = getItem(index);
     if (item != nullptr) {
-        inventory.erase(inventory.begin() + index); // Remove the item from the inventory vector
+        inventory->erase(inventory->begin() + index); // Remove the item from the inventory vector
         delete item; // Delete the item from memory
     } else {
         std::cerr << "No item found at index " << index << std::endl;
@@ -138,12 +132,12 @@ void CharacterEquipment::remove(int index) {
 
 void CharacterEquipment::remove(ItemType itemType)
 {
-    if (equipmentSlots[static_cast<size_t>(itemType)] != nullptr)
+    if (equipmentSlots->at(static_cast<size_t>(itemType)) != nullptr)
     {
-        Item* equippedItem = equipmentSlots[static_cast<size_t>(itemType)];
-        equipmentSlots[static_cast<size_t>(itemType)] = nullptr;
+        Item* equippedItem = equipmentSlots->at(static_cast<size_t>(itemType));
+        equipmentSlots->at(static_cast<size_t>(itemType)) = nullptr;
 
-        bonusesByType[equippedItem->getEnhancement().type] -= equippedItem->getEnhancement().bonus;
+        bonusesByType->at(equippedItem->getEnhancement().type) -= equippedItem->getEnhancement().bonus;
 
         std::cout << "Unequipped " << equippedItem->getName() << " from slot " << static_cast<int>(itemType) << std::endl;
 
@@ -160,11 +154,11 @@ void CharacterEquipment::displayWornItems() const {
     std::cout << "Character Worn Items:" << std::endl;
     std::vector<std::string> slotNames = { "Helmet", "Armor", "Shield", "Ring", "Belt", "Boots", "Weapon" };
 
-    for (size_t i = 0; i < equipmentSlots.size(); ++i) {
-        if (equipmentSlots[i] != nullptr) {
-            std::cout << equipmentSlots[i]->getName() << " - Slot: " << slotNames[i]
-                << ", Type: " << static_cast<int>(equipmentSlots[i]->getEnhancement().type)
-                << ", Bonus: " << equipmentSlots[i]->getEnhancement().bonus << std::endl;
+    for (size_t i = 0; i < equipmentSlots->size(); ++i) {
+        if (equipmentSlots->at(i) != nullptr) {
+            std::cout << equipmentSlots->at(i)->getName() << " - Slot: " << slotNames[i]
+                << ", Type: " << static_cast<int>(equipmentSlots->at(i)->getEnhancement().type)
+                << ", Bonus: " << equipmentSlots->at(i)->getEnhancement().bonus << std::endl;
         }
         else {
             std::cout << "Empty " << slotNames[i] << " Slot" << std::endl;
@@ -174,13 +168,13 @@ void CharacterEquipment::displayWornItems() const {
 
 int CharacterEquipment::calculateTotalBonus(EnhancementType type) const
 {
-    return bonusesByType.at(type);
+    return bonusesByType->at(type);
 }
 
 void CharacterEquipment::displayTotalGearBonuses() const
 {
     std::cout << "Total Bonuses by Type:" << endl << "0. Strength\n1. Dexterity\n2. Constitution\n3. Intelligence\n4. Wisdom\n5. Charisma\n6. ArmorClass\n7. AttackBonus\n8. DamageBonus" << endl;
-    for (const auto& entry : bonusesByType)
+    for (const auto& entry : *bonusesByType)
     {
         std::cout << "Type: " << static_cast<int>(entry.first) << ", Total Bonus: " << entry.second << std::endl;
     }
@@ -195,35 +189,35 @@ CharacterEquipment::~CharacterEquipment()
 
 
 int CharacterEquipment::getTotalStength() {
-    return character.getStrength() + bonusesByType[EnhancementType::Strength];
+    return character->getStrength() + bonusesByType->at(EnhancementType::Strength);
 }
 
 int CharacterEquipment::getTotalDexterity() {
-    return  character.getDexterity() + bonusesByType[EnhancementType::Dexterity];
+    return  character->getDexterity() + bonusesByType->at(EnhancementType::Dexterity);
 }
 
 int CharacterEquipment::getTotalConstitution() {
-    return character.getConstitution() + bonusesByType[EnhancementType::Constitution];
+    return character->getConstitution() + bonusesByType->at(EnhancementType::Constitution);
 }
 
 int CharacterEquipment::getTotalIntelligence() {
-    return  character.getIntelligence() + bonusesByType[EnhancementType::Intelligence];
+    return  character->getIntelligence() + bonusesByType->at(EnhancementType::Intelligence);
 }
 
 int CharacterEquipment::getTotalWisdom() {
-    return  character.getWisdom() + bonusesByType[EnhancementType::Wisdom];
+    return  character->getWisdom() + bonusesByType->at(EnhancementType::Wisdom);
 }
 int CharacterEquipment::getTotalCharisma() {
-    return  character.getCharisma() + bonusesByType[EnhancementType::Charisma];
+    return  character->getCharisma() + bonusesByType->at(EnhancementType::Charisma);
 }
 int CharacterEquipment::getTotalArmorClass() {
-    return  character.getArmorClass() + bonusesByType[EnhancementType::ArmorClass];
+    return  character->getArmorClass() + bonusesByType->at(EnhancementType::ArmorClass);
 }
 int CharacterEquipment::getTotalAttackBonus() {
-    return  character.getAttackBonus() + bonusesByType[EnhancementType::AttackBonus];
+    return  character->getAttackBonus() + bonusesByType->at(EnhancementType::AttackBonus);
 }
 int CharacterEquipment::getTotalDamageBonus() {
-    return  character.getDamageBonus() + bonusesByType[EnhancementType::DamageBonus];
+    return  character->getDamageBonus() + bonusesByType->at(EnhancementType::DamageBonus);
 }
 void CharacterEquipment::displayScores2() {
     cout << "Strength: " << getTotalStength() << "\n"
@@ -235,7 +229,7 @@ void CharacterEquipment::displayScores2() {
 }
 void CharacterEquipment::displayScores3()
 {
-    std::cout << "Hit Points: " << character.getHitPoints() << "\n"
+    std::cout << "Hit Points: " << character->getHitPoints() << "\n"
         << "Armor Class: " << getTotalArmorClass() << "\n"
         << "Attack Bonus: " << getTotalAttackBonus() << "\n"
         << "Damage Bonus: " << getTotalDamageBonus() << "\n\n";
@@ -262,7 +256,7 @@ void ItemContainer::displayInventory() const
 
 void CharacterEquipment::displayInventory() const
 {
-    if (inventory.empty())
+    if (inventory->empty())
     {
         std::cout << "Inventory is empty." << std::endl;
         return;
@@ -270,7 +264,7 @@ void CharacterEquipment::displayInventory() const
     cout << "         Inventory         " << endl;
     std::cout << "===========================" << std::endl;
     int index = 1;
-    for (Item* item : inventory)
+    for (Item* item : *inventory)
     {
         std::cout << index << ". ";
         std::cout << "+" << item->getEnhancement().bonus << " " << item->getName() << " (" << toString(item->getEnhancement().type) << ")" << std::endl;
@@ -437,8 +431,8 @@ void ItemContainer::saveItemsToFile(const string& filename) const {
 
 Item* CharacterEquipment::getItem(int index) {
 
-    if (index >= 0 && index < inventory.size()) {
-        return inventory[index];
+    if (index >= 0 && index < inventory->size()) {
+        return inventory->at(index);
     }
 }
 Item* ItemContainer::getItem(int index) {
@@ -450,9 +444,9 @@ Item* ItemContainer::getItem(int index) {
     }
 }
 
-void CharacterEquipment::addInventory(ItemContainer& otherInventory)
+void CharacterEquipment::addInventory(ItemContainer* otherInventory)
 {
-    vector<Item*> otherItems = otherInventory.getItems();
+    vector<Item*> otherItems = otherInventory->getItems();
 
     for (Item* item : otherItems)
     {
