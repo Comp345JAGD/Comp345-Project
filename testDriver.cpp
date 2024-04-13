@@ -18,14 +18,14 @@ int main()
 
 	GameFileWriter masterLog("Game_Log.txt");
 	masterLog.newLog();
-	itemTestDriver();
+	//itemTestDriver();
 	// diceTestDriver();
 
 	
 
 	//characterTestDriver();
 	//gameMapDriver();
-	//loadCampaignInterface();
+	loadCampaignInterface();
 
 	//gameLoopDriver();
 	

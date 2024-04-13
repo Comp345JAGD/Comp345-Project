@@ -487,7 +487,7 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
             }
 
             if (didOpenChest) {
-             //  TODO characterEquipment.addInventory(*chest.getItemContainer(chestEnocuntered));
+             
                 Chest chest;
                 ItemContainer* container = chest.getItemContainer(chestEnocuntered);
                 character->characterEquipment->addInventory(container);
@@ -515,20 +515,20 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
         case 5: {
             int choiceInput, equipItemInput, removeItemInput;
 
-            character->characterEquipment->displayWornItems();
-            character->characterEquipment->displayInventory();
-            
             do {
-                cout << "Here are Worn Items and Inventory" << endl << "Enter one of the following options:\n1. Equip Item\n2. Remove Item\n3. Exit" << endl;
+                character->characterEquipment->displayWornItems();
+                character->characterEquipment->displayInventory();
+                cout << "Here are Worn Items and Inventory" << endl << "Enter one of the following options:\n1. Equip Item\n2. Remove Item\n3. View Stats\n4. Exit" << endl;
                 cin >> choiceInput;
                 if (choiceInput == 1) {
-                    cout << "Input item you want to equip";
+                    cout << "Input item you want to equip ";
                     cin >> equipItemInput;
                     character->characterEquipment->equip(character->characterEquipment->getItem(equipItemInput -1));
+                    cout << endl;
                 }
                 else if (choiceInput == 2) {
   
-                        cout << "Input item you want to remove\n 1. Weapon\n2. Shield\n3. Armor\4. Helmet\n5. Boots\n6. Belt \7 Ring  ";
+                        cout << "Input item you want to remove\n1. Weapon\n2. Shield\n3. Armor\n4. Helmet\n5. Boots\n6. Belt \n7. Ring "<<endl;
                     cin >> removeItemInput;
                     if (removeItemInput == 1) { character->characterEquipment->remove(ItemType::Weapon); }
                     else   if (removeItemInput == 2) { character->characterEquipment->remove(ItemType::Shield); }
@@ -540,15 +540,25 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
                     else {
                         cout << "Incorrect Input";
                     }
+                    cout << endl;
                 }
                 else if (choiceInput == 3) {
+                    character->characterEquipment->displayScores2();
+                    character->characterEquipment->displayScores3();
+                    cout << endl;
+                 
+                }
+                else if (choiceInput == 4) {
+                    character->characterEquipment->displayScores2();
+                    character->characterEquipment->displayScores3();
+
                     cout << "Thank you for using Item Menu" << endl;
                 }
                 else {
                     cout << "Incorrect Input!" << endl;
                 }
 
-            } while (choiceInput != 3);
+            } while (choiceInput != 4);
             
             moveDone = true;
             break;
