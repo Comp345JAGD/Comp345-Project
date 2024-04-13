@@ -8,6 +8,7 @@ class Monster : public Character {
 public:
 	Monster(std::string monsterName);
 	virtual vector<string>* getGridRepresentation() override;
+	void calculateArmorClass() override;
 
 
 };

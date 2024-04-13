@@ -92,3 +92,26 @@ void MoverCell::setPosition(int row, int column)
     this->column = column;
 }
 
+bool ChestCell::isWalkable()
+{
+    return false;
+}
+
+vector<string>* ChestCell::getGridRepresentation()
+{
+    vector<string>* art = new vector<string>(
+        {
+            "        ",
+            "  ____+ ",
+            " [_()_] ",
+            " [____] "
+        }
+    );
+    return art;
+}
+
+void ChestCell::playTurn(GameMap* map)
+{
+    // nothing
+}
+

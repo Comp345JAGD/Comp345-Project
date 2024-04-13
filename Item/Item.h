@@ -56,7 +56,7 @@ public:
         : name(itemName), enhancement({enhancementType, enhancementBonus}) {}
 
     Item(const Item& other)
-        : name(other.name), enhancement(other.enhancement) {}
+        : name(other.name), enhancement(other.enhancement) {};
 
      string toString(ItemType type) const {
         switch (itemType) {
@@ -207,20 +207,21 @@ public:
 
 class ItemContainer
 {
-private:
+protected:
     vector<Item *> items;
-
 public:
     void displayInventory() const;
     ItemType convertItemTypeFromString(string& itemTypeStr); 
     EnhancementType convertEnhancementTypeFromString(string& enhancementTypeStr); 
     Item* createItem(ItemType itemType, string& itemName, EnhancementType enhancementType, int enhancementBonus); 
     string toString(EnhancementType type) const;
+    string toString(ItemType type);
     void loadItemsFromFile(const std::string& filename);
     void addItem(ItemType itemType, string itemName, EnhancementType enhancementType, int enhancementBonus);
     void addItem(Item* item);
     void dropItem(Item *item);
     Item* getItem(int index);
+    vector<Item*> getItems();
     vector<Item *> getItems(ItemType type) const;
     void saveItemsToFile(const string& filename) const;
     ~ItemContainer();
@@ -228,19 +229,25 @@ public:
 
 class CharacterEquipment :public Character,ItemContainer
 {
-private:
+protected:
     Character character;
     vector<Item *> equipmentSlots;
-    ItemContainer inventory;
+    vector<Item*> inventory;
     map<EnhancementType, int> bonusesByType;
-
     bool isSlotEmpty(ItemType slot) const;
 
 public:
     CharacterEquipment();
     CharacterEquipment(Character character);
+ 
+    Item* getItem(int index);
+    void addInventory( ItemContainer& otherInventory);
+    void displayInventory() const;
+    void addItem(Item* item);
     void equip(Item *item);
+    void equip(int index);
     void remove(ItemType itemType);
+    void remove(int index);
     void displayWornItems() const;
     int calculateTotalBonus(EnhancementType type) const;
     void displayTotalGearBonuses() const;
@@ -255,18 +262,27 @@ public:
     int getTotalDamageBonus();
     void displayScores2();
     void displayScores3();
-    void setInventory(const ItemContainer& newInventory);
-    ItemContainer getInventory();
 
-   /* Item* getItemFromInventory(int index) const;
-    vector<Item*> getItems(ItemType type) const;
-    
-    */
 
     ~CharacterEquipment();
     
     };
 
 
+class Chest : public ItemContainer {
+protected:
+    vector<ItemContainer*> containers;
+public:
+    Chest();
+    ItemContainer* getItemContainer(int index) const;
+    void loadContainers();
+    ~Chest() {
+        for (auto container : containers) {
+            delete container;
+        }
+    }
+
+
+};
 
 #endif // ITEM_H

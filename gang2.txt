@@ -1,6 +1,6 @@
 Map1
 S,O,O,O,
-O,O,W,F,
+O,C,W,F,
 A,O,W,E,
 
 Map2

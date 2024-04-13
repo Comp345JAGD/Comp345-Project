@@ -1,5 +1,6 @@
 #include "character.h"
 #include "../Map/GameMap.h"
+#include"../Item/Item.h"
 
 #ifndef CHARACTERSTRATEGY_H
 #define CHARACTERSTRATEGY_H
@@ -26,6 +27,7 @@ public:
 class HumanPlayerStrategy : public CharacterStrategy
 {
 public:
+       
     void execute(Character *character, GameMap *map) override;
 };
 

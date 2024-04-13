@@ -34,3 +34,12 @@ Intelligence: 11
 Wisdom: 9
 Charisma: 10
 ---
+Class: Fighter
+Name: Bob
+Strength: 16
+Dexterity: 19
+Constitution: 15
+Intelligence: 14
+Wisdom: 8
+Charisma: 11
+---

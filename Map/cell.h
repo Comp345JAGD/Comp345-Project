@@ -64,6 +64,14 @@ public:
     void setPosition(int row, int column) override;
 };
 
+class ChestCell : public IGridCell
+{
+public:
+    bool isWalkable() override;
+    void playTurn(GameMap* map) override;
+    vector<string>* getGridRepresentation() override;
+};
+
 class MoverCell : public IGridCell
 {
 public:

@@ -1,5 +1,9 @@
 #include "CharacterStrategy.h"
 
+
+Chest chest;
+int chestEnocuntered = 0;
+
 void FriendlyStrategy::execute(Character *character, GameMap *map)
 {
 
@@ -8,7 +12,7 @@ void FriendlyStrategy::execute(Character *character, GameMap *map)
     character->log(character->getName() + " turn starting...");
 
     if (character->getCurrentHealth() <= 0) {
-        map->setCell(character->getRow(), character->getColumn(), new EmptyCell()); // change to chest later
+        map->setCell(character->getRow(), character->getColumn(), new ChestCell()); // change to chest later
         info += character->getName() + " ELIMINATED!";
         character->log("Player killed " + character->getName() + ".");
 
@@ -150,8 +154,14 @@ void AggressorStrategy::execute(Character *character, GameMap *map)
 
     if(!didAttack)
     {
-        info = character->getName() + " moved!";
-        map->moveOneCellTowardsTarget(character->getRow(), character->getColumn(), playerRow, playerCol);
+        
+        bool didMove = map->moveOneCellTowardsTarget(character->getRow(), character->getColumn(), playerRow, playerCol);
+        if (didMove) {
+            info = character->getName() + " moved!";
+        }
+        else {
+            info = character->getName() + " stayed idle!";
+        }
         character->log(character->getName() + " moved to position: [" + to_string(character->getRow()) + "][" + to_string(character->getColumn()) + "].");
     }
 
@@ -168,6 +178,7 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
     system("CLS");
     map->printInfoBar();
     map->printMap();
+  
 
     string info = "";
     bool moveDone = false;
@@ -182,20 +193,20 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
 
         while (!validity)
         {
-            std::cout << "1. Move\n2. Attack\n3. Free Action" << endl;
+            std::cout << "1. Move\n2. Attack\n3. Free Action\n4. Loot Chest\n5. Open Inventory" << endl;
 
             if (std::cin >> decision)
             {
-                if (decision >= 1 && decision <= 3)
+                if (decision >= 1 && decision <= 5)
                     validity = true;
                 else
-                    std::cout << "Invalid integer, please enter a number between 1 and 3.\n";
+                    std::cout << "Invalid integer, please enter a number between 1 and 4.\n";
             }
             else
             {
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                std::cout << "Invalid input, please enter a number between 1 and 3.\n";
+                std::cout << "Invalid input, please enter a number between 1 and 4.\n";
             }
         }
 
@@ -447,8 +458,57 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
 
             break;
         }
+        
+        case 4:
+        {
+
+            int rowDirections[] = { -1, 1, 0, 0 };
+            int columnDirections[] = { 0, 0, -1, 1 };
+
+            bool didOpenChest = false;
+
+            int myRow = character->getRow();
+            int myCol = character->getColumn();
+
+            for (int i = 0; i < 4; i++)
+            {
+                int nextRow = myRow + rowDirections[i];
+                int nextColumn = myCol + columnDirections[i];
+
+                if (map->isOutOfBounds(nextRow, nextColumn)) {
+                    continue;
+                }
+
+                if (dynamic_cast<ChestCell*>(map->getCell(nextRow, nextColumn)) != nullptr) {
+                    didOpenChest = true;
+                    map->setCell(nextRow, nextColumn, new EmptyCell());
+                    
+                    break;
+                }
+            }
+
+            if (didOpenChest) {
+             //  TODO characterEquipment.addInventory(*chest.getItemContainer(chestEnocuntered));
+                info = "You Opened a chest!";
+                chestEnocuntered++;
+                moveDone = true;
+            }
+            else {
+                cout << "No chest found. You have to be next to a chest vertically or horizontally to open it.\n\n";
+            }
+
+
+            
+
+            break;
         }
-        // character->logNotify("Player turn ending...\n");
+        case 5: {
+
+           //  characterEquipment.displayInventory();
+            break;
+
+        }
+        }
     }
 
     system("CLS");
@@ -457,3 +517,4 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
     std::cout << info << endl << endl;
     character->log(character->getName() + " turn ended.");
 }
+
