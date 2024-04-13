@@ -13,7 +13,7 @@ Character::Character(std::string name) : name(name), level(1), strength(0), dext
 
 }
 
-Character::Character(std::string inputName, int inputStrength, int inputDexterity, int inputConstitution, int inputIntelligence, int inputWisdom, int inputCharisma) : Logger("Game_Log.txt")
+Character::Character(std::string inputName, int inputStrength, int inputDexterity, int inputConstitution, int inputIntelligence, int inputWisdom, int inputCharisma) : Logger("Game_Log.txt"), characterEquipment(new CharacterEquipment(*this))
 {
 	name = inputName;
 	strength = inputStrength;
@@ -25,6 +25,7 @@ Character::Character(std::string inputName, int inputStrength, int inputDexterit
 	cs = new HumanPlayerStrategy();
 
 	groupCalculateSilent();
+
 }
 
 Character::Character(int level, CharacterStrategy *charStrat) : level(level), strength(8), dexterity(8), constitution(8), intelligence(8), wisdom(8), charisma(8), cs(charStrat), Logger("Game_log.txt")

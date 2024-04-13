@@ -13,6 +13,7 @@
 #include "../Map/cell.h"
 
 class CharacterStrategy; // https://stackoverflow.com/a/15782499
+class CharacterEquipment;
 
 class Character : public Subject, public IGridCell , public GameLogger
 {
@@ -82,7 +83,7 @@ public:
     void addChestEncountered();
 
 protected:
-
+    
     int chestEncountered = 0;
     int level = 1;
     int strength, dexterity, constitution, intelligence, wisdom, charisma;
@@ -93,6 +94,8 @@ protected:
     std::string name;
     std::string classType;
     GameFileWriter Logger;
+public:
+    CharacterEquipment * characterEquipment;
 };
 
 void displayCharacters(std::vector<Character*>& characters);

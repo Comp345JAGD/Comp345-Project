@@ -18,7 +18,7 @@ int main()
 
 	GameFileWriter masterLog("Game_Log.txt");
 	masterLog.newLog();
-	//itemTestDriver();
+	itemTestDriver();
 	// diceTestDriver();
 
 
@@ -27,7 +27,7 @@ int main()
 	//gameMapDriver();
 	//loadCampaignInterface();
 
-	gameLoopDriver();
+	//gameLoopDriver();
 	
     return 0;
 }
