@@ -328,7 +328,7 @@ void Character::calculateHitPoints()
 
 void Character::calculateArmorClass()
 {
-	armorClass = 10 + (dexterity - 10) / 2;
+	armorClass = 5 + (dexterity - 10) / 2;
 
 	notify(aClass, armorClass);
 }
