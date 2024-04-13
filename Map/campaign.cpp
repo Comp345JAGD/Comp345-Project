@@ -285,7 +285,19 @@ void selectCampaign() {
 
                     GameMap* currentMap = campaign.getMapAtIndex(i);
 
+                    CharacterEquipment* characterEquipment;
+
+                    if (i > 0) {
+                        characterEquipment = chosenCharacter->characterEquipment;
+                    }
+
+
                     GameLoop gameLoop(currentMap, chosenCharacter);
+
+                    if (i > 0) {
+                        chosenCharacter->characterEquipment = characterEquipment;
+                    }
+
 
                     bool didPlayerWin = gameLoop.play();
 

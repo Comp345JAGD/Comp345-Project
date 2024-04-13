@@ -39,6 +39,7 @@ bool GameLoop::play() {
         bool didPlayerWin = false;
 
 		if (isGameOver(didPlayerWin)) {
+            currentMap->setCell(humanCharacter->getRow(), humanCharacter->getColumn(), new EmptyCell());
             return didPlayerWin;
 		}
 		turnCycleNum++;
