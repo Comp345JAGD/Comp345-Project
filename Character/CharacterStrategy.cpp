@@ -81,7 +81,7 @@ void AggressorStrategy::execute(Character *character, GameMap *map)
     character->log(character->getName() + " turn starting...");
 
     if (character->getCurrentHealth() <= 0) {
-        map->setCell(character->getRow(), character->getColumn(), new EmptyCell()); // change to chest later
+        map->setCell(character->getRow(), character->getColumn(), new ChestCell()); // change to chest later
         string info = "";
         info += character->getName() + " ELIMINATED!";
         character->log("Player killed " + character->getName() + ".");
