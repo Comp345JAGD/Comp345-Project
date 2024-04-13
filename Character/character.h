@@ -81,9 +81,13 @@ public:
     int attacked(int damage);
     int getChestEncountered();
     void addChestEncountered();
+    CharacterEquipment* characterEquipment;
 
 protected:
+<<<<<<< HEAD
     
+=======
+>>>>>>> 2341231c8b26ea2a31600f8f9bf776ae1e99d58e
     int chestEncountered = 0;
     int level = 1;
     int strength, dexterity, constitution, intelligence, wisdom, charisma;

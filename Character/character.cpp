@@ -1,7 +1,7 @@
+#pragma once
 #include "character.h"
 #include "CharacterStrategy.h"
-
-
+#include "../Item/Item.h"
 
 Character::Character() : name("NPC"), level(1), strength(0), dexterity(0), constitution(0), intelligence(0), wisdom(0), charisma(0), Logger("Game_log.txt")
 {
@@ -28,8 +28,7 @@ Character::Character(std::string inputName, int inputStrength, int inputDexterit
 
 }
 
-Character::Character(int level, CharacterStrategy *charStrat) : level(level), strength(8), dexterity(8), constitution(8), intelligence(8), wisdom(8), charisma(8), cs(charStrat), Logger("Game_log.txt")
-
+Character::Character(int level, CharacterStrategy *charStrat) : level(level), strength(8), dexterity(8), constitution(8), intelligence(8), wisdom(8), charisma(8), cs(charStrat), Logger("Game_log.txt"), characterEquipment(new CharacterEquipment(this))
 {	
 	this->logAttach(&Logger);
 	groupedCalculate();

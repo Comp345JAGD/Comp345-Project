@@ -1,7 +1,6 @@
 #include "CharacterStrategy.h"
 
 
-Chest chest;
 int chestEnocuntered = 0;
 
 void FriendlyStrategy::execute(Character *character, GameMap *map)
@@ -489,7 +488,18 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
 
             if (didOpenChest) {
              //  TODO characterEquipment.addInventory(*chest.getItemContainer(chestEnocuntered));
-                info = "You Opened a chest!";
+                Chest chest;
+                ItemContainer* container = chest.getItemContainer(chestEnocuntered);
+                character->characterEquipment->addInventory(container);
+
+                vector<Item*>* otherItems = container->getItems();
+
+                info = "You Opened a chest!\n\n";
+
+                for (Item* item : *otherItems)
+                {
+                    info += "Obtained " + item->getName() + "!\n";
+                }
                 chestEnocuntered++;
                 moveDone = true;
             }
@@ -503,11 +513,48 @@ void HumanPlayerStrategy::execute(Character *character, GameMap *map)
             break;
         }
         case 5: {
+            int choiceInput, equipItemInput, removeItemInput;
 
-           //  characterEquipment.displayInventory();
+            character->characterEquipment->displayWornItems();
+            character->characterEquipment->displayInventory();
+            
+            do {
+                cout << "Here are Worn Items and Inventory" << endl << "Enter one of the following options:\n1. Equip Item\n2. Remove Item\n3. Exit" << endl;
+                cin >> choiceInput;
+                if (choiceInput == 1) {
+                    cout << "Input item you want to equip";
+                    cin >> equipItemInput;
+                    character->characterEquipment->equip(character->characterEquipment->getItem(equipItemInput -1));
+                }
+                else if (choiceInput == 2) {
+  
+                        cout << "Input item you want to remove\n 1. Weapon\n2. Shield\n3. Armor\4. Helmet\n5. Boots\n6. Belt \7 Ring  ";
+                    cin >> removeItemInput;
+                    if (removeItemInput == 1) { character->characterEquipment->remove(ItemType::Weapon); }
+                    else   if (removeItemInput == 2) { character->characterEquipment->remove(ItemType::Shield); }
+                    else if (removeItemInput == 3) { character->characterEquipment->remove(ItemType::Armor); }
+                    else if (removeItemInput == 4) { character->characterEquipment->remove(ItemType::Helmet); }
+                    else if (removeItemInput == 5) { character->characterEquipment->remove(ItemType::Boots); }
+                    else if (removeItemInput == 6) { character->characterEquipment->remove(ItemType::Belt); }
+                    else if (removeItemInput == 7) { character->characterEquipment->remove(ItemType::Ring); }
+                    else {
+                        cout << "Incorrect Input";
+                    }
+                }
+                else if (choiceInput == 3) {
+                    cout << "Thank you for using Item Menu" << endl;
+                }
+                else {
+                    cout << "Incorrect Input!" << endl;
+                }
+
+            } while (choiceInput != 3);
+            
+            moveDone = true;
             break;
 
         }
+
         }
     }
 

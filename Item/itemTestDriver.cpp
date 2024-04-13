@@ -5,7 +5,11 @@ void itemTestDriver()
 {
 	Character character(1, new HumanPlayerStrategy());
 	// Example usage
+<<<<<<< HEAD
 
+=======
+	CharacterEquipment * equipment = new CharacterEquipment(&character);
+>>>>>>> 2341231c8b26ea2a31600f8f9bf776ae1e99d58e
 	// Assume you have created instances of Helmet, Armor, Ring, etc.
 	// Equip items
 	
@@ -20,8 +24,20 @@ void itemTestDriver()
 	characterEquipment.equip(characterInventory.getItem(2));
 	characterEquipment.displayWornItems();
 	*/
+<<<<<<< HEAD
 
+=======
+	//characterEquipment.addInventory(*chest.getItemContainer(character.getChestEncountered())); 
+>>>>>>> 2341231c8b26ea2a31600f8f9bf776ae1e99d58e
 
+	character.characterEquipment = equipment;
+	character.characterEquipment->addInventory(&characterInventory);
+	character.characterEquipment->addInventory(chest.getItemContainer(character.getChestEncountered()));
+
+	character.characterEquipment->equip(character.characterEquipment->getItem(0));
+	character.characterEquipment->remove(ItemType::Weapon);
+	character.characterEquipment->displayWornItems();
+	character.characterEquipment->displayInventory();
 	//characterEquipment.displayWornItems();
 	/*
 	characterEquipment.equip(new Helmet("Iron Helmet", EnhancementType::Intelligence, 2));

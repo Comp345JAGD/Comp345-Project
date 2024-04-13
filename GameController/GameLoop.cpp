@@ -6,6 +6,7 @@ using namespace std;
 GameLoop::GameLoop(GameMap* currentMap, Character* humanCharacter) : Logger("Game_Log.txt") {
 	this->currentMap = currentMap;
     this->humanCharacter = humanCharacter;
+    this->humanCharacter->characterEquipment = new CharacterEquipment(this->humanCharacter);
 
     this->currentMap->setCell(currentMap->getStartRow(), currentMap->getStartColumn(), humanCharacter);
     this->logAttach(&Logger);
@@ -13,6 +14,7 @@ GameLoop::GameLoop(GameMap* currentMap, Character* humanCharacter) : Logger("Gam
 
 void GameLoop::setHumanCharacter(Character* humanCharacter) {
     this->humanCharacter = humanCharacter;
+    this->humanCharacter->characterEquipment = new CharacterEquipment(this->humanCharacter);
 }
 
 void GameLoop::setGameMap(GameMap* currentMap) {
