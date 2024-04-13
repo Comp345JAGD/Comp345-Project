@@ -84,6 +84,7 @@ public:
     CharacterEquipment* characterEquipment;
 
 protected:
+
     int chestEncountered = 0;
     int level = 1;
     int strength, dexterity, constitution, intelligence, wisdom, charisma;
@@ -94,6 +95,7 @@ protected:
     std::string name;
     std::string classType;
     GameFileWriter Logger;
+
 };
 
 void displayCharacters(std::vector<Character*>& characters);

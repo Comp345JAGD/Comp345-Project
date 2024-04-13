@@ -131,12 +131,13 @@ void CharacterEquipment::equip(Item* item) {
     bonusesByType->at(item->getEnhancement().type) += item->getEnhancement().bonus;
 
     std::cout << "Equipped " << item->getName() << " in " << toString(itemType) << " Slot" << std::endl;
+   
 }
 void CharacterEquipment::equip(int index) {
     Item* item = getItem(index);
     if (item != nullptr) {
         equip(item);
-        remove(index);
+        inventory->erase(inventory->begin() + index);
     }
     else {
         std::cerr << "No item found at index " << index << std::endl;
@@ -162,9 +163,11 @@ void CharacterEquipment::remove(ItemType itemType)
 
         bonusesByType->at(equippedItem->getEnhancement().type) -= equippedItem->getEnhancement().bonus;
 
-        std::cout << "Unequipped " << equippedItem->getName() << " from slot " << static_cast<int>(itemType) << std::endl;
+        std::cout << "Unequipped " << equippedItem->getName() << " from slot " << toString((itemType)) << std::endl;
 
+        /*
         inventory->push_back(equippedItem);
+        */
     }
     else
     {

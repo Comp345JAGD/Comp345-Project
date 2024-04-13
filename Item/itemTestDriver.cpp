@@ -1,17 +1,19 @@
 #include "itemTestDriver.h"
 #include "../Character/character.h"
+
 void itemTestDriver()
 {
 	Character character(1, new HumanPlayerStrategy());
 	// Example usage
+
 	CharacterEquipment * equipment = new CharacterEquipment(&character);
+
 	// Assume you have created instances of Helmet, Armor, Ring, etc.
 	// Equip items
 	
 	ItemContainer characterInventory;
 	Chest chest;
 	characterInventory.loadItemsFromFile("CharacterEquipment.txt");
-
 	/*characterInventory.addItem(new Ring("Intermediate Ring of Strength", EnhancementType::Strength, 2));
 	characterEquipment.addInventory(characterInventory);
 	characterEquipment.addInventory(*chest.getItemContainer(0));
@@ -19,7 +21,7 @@ void itemTestDriver()
 	characterEquipment.equip(characterInventory.getItem(2));
 	characterEquipment.displayWornItems();
 	*/
-	//characterEquipment.addInventory(*chest.getItemContainer(character.getChestEncountered())); 
+
 
 	character.characterEquipment = equipment;
 	character.characterEquipment->addInventory(&characterInventory);
